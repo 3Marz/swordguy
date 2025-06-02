@@ -30,5 +30,3 @@ func _on_throw_sword_body_entered(body:Node) -> void:
 		return
 
 	finished.emit("Land", {"body": body})
-
-

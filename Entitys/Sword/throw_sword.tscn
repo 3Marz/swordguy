@@ -1,0 +1,203 @@
+[gd_scene load_steps=15 format=3 uid="uid://blv7qct83d44x"]
+
+[ext_resource type="Script" uid="uid://blx17kgcre670" path="res://Entitys/Sword/throw_sword.gd" id="1_cmfml"]
+[ext_resource type="Script" uid="uid://x2ywbchcq87m" path="res://Classes/StateMachine.gd" id="2_jjohv"]
+[ext_resource type="PackedScene" uid="uid://b3pduk37q4pty" path="res://Assets/Models/Sword/Sword.gltf" id="2_sk526"]
+[ext_resource type="Script" uid="uid://b4hp8u3qo20nq" path="res://Entitys/Sword/States/held.gd" id="3_5cyhl"]
+[ext_resource type="Shape3D" uid="uid://b843ub15dbxa5" path="res://Entitys/Sword/throw_sword_box_shape.tres" id="3_rql43"]
+[ext_resource type="Script" uid="uid://bf3ycwq28e0to" path="res://Entitys/Sword/States/land.gd" id="4_ssp0k"]
+[ext_resource type="Script" uid="uid://chjovwo3ogyv5" path="res://Entitys/Sword/States/throw.gd" id="5_yk4r1"]
+[ext_resource type="Script" uid="uid://cf35kf370tw0g" path="res://Entitys/Sword/States/return.gd" id="6_pxu3q"]
+[ext_resource type="Shape3D" uid="uid://bxpyy2ma2s4nj" path="res://Entitys/Sword/throw_sword_cylinder_shape.tres" id="8_jqv85"]
+
+[sub_resource type="Animation" id="Animation_5cyhl"]
+resource_name = "held"
+
+[sub_resource type="Animation" id="Animation_ssp0k"]
+resource_name = "spin"
+length = 0.33334
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:shape")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_jqv85")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.240982)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sword:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, -3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Sword:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.205, 0.205, 0.205)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yk4r1"]
+resource_name = "hit"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sword:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.31, 0.31, 0.31)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, -3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_rql43")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.34909)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pxu3q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jqv85"]
+_data = {
+&"RESET": SubResource("Animation_pxu3q"),
+&"held": SubResource("Animation_5cyhl"),
+&"hit": SubResource("Animation_yk4r1"),
+&"spin": SubResource("Animation_ssp0k")
+}
+
+[node name="Sword" type="RigidBody3D"]
+continuous_cd = true
+contact_monitor = true
+script = ExtResource("1_cmfml")
+metadata/_custom_type_script = "uid://blx17kgcre670"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jqv85")
+}
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_jjohv")
+initial_state = NodePath("Held")
+metadata/_custom_type_script = "uid://x2ywbchcq87m"
+
+[node name="Held" type="Node" parent="StateMachine"]
+script = ExtResource("3_5cyhl")
+
+[node name="Land" type="Node" parent="StateMachine"]
+script = ExtResource("4_ssp0k")
+
+[node name="Throw" type="Node" parent="StateMachine"]
+script = ExtResource("5_yk4r1")
+
+[node name="Return" type="Node" parent="StateMachine"]
+script = ExtResource("6_pxu3q")
+
+[node name="Pivot" type="Marker3D" parent="."]
+
+[node name="Sword" parent="Pivot" instance=ExtResource("2_sk526")]
+transform = Transform3D(-0.205, 3.09541e-08, 1.35305e-15, 0, -8.96083e-09, 0.205, 3.09541e-08, 0.205, 8.96083e-09, 0, 0, -0.240982)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = ExtResource("8_jqv85")

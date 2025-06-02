@@ -62,4 +62,3 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 func _on_hit_area_body_entered(body: Node3D) -> void:
 	pass
-

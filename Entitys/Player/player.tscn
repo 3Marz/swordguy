@@ -75,8 +75,9 @@ parameters/Ledge_Hang/blend_position = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679508, 0)
 shape = SubResource("CapsuleShape3D_s5t43")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_nhjll")
+initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://x2ywbchcq87m"
 
 [node name="Idle" type="Node" parent="StateMachine"]
@@ -136,14 +137,11 @@ bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.0346965, 1.44152e-10, 1.392e-08, 0.999398)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(-0.00848727, 6.58004e-15, -3.40628e-09, 0.999964)
-bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(-0.125741, 0.182422, 8.77701e-08)
 bones/7/rotation = Quaternion(-0.000484364, -0.000484648, 0.707107, 0.707107)
-bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0346965, -8.59972e-11, -1.3922e-08, 0.999398)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.00848727, -2.19364e-15, 3.40628e-09, 0.999964)
-bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.557741, 0.182422, 0.014423)
 bones/10/rotation = Quaternion(2.10558e-07, 7.32319e-08, -0.707107, 0.707107)
 bones/11/position = Vector3(-0.557741, 0.182422, 0.0144227)

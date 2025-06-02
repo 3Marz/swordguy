@@ -34,5 +34,3 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func exit() -> void:
 	pass
-
-

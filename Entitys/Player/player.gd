@@ -92,8 +92,8 @@ extends CharacterBody3D
 # Onready Variables
 @onready var model: Node3D = $Model
 @onready var player_model: Node3D = $Model/Armature
-@onready var skeleton : Skeleton3D = $Model/Armature/Armature/Skeleton3D
-@onready var sword_mesh = $Model/Armature/Armature/Skeleton3D/Sword/Sword
+@onready var skeleton : Skeleton3D = $Model/Armature/Skeleton3D
+@onready var sword_mesh = $Model/Armature/Skeleton3D/Sword/Sword
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var spring_arm = $CameraPivot
 
