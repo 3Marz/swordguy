@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm1hqybgiajgu"]
+
+[ext_resource type="Script" uid="uid://73oaxnplqh5k" path="res://Globals/AudioManger/AudioManager.gd" id="1_5bp6i"]
+[ext_resource type="AudioStream" uid="uid://lnq3qyt6mylm" path="res://Entitys/Player/jump.ogg" id="2_esyya"]
+[ext_resource type="AudioStream" uid="uid://bw1p5rf0tudfx" path="res://Interactables/Collectables/Coin/coin.ogg" id="3_5g51k"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_5bp6i")
+
+[node name="JumpSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_esyya")
+volume_db = -5.0
+pitch_scale = 1.12
+
+[node name="CoinSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5g51k")
+volume_db = -5.0
+pitch_scale = 1.2

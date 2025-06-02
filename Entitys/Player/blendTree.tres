@@ -1,0 +1,99 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=18 format=3 uid="uid://c5msx1gj3tm7k"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_evqkl"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_46lr4"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_rj6fx"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ptg3g"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8je53"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_rj6fx"]
+input_0/name = "Ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Slide"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r3ve6"]
+animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_evqkl"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1h3lh"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rrqic"]
+animation = &"Ledge_Grab_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_46lr4"]
+animation = &"Run2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qy30e"]
+animation = &"ThrowSword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u5y0p"]
+animation = &"Long Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ptg3g"]
+animation = &"Begin_Slide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rj6fx"]
+animation = &"Sword Return"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ptg3g"]
+input_0/name = "Slide"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Long_Jump"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_rj6fx"]
+
+[resource]
+graph_offset = Vector2(557.199, 516.633)
+nodes/Fall/node = SubResource("AnimationNodeBlend2_evqkl")
+nodes/Fall/position = Vector2(640, 580)
+nodes/Jump/node = SubResource("AnimationNodeBlend2_46lr4")
+nodes/Jump/position = Vector2(420, 580)
+nodes/Ledge_Grab/node = SubResource("AnimationNodeBlend2_rj6fx")
+nodes/Ledge_Grab/position = Vector2(900, 600)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_ptg3g")
+nodes/OneShot/position = Vector2(1340, 1120)
+nodes/Run/node = SubResource("AnimationNodeBlend2_8je53")
+nodes/Run/position = Vector2(220, 580)
+nodes/State/node = SubResource("AnimationNodeTransition_rj6fx")
+nodes/State/position = Vector2(1100, 840)
+nodes/anim_Fall/node = SubResource("AnimationNodeAnimation_r3ve6")
+nodes/anim_Fall/position = Vector2(460, 840)
+nodes/anim_Idle/node = SubResource("AnimationNodeAnimation_evqkl")
+nodes/anim_Idle/position = Vector2(-20, 600)
+nodes/anim_Jump/node = SubResource("AnimationNodeAnimation_1h3lh")
+nodes/anim_Jump/position = Vector2(240, 840)
+nodes/anim_Ledge_Grab_Idle/node = SubResource("AnimationNodeAnimation_rrqic")
+nodes/anim_Ledge_Grab_Idle/position = Vector2(700, 840)
+nodes/anim_Run/node = SubResource("AnimationNodeAnimation_46lr4")
+nodes/anim_Run/position = Vector2(0, 820)
+nodes/anim_ThrowSword/node = SubResource("AnimationNodeAnimation_qy30e")
+nodes/anim_ThrowSword/position = Vector2(1600, 940)
+nodes/anim_long_jump/node = SubResource("AnimationNodeAnimation_u5y0p")
+nodes/anim_long_jump/position = Vector2(700, 1240)
+nodes/anim_slide/node = SubResource("AnimationNodeAnimation_ptg3g")
+nodes/anim_slide/position = Vector2(720, 1060)
+nodes/anim_sword_return/node = SubResource("AnimationNodeAnimation_rj6fx")
+nodes/anim_sword_return/position = Vector2(1140, 1260)
+nodes/output/position = Vector2(1980, 800)
+nodes/slide_state/node = SubResource("AnimationNodeTransition_ptg3g")
+nodes/slide_state/position = Vector2(900, 1100)
+nodes/throw_sword/node = SubResource("AnimationNodeOneShot_rj6fx")
+nodes/throw_sword/position = Vector2(1780, 800)
+node_connections = [&"Fall", 0, &"Jump", &"Fall", 1, &"anim_Fall", &"Jump", 0, &"Run", &"Jump", 1, &"anim_Jump", &"Ledge_Grab", 0, &"Fall", &"Ledge_Grab", 1, &"anim_Ledge_Grab_Idle", &"OneShot", 1, &"anim_sword_return", &"Run", 0, &"anim_Idle", &"Run", 1, &"anim_Run", &"State", 0, &"Ledge_Grab", &"State", 1, &"slide_state", &"output", 0, &"throw_sword", &"slide_state", 0, &"anim_slide", &"slide_state", 1, &"anim_long_jump", &"throw_sword", 0, &"State", &"throw_sword", 1, &"anim_ThrowSword"]

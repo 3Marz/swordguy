@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c63rkaol4hp3t"]
+
+[ext_resource type="PackedScene" uid="uid://lbapmwyvunkm" path="res://Assets/Models/Tests/mario64/TickTok.gltf" id="1_ato0n"]
+
+[node name="TickTok" instance=ExtResource("1_ato0n")]

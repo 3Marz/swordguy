@@ -1,0 +1,73 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://lbapmwyvunkm"
+path="res://.godot/imported/TickTok.gltf-28052ea9a94df05da476a6e9f68e6bda.scn"
+
+[deps]
+
+source_file="res://Assets/Models/Tests/mario64/TickTok.gltf"
+dest_files=["res://.godot/imported/TickTok.gltf-28052ea9a94df05da476a6e9f68e6bda.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:0_geometry_008": {
+"generate/physics": true
+},
+"PATH:10_geometry_004": {
+"generate/physics": true
+},
+"PATH:11_geometry_002": {
+"generate/physics": true
+},
+"PATH:1_geometry_014": {
+"generate/physics": true
+},
+"PATH:2_geometry_003": {
+"generate/physics": true
+},
+"PATH:3_geometry_007": {
+"generate/physics": true
+},
+"PATH:4_geometry_005": {
+"generate/physics": true
+},
+"PATH:6_geometry_001": {
+"generate/physics": true
+},
+"PATH:7_geometry_010": {
+"generate/physics": true
+},
+"PATH:8_geometry_006": {
+"generate/physics": true
+},
+"PATH:9_geometry_017": {
+"generate/physics": true
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

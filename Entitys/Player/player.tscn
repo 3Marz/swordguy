@@ -1,0 +1,215 @@
+[gd_scene load_steps=20 format=3 uid="uid://cgxgkt8sytllx"]
+
+[ext_resource type="Script" uid="uid://mt1c1xfe57tn" path="res://Entitys/Player/player.gd" id="1_uu7px"]
+[ext_resource type="PackedScene" uid="uid://be02x5klrfm6h" path="res://Entitys/Player/player_model.tscn" id="2_citt6"]
+[ext_resource type="Script" uid="uid://x2ywbchcq87m" path="res://Classes/StateMachine.gd" id="2_nhjll"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://gb7a38j1g1eb" path="res://Entitys/Player/animation_state_tree.tres" id="2_s5t43"]
+[ext_resource type="Script" uid="uid://cgdttaygd0fgb" path="res://Entitys/Player/States/idle.gd" id="3_r7b4u"]
+[ext_resource type="Script" uid="uid://c8uelnggxlgjw" path="res://Entitys/Player/States/running.gd" id="4_evqkl"]
+[ext_resource type="Script" uid="uid://bbolgc8le1o8v" path="res://Entitys/Player/States/wall_sliding.gd" id="5_8je53"]
+[ext_resource type="Script" uid="uid://dyd0rf8f2v7k5" path="res://Entitys/Player/States/jumping.gd" id="6_46lr4"]
+[ext_resource type="Script" uid="uid://bvbatwm22yh3a" path="res://Entitys/Player/States/falling.gd" id="7_r3ve6"]
+[ext_resource type="Script" uid="uid://dof4f7dkgnvms" path="res://Entitys/Player/States/throwing_sword.gd" id="8_1h3lh"]
+[ext_resource type="Script" uid="uid://d3clbfubufpwu" path="res://Entitys/Player/States/sliding.gd" id="9_s7pro"]
+[ext_resource type="Script" uid="uid://cin4taxljppl0" path="res://Entitys/Player/States/long_jump.gd" id="10_aiamn"]
+[ext_resource type="Script" uid="uid://c11gkbxu0c88e" path="res://Entitys/Player/States/ledge_grab.gd" id="11_dbqqt"]
+[ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://Entitys/Player/cloud.res" id="14_evqkl"]
+
+[sub_resource type="Curve" id="Curve_8je53"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s5t43"]
+radius = 0.275963
+height = 1.35503
+
+[sub_resource type="Curve" id="Curve_evqkl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.243902, 1), 0.0, 0.0, 0, 0, Vector2(0.99458, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8je53"]
+curve = SubResource("Curve_evqkl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8je53"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.75
+scale_curve = SubResource("CurveTexture_8je53")
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+floor_constant_speed = true
+floor_max_angle = 0.959931
+floor_snap_length = 0.5
+script = ExtResource("1_uu7px")
+debug = true
+max_fast_speed = 7.0
+air_deaccel_factor = 2.0
+accel_factor = 10.0
+accelcurve = SubResource("Curve_8je53")
+max_slop_velo_length = 12.0
+long_jump_height = 8.7
+long_jump_turn_speed = 7.0
+long_jump_air_deaccel_factor = 1.2
+max_long_jump_velo_length = 12.0
+horizantal_ledge_offset = 0.3
+vertical_ledge_offset = 1.3
+time_to_ledge = 0.1
+ledge_stopping_distance = 0.5
+mouse_sensitivity = 0.3
+max_pitch = 45.0
+metadata/_custom_type_script = "uid://mt1c1xfe57tn"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Model")
+tree_root = ExtResource("2_s5t43")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../Model/AnimationPlayer")
+parameters/Ledge_Hang/blend_position = 0
+"parameters/Sliding/Slide Loop/TimeScale/scale" = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679508, 0)
+shape = SubResource("CapsuleShape3D_s5t43")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_nhjll")
+metadata/_custom_type_script = "uid://x2ywbchcq87m"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_r7b4u")
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource("4_evqkl")
+
+[node name="WallSliding" type="Node" parent="StateMachine"]
+script = ExtResource("5_8je53")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("6_46lr4")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("7_r3ve6")
+
+[node name="coyote_timer" type="Timer" parent="StateMachine/Falling"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Throwing Sword" type="Node" parent="StateMachine"]
+script = ExtResource("8_1h3lh")
+
+[node name="Sliding" type="Node" parent="StateMachine"]
+script = ExtResource("9_s7pro")
+
+[node name="coyote_timer" type="Timer" parent="StateMachine/Sliding"]
+wait_time = 0.1
+one_shot = true
+
+[node name="slide_end_timer" type="Timer" parent="StateMachine/Sliding"]
+wait_time = 0.4
+one_shot = true
+
+[node name="Long Jump" type="Node" parent="StateMachine"]
+script = ExtResource("10_aiamn")
+
+[node name="Ledge Grab" type="Node" parent="StateMachine"]
+script = ExtResource("11_dbqqt")
+
+[node name="let_go_timer" type="Timer" parent="StateMachine/Ledge Grab"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Model" parent="." instance=ExtResource("2_citt6")]
+
+[node name="Skeleton3D" parent="Model/Armature" index="0"]
+bones/0/position = Vector3(0, 0.012509, 0)
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/1/rotation = Quaternion(0, 1.19209e-07, 0, 1)
+bones/2/rotation = Quaternion(0, 1.42109e-14, 0, 1)
+bones/3/rotation = Quaternion(-0.612606, 0.0625696, -0.0407332, 0.786855)
+bones/4/position = Vector3(0.125741, 0.182422, 1.47728e-07)
+bones/4/rotation = Quaternion(-0.000484196, 0.000484479, -0.707107, 0.707107)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.0346965, 1.44152e-10, 1.392e-08, 0.999398)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.00848727, 6.58004e-15, -3.40628e-09, 0.999964)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(-0.125741, 0.182422, 8.77701e-08)
+bones/7/rotation = Quaternion(-0.000484364, -0.000484648, 0.707107, 0.707107)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.0346965, -8.59972e-11, -1.3922e-08, 0.999398)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-0.00848727, -2.19364e-15, 3.40628e-09, 0.999964)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.557741, 0.182422, 0.014423)
+bones/10/rotation = Quaternion(2.10558e-07, 7.32319e-08, -0.707107, 0.707107)
+bones/11/position = Vector3(-0.557741, 0.182422, 0.0144227)
+bones/11/rotation = Quaternion(4.46224e-08, -2.39167e-07, 0.707107, 0.707107)
+bones/12/position = Vector3(0.0982633, -0.0118562, 6.7597e-08)
+bones/12/rotation = Quaternion(-0.000118359, 0.040475, 0.999174, -0.00374623)
+bones/12/scale = Vector3(1, 1, 1.00001)
+bones/13/rotation = Quaternion(-0.116186, 0.000133156, -0.00374069, 0.99322)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.707246, 1.02146e-09, -4.64787e-05, 0.706968)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(0.000118359, 0.040475, 0.999174, 0.00374623)
+bones/15/scale = Vector3(1, 1, 1.00001)
+bones/16/rotation = Quaternion(-0.116186, -0.000133156, 0.00374069, 0.99322)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(0.707246, -1.02146e-09, 4.64787e-05, 0.706968)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/position = Vector3(0, 0.0918443, -0.178003)
+bones/18/rotation = Quaternion(0, 0, 0, 1)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/position = Vector3(-0.603272, 0.482883, -3.57485e-05)
+bones/19/rotation = Quaternion(-2.21886e-07, -2.57726e-08, 0.903124, -0.42938)
+bones/19/scale = Vector3(1, 1, 1)
+bones/21/position = Vector3(0.100229, -0.464661, -0.00987164)
+bones/21/rotation = Quaternion(-2.32342e-05, 0.707107, -0.707107, 2.32342e-05)
+bones/23/position = Vector3(0.341741, 0.340464, -0.21077)
+bones/23/rotation = Quaternion(0.5, -0.5, 0.5, -0.5)
+bones/24/position = Vector3(-0.100229, -0.464661, -0.00987164)
+bones/24/rotation = Quaternion(2.32342e-05, 0.707107, -0.707107, -2.32342e-05)
+bones/26/position = Vector3(-0.341741, 0.340464, -0.21077)
+
+[node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 4.38426e-08, -4.17233e-07, -1.78814e-07, 1.87549e-07, -1, -9.81885e-08, 1, 1.20529e-07, -3.57628e-07, -0.522947, 5.96046e-08)
+
+[node name="Raycasts" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.703941, 0)
+
+[node name="LedgeRayLeft" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.693118, 0.421734)
+target_position = Vector3(0, -0.6, 0)
+
+[node name="LedgeRay" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.693232, 0.421511)
+target_position = Vector3(0, -0.6, 0)
+
+[node name="LedgeRayRight" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.693118, 0.421734)
+target_position = Vector3(0, -0.6, 0)
+
+[node name="LedgeRayHorizontal" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147868, 0.168163)
+target_position = Vector3(0, 0, 0.5)
+
+[node name="WallCheckRay" type="RayCast3D" parent="Raycasts"]
+target_position = Vector3(0, 0, 1.4)
+
+[node name="ParticleTrail" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_8je53")
+draw_pass_1 = ExtResource("14_evqkl")
+
+[connection signal="state_changed" from="StateMachine" to="." method="_on_state_machine_state_changed"]
+[connection signal="timeout" from="StateMachine/Falling/coyote_timer" to="StateMachine/Falling" method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Sliding/coyote_timer" to="StateMachine/Sliding" method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Sliding/slide_end_timer" to="StateMachine/Sliding" method="_on_slide_end_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Ledge Grab/let_go_timer" to="StateMachine/Ledge Grab" method="_on_let_go_timer_timeout"]
+
+[editable path="Model"]

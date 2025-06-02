@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmphcbnrlpx4i"]
+
+[ext_resource type="Script" uid="uid://by6w4qqybsxdm" path="res://Environments/Props/MovingPlatform/moving_platform.gd" id="1_kytd2"]
+
+[node name="MovingPlatform" type="AnimatableBody3D"]
+script = ExtResource("1_kytd2")
+metadata/_custom_type_script = "uid://by6w4qqybsxdm"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
