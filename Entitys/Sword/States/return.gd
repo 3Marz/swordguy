@@ -22,6 +22,7 @@ func physics_update(_delta: float) -> void:
 		finished.emit("Held")
 	else:
 		return_progress += (parent.return_speed + (speed_multipler/2)) * _delta
+		speed_multipler = parent.global_position.distance_to(parent.get_parent().global_position)
 
 		var accel = parent.return_accel_curve.sample_baked(return_progress / return_start_pos.distance_to(parent.get_parent().global_position))
 

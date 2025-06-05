@@ -103,11 +103,11 @@ extends CharacterBody3D
 @onready var ledge_ray_horizontal : RayCast3D = $Raycasts/LedgeRayHorizontal
 @onready var wall_check_ray : RayCast3D = $Raycasts/WallCheckRay
 
-@onready var sword_spwan_pos : Node3D = $Model/SwordSpawnPos
+@onready var sword_spwan_pos : Marker3D = $Model/SwordSpawnPos
 
 @onready var particle_trail: GPUParticles3D = $ParticleTrail
 
-@onready var sword_body: Sword = $Model/SwordSocket/offset/ThrowSword
+@onready var sword_body: Sword = $Model/SwordSocket/offset/Sword
 
 @export var pcam: PhantomCamera3D
 
@@ -210,8 +210,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			used_speed = lerpf(used_speed, max_speed, deaccel_to_normalspeed_factor * delta)
 			moving_to_fast_speed = false
-
-	# update_sword_visability()
 
 	if debug:
 		DebugDraw3D.draw_arrow(global_position+Vector3(0,1,0), (global_position+Vector3(0,1,0)) + velocity, Color.BLUE if !moving_to_fast_speed else Color.RED, 0.1)

@@ -29,12 +29,14 @@ var points = []
 
 func enable_trails():
 	# trails_root.visible = true
-	handle_trail.length = 5
-	blade_trail.length = 10
+	# handle_trail.length = 5
+	# blade_trail.length = 10
+	pass
 func disable_trails():
 	# trails_root.visible = false
-	handle_trail.length = 0
-	blade_trail.length = 0
+	# handle_trail.length = 0
+	# blade_trail.length = 0
+	pass
 
 
 func return_to_pos(pos: Vector3, player: Player) -> void:
