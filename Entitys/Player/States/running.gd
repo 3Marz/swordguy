@@ -8,6 +8,8 @@ var used_speed = 0
 
 var look_direction = Vector2.ZERO
 
+var prev_move_direction = Vector3.ZERO
+
 func handle_input(_event: InputEvent) -> void:
 	pass
 
@@ -18,7 +20,13 @@ func physics_update(_delta: float) -> void:
 	player.apply_gravity(_delta)
 	player.cam_follow(_delta)
 
+
 	var move_direction : Vector3 = player.get_move_direction();
+
+	if move_direction.dot(prev_move_direction) < 0.2:
+		print("Sharp turn!")
+
+	prev_move_direction = move_direction
 	
 	if move_direction.x:
 		curve_offset.x += player.curve_sample_rate

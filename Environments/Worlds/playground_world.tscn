@@ -67,14 +67,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("..:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(16, 1.5, 5)]
+"values": [Vector3(16, 5.22231, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_on3se"]
@@ -85,14 +85,14 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(16, 1.5, 5), Vector3(16, 5, 5), Vector3(16, 1.5, 5)]
+"values": [Vector3(16, 2, 5), Vector3(16, 5.722, 5), Vector3(16, 2, 5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_njirx"]
@@ -109,14 +109,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("..:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(16, 1.5, 0)]
+"values": [Vector3(20.8529, 1.5, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8ojrg"]
@@ -127,14 +127,14 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(16, 1.5, 0), Vector3(22, 1.5, 0), Vector3(16, 1.5, 0)]
+"values": [Vector3(16, 2, 0), Vector3(20.853, 2, 0), Vector3(16, 2, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rwgjv"]
@@ -155,26 +155,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("..:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(15.8963, 1.5, -5)]
+"values": [Vector3(20.8963, 1.5, -5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("..:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 3.14159, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_tq0w3"]
@@ -185,19 +185,19 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 3, 6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(15.8963, 1.5, -5), Vector3(15.8963, 1.5, -10), Vector3(15.8963, 1.5, -5)]
+"values": [Vector3(15.8963, 1.5, -5), Vector3(20.8963, 1.5, -5), Vector3(15.8963, 1.5, -5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("..:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -495,7 +495,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_m0nn7")
 
 [node name="MovingPlaform2" parent="Geom" instance=ExtResource("5_kyem5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5.22231, 5)
 sync_to_physics = false
 
 [node name="MeshInstance3D" parent="Geom/MovingPlaform2" index="0"]
@@ -509,11 +509,10 @@ libraries = {
 autoplay = "ip"
 
 [node name="CollisionShape3D" parent="Geom/MovingPlaform2" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, 5)
 shape = SubResource("BoxShape3D_d64q4")
 
 [node name="MovingPlaform" parent="Geom" instance=ExtResource("5_kyem5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8529, 1.5, 0)
 sync_to_physics = false
 
 [node name="MeshInstance3D" parent="Geom/MovingPlaform" index="0"]
@@ -527,11 +526,10 @@ libraries = {
 autoplay = "move"
 
 [node name="CollisionShape3D" parent="Geom/MovingPlaform" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, 0)
 shape = SubResource("BoxShape3D_d64q4")
 
 [node name="MovingPlatform" parent="Geom" instance=ExtResource("5_kyem5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8963, 1.5, -5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20.8963, 1.5, -5)
 sync_to_physics = false
 
 [node name="MeshInstance3D" parent="Geom/MovingPlatform" index="0"]
@@ -545,7 +543,6 @@ libraries = {
 autoplay = "move"
 
 [node name="CollisionShape3D" parent="Geom/MovingPlatform" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8963, 1.5, -5)
 shape = SubResource("BoxShape3D_tq0w3")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Geom"]
@@ -615,7 +612,7 @@ pcam = NodePath("../PhantomCamera3D")
 
 [node name="Camera" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 3.5)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera"]
 process_priority = 300
@@ -624,15 +621,15 @@ script = ExtResource("11_c6baq")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 3.5)
 script = ExtResource("12_pm1mo")
 follow_mode = 6
 follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_phj5p")
 follow_offset = Vector3(0, 1.2, 0)
 follow_damping = true
-follow_distance = 3.0
-spring_length = 3.0
+follow_distance = 3.5
+spring_length = 3.5
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [editable path="Geom/MovingPlaform2"]

@@ -121,6 +121,8 @@ func physics_update(delta: float) -> void:
 		finished.emit("Jumping")
 	if player.is_on_floor():
 		finished.emit("Idle")
+	if !player.ledge_ray.is_colliding():
+		finished.emit("Falling")
 	
 	if Input.is_action_just_pressed("throw"):
 		if !player.has_sword:
