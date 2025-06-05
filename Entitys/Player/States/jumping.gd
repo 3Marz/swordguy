@@ -41,11 +41,7 @@ func physics_update(delta: float) -> void:
 	if player.velocity.y <= 0:
 		finished.emit("Falling")
 
-	if Input.is_action_just_pressed("throw"):
-		if player.has_sword:
-			finished.emit("Throwing Sword")
-		else:
-			player.return_sword()
+	player.can_throw_n_return_sword(finished)
 
 func enter(previous_state_path: String, data := {}) -> void:
 	jumpTween()

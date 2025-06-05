@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnvi50c1dwmtj"
-path="res://.godot/imported/bounce.svg-af2ea273783c6d4a03e147a447600d3b.ctex"
+uid="uid://bbrv308svwjvf"
+path="res://.godot/imported/bounce.svg-2e89c7f1be0abf9630114e128366efa2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/GPUTrail/bounce.svg"
-dest_files=["res://.godot/imported/bounce.svg-af2ea273783c6d4a03e147a447600d3b.ctex"]
+source_file="res://addons/GPUTrail-main/bounce.svg"
+dest_files=["res://.godot/imported/bounce.svg-2e89c7f1be0abf9630114e128366efa2.ctex"]
 
 [params]
 

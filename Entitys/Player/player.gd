@@ -118,6 +118,7 @@ var wall_slide_gravity = 5
 var jump_just_pressed = false
 var has_sword = true
 var sword_reflected = false 
+var can_throw_sword = true
 
 var previous_y_rotation: float = 0.0
 var delta_rotation: float = 0.0  # Change since last frame
@@ -160,35 +161,6 @@ func _unhandled_input(event):
 		# Change the SpringArm3D node's rotation and rotate around its target.
 		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 
-func cam_follow(delta):
-	if !pcam:
-		return
-
-func apply_gravity(delta):
-	velocity.y -= gravity * delta
-
-func get_move_direction(only_x = false) -> Vector3:
-	var move_direction := Vector2.ZERO
-	if only_x:
-		move_direction = Vector2(Input.get_axis("move_right", "move_left"), 0)
-	else:
-		move_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	return Vector3(move_direction.x, 0, move_direction.y).rotated(Vector3.UP, pcam.get_third_person_rotation().y).normalized()
-
-func update_sword_visability():
-	if has_sword:
-		sword_mesh.show()
-	else:
-		sword_mesh.hide()
-
-func return_sword():
-	sword_body.state_machine._transition_to_next_state("Return", {})
-
-func _reparent(new_parent):
-	pcam.set_follow_target(null)
-	reparent(new_parent)
-	pcam.set_follow_target(self)
-
 func _ready() -> void:
 	anim_tree.active = true
 
@@ -219,7 +191,42 @@ func _physics_process(delta: float) -> void:
 		DebugDraw2D.set_text("player_velocity", velocity)
 		DebugDraw2D.set_text("player_velocity_length", velocity.length())
 		DebugDraw2D.set_text("rotation_change", str(delta_rotation))
-	
+
+func cam_follow(delta):
+	if !pcam:
+		return
+
+func apply_gravity(delta):
+	velocity.y -= gravity * delta
+
+func get_move_direction(only_x = false) -> Vector3:
+	var move_direction := Vector2.ZERO
+	if only_x:
+		move_direction = Vector2(Input.get_axis("move_right", "move_left"), 0)
+	else:
+		move_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	return Vector3(move_direction.x, 0, move_direction.y).rotated(Vector3.UP, pcam.get_third_person_rotation().y).normalized()
+
+func update_sword_visability():
+	if has_sword:
+		sword_mesh.show()
+	else:
+		sword_mesh.hide()
+
+func return_sword():
+	sword_body.state_machine._transition_to_next_state("Return", {})
+
+func _reparent(new_parent):
+	pcam.set_follow_target(null)
+	reparent(new_parent)
+	pcam.set_follow_target(self)
+
+func can_throw_n_return_sword(single_func: Signal):
+	if Input.is_action_just_pressed("throw"):
+		if has_sword and can_throw_sword:
+			single_func.emit("Throwing Sword")
+		elif !has_sword:
+			return_sword()
 
 func _on_state_machine_state_changed(prev:String, next:String) -> void:
 	for i in $StateMachine.get_child_count():

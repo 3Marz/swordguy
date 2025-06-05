@@ -42,12 +42,14 @@ scale_curve = SubResource("CurveTexture_8je53")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
+collision_mask = 5
 floor_constant_speed = true
 floor_max_angle = 0.959931
 floor_snap_length = 0.5
 script = ExtResource("1_uu7px")
-debug = true
 max_fast_speed = 7.0
+model_tilt_speed = 2.0
+max_tilt_angle = 30.0
 air_deaccel_factor = 2.0
 accel_factor = 10.0
 accelcurve = SubResource("Curve_8je53")
@@ -112,6 +114,10 @@ one_shot = true
 
 [node name="throw_time" type="Timer" parent="StateMachine/Throwing Sword"]
 wait_time = 0.333
+one_shot = true
+
+[node name="throw_cooldown" type="Timer" parent="StateMachine/Throwing Sword"]
+wait_time = 0.5
 one_shot = true
 
 [node name="Sliding" type="Node" parent="StateMachine"]
@@ -239,7 +245,7 @@ target_position = Vector3(0, 0, 1.4)
 
 [node name="ParticleTrail" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 30
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_8je53")
 draw_pass_1 = ExtResource("14_evqkl")
 
@@ -247,6 +253,7 @@ draw_pass_1 = ExtResource("14_evqkl")
 [connection signal="timeout" from="StateMachine/Falling/coyote_timer" to="StateMachine/Falling" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword/end_timer" to="StateMachine/Throwing Sword" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword/throw_time" to="StateMachine/Throwing Sword" method="_on_throw_time_timeout"]
+[connection signal="timeout" from="StateMachine/Throwing Sword/throw_cooldown" to="StateMachine/Throwing Sword" method="_on_throw_cooldown_timeout"]
 [connection signal="timeout" from="StateMachine/Sliding/coyote_timer" to="StateMachine/Sliding" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Sliding/slide_end_timer" to="StateMachine/Sliding" method="_on_slide_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Ledge Grab/let_go_timer" to="StateMachine/Ledge Grab" method="_on_let_go_timer_timeout"]

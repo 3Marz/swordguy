@@ -17,9 +17,9 @@ class_name Sword
 @onready var collision_shape = $CollisionShape3D
 @onready var state_machine: StateMachine = $StateMachine
 
-@onready var trails_root = $SmearSword/Pivot/Trails
-@onready var handle_trail: GPUTrail3D = $SmearSword/Pivot/Trails/Handle
-@onready var blade_trail: GPUTrail3D = $SmearSword/Pivot/Trails/Blade
+# @onready var trails_root = $SmearSword/Pivot/Trails
+@onready var handle_trail: GPUTrail3D = $Pivot/HandleTrail
+@onready var blade_trail: GPUTrail3D = $Pivot/BladeTrail
 
 var collision_point : Vector3
 var collision_normal: Vector3
@@ -29,13 +29,13 @@ var points = []
 
 func enable_trails():
 	# trails_root.visible = true
-	# handle_trail.length = 5
-	# blade_trail.length = 10
+	handle_trail.length = 5
+	blade_trail.length = 10
 	pass
 func disable_trails():
 	# trails_root.visible = false
-	# handle_trail.length = 0
-	# blade_trail.length = 0
+	handle_trail.length = 0
+	blade_trail.length = 0
 	pass
 
 

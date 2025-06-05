@@ -51,6 +51,10 @@ func launch_sword():
 
 func _on_end_timer_timeout() -> void:
 	player.sword_reflected = false
+
+	player.can_throw_sword = false
+	$throw_cooldown.start()
+
 	match prev_state:
 		"Idle":
 			finished.emit("Idle")
@@ -68,3 +72,6 @@ func _on_throw_time_timeout() -> void:
 		launch_sword()
 	else:
 		player.sword_reflected = true
+
+func _on_throw_cooldown_timeout() -> void:
+	player.can_throw_sword = true

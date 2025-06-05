@@ -24,14 +24,10 @@ func physics_update(_delta: float) -> void:
 	if !player.is_on_floor():
 		finished.emit("Falling")
 	if Input.is_action_just_pressed("slide") and player.get_floor_angle() >= 0.1:
-		finished.emit("Sliding") 
-
-	if Input.is_action_just_pressed("throw"):
-		if player.has_sword:
-			finished.emit("Throwing Sword")
-		else:
-			player.return_sword()
-		
+		finished.emit("Sliding")
+	
+	player.can_throw_n_return_sword(finished)
+	
 
 func enter(previous_state_path: String, data := {}) -> void:
 	pass

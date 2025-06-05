@@ -25,11 +25,13 @@ func physics_update(_delta: float) -> void:
 	if move_direction.z:
 		curve_offset.z += player.curve_sample_rate
 
-	# print(player.get_floor_angle())
+	# for speed downslops
 	if player.get_floor_angle() > player.min_slop_angle and player.get_last_motion().y < 0:
 		used_speed = lerpf(used_speed, player.max_fast_speed, 0.2)
+		player.particle_trail.speed_scale = 1.5
 	else:
 		used_speed = lerpf(used_speed, player.max_speed, 0.2)
+		player.particle_trail.speed_scale = 1
 
 	player.velocity.x = lerpf(player.velocity.x, player.accelcurve.sample(curve_offset.x) * player.used_speed * move_direction.x, player.accel_factor * _delta)
 	player.velocity.z = lerpf(player.velocity.z, player.accelcurve.sample(curve_offset.z) * player.used_speed * move_direction.z, player.accel_factor * _delta)
@@ -57,11 +59,7 @@ func physics_update(_delta: float) -> void:
 	if Input.is_action_pressed("slide") and !player.jump_just_pressed:
 		finished.emit("Sliding") 
 
-	if Input.is_action_just_pressed("throw"):
-		if player.has_sword:
-			finished.emit("Throwing Sword")
-		else:
-			player.return_sword()
+	player.can_throw_n_return_sword(finished)
 
 func enter(previous_state_path: String, data := {}) -> void:
 	if player.velocity.length() > 8:
@@ -75,6 +73,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func exit() -> void:
 	player.particle_trail.emitting = false
+	player.particle_trail.speed_scale = 1
 
 	var tween = get_tree().create_tween()
 	# tween.tween_property(player.model, "rotation", Vector3(player.model.rotation.x, player.model.rotation.y, 0), 0.1)

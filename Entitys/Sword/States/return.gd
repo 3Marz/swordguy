@@ -57,8 +57,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 	return_progress = 0.0
 
 
-	pass
-
 func exit() -> void:
 	pass
 
