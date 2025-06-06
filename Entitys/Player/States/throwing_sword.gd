@@ -27,6 +27,9 @@ func physics_update(delta: float) -> void:
 
 func enter(previous_state_path: String, data := {}) -> void:
 
+	player.sword_body.enable_trails()
+	player.collision_mask = player.COLLISION_MASK_NO_SWORD
+
 	$end_timer.start()
 	$throw_time.start()
 	if previous_state_path != "Idle" and previous_state_path != "Running":
@@ -72,6 +75,7 @@ func _on_throw_time_timeout() -> void:
 		launch_sword()
 	else:
 		player.sword_reflected = true
+		player.sword_body.disable_trails()
 
 func _on_throw_cooldown_timeout() -> void:
 	# player.can_throw_sword = true

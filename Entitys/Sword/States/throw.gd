@@ -20,7 +20,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 	parent.enable_trails()
 
 func exit() -> void:
-	pass
+	var player: Player = parent.player
+	player.collision_mask = player.COLLISION_MASK_WITH_SWORD
+	# print(player.collision_mask)
 
 func _on_sword_body_entered(body: Node) -> void:
 	if body is Player:

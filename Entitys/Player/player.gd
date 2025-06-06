@@ -140,6 +140,9 @@ enum STATES {
 	Sword_Return
 }
 
+const COLLISION_MASK_WITH_SWORD = 1 | 4
+const COLLISION_MASK_NO_SWORD = 1
+
 # ---------- FUNCTIONS ---------- #
 #
 func _unhandled_input(event):
