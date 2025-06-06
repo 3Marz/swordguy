@@ -29,7 +29,7 @@ window/size/always_on_top=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/GPUTrail/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/proto_shape/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/proto_shape/plugin.cfg")
 
 [filesystem]
 

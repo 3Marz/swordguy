@@ -23,7 +23,7 @@ func physics_update(_delta: float) -> void:
 
 	var move_direction : Vector3 = player.get_move_direction();
 
-	if move_direction.dot(prev_move_direction) < 0.2:
+	if move_direction.dot(prev_move_direction) < 0.2 and player.velocity.length() > 4:
 		print("Sharp turn!")
 
 	prev_move_direction = move_direction
@@ -83,6 +83,12 @@ func exit() -> void:
 	player.particle_trail.emitting = false
 	player.particle_trail.speed_scale = 1
 
+	player.rotation.y = Vector2(player.velocity.z, player.velocity.x).angle()
 	var tween = get_tree().create_tween()
+	# tween.tween_property(player, "rotation", Vector3(0, Vector2(player.velocity.z, player.velocity.x).angle(), 0), 0.1)
 	# tween.tween_property(player.model, "rotation", Vector3(player.model.rotation.x, player.model.rotation.y, 0), 0.1)
 	tween.tween_property(player.model, "rotation", Vector3(player.model.rotation.x, 0, 0), 0.1)
+
+
+
+

@@ -119,6 +119,7 @@ var jump_just_pressed = false
 var has_sword = true
 var sword_reflected = false 
 var can_throw_sword = true
+var sword_just_returned = false
 
 var previous_y_rotation: float = 0.0
 var delta_rotation: float = 0.0  # Change since last frame
@@ -233,3 +234,11 @@ func _on_state_machine_state_changed(prev:String, next:String) -> void:
 		if $StateMachine.get_child(i).name == next:
 			state = i
 	# state = next
+
+func _on_return_back_to_player() -> void:
+	sword_just_returned = true
+	get_tree().create_timer(0.5).timeout.connect(func(): sword_just_returned = false)
+	pass # Replace with function body.
+
+
+

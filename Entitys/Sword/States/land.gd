@@ -19,7 +19,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	parent.collision_shape.disabled = false
 	parent.freeze = true
 
-	parent.disable_trails()
+	# parent.disable_trails()
 
 	if data["body"] != null:
 		body = data["body"]

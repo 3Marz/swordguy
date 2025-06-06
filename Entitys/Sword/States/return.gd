@@ -7,6 +7,8 @@ var return_start_rotation: Vector3
 
 var speed_multipler = 0.0
 
+signal back_to_player()
+
 func handle_input(_event: InputEvent) -> void:
 	pass
 
@@ -58,7 +60,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 
 func exit() -> void:
-	pass
+	back_to_player.emit()
 
 func get_bezier_quadratic_curve_point(p0: Vector3, p1: Vector3, p2: Vector3, t: float) -> Vector3:
 	var u = 1.0 - t

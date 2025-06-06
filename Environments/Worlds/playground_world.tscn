@@ -529,7 +529,7 @@ autoplay = "move"
 shape = SubResource("BoxShape3D_d64q4")
 
 [node name="MovingPlatform" parent="Geom" instance=ExtResource("5_kyem5")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20.8963, 1.5, -5)
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 20.8963, 1.5, -5)
 sync_to_physics = false
 
 [node name="MeshInstance3D" parent="Geom/MovingPlatform" index="0"]

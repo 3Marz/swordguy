@@ -47,6 +47,7 @@ floor_constant_speed = true
 floor_max_angle = 0.959931
 floor_snap_length = 0.5
 script = ExtResource("1_uu7px")
+debug = true
 max_fast_speed = 7.0
 model_tilt_speed = 2.0
 max_tilt_angle = 30.0
@@ -147,22 +148,16 @@ one_shot = true
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
 bones/0/position = Vector3(5.35103e-18, 0.0337431, -0.0842763)
 bones/0/rotation = Quaternion(0.0279814, 1.93946e-26, 5.89616e-18, 0.999609)
-bones/0/scale = Vector3(1, 1, 1)
 bones/1/rotation = Quaternion(0.148417, 1.17889e-07, -2.97179e-08, 0.988925)
 bones/2/rotation = Quaternion(-0.00353239, 0.0115895, 0.0269123, 0.999564)
 bones/3/rotation = Quaternion(-0.505339, 0.0951331, -0.0414785, 0.856657)
 bones/4/position = Vector3(0.14984, 0.202831, -0.00318747)
 bones/4/rotation = Quaternion(0.365556, -0.498697, -0.649605, 0.44236)
-bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.00268711, 2.63875e-08, -2.87077e-09, 0.999996)
-bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(-0.023646, -0.436701, -0.0351825, 0.898608)
-bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(-0.146397, 0.196028, -0.002125)
 bones/7/rotation = Quaternion(0.471087, 0.561045, 0.642315, 0.225247)
-bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.00228949, -4.1617e-09, -1.78042e-08, 0.999997)
-bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(0.153166, 0.936277, 0.00586397, 0.316056)
 bones/9/scale = Vector3(0.999999, 1, 1)
 bones/10/position = Vector3(0.241591, 0.154065, 0.426307)
@@ -177,7 +172,6 @@ bones/13/scale = Vector3(1, 0.999983, 1.00002)
 bones/14/rotation = Quaternion(0.65944, -0.311494, -0.176436, 0.661046)
 bones/14/scale = Vector3(1, 1.00001, 0.999987)
 bones/15/rotation = Quaternion(0.178218, 0.318094, 0.883018, 0.295523)
-bones/15/scale = Vector3(1, 1, 1.00003)
 bones/16/rotation = Quaternion(-0.0022937, -0.000134065, 7.38807e-05, 0.999997)
 bones/16/scale = Vector3(1, 0.999983, 1.00002)
 bones/17/rotation = Quaternion(0.386986, 0.333441, 0.0892834, 0.855037)
@@ -187,23 +181,21 @@ bones/18/rotation = Quaternion(0, 0, 0, 1)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/position = Vector3(-0.524186, 0.000216037, 0.818935)
 bones/19/rotation = Quaternion(0.411631, 0.646312, 0.550135, -0.33195)
-bones/19/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.337233, -0.29343, 0.112992)
 bones/21/rotation = Quaternion(-2.51796e-05, 0.642467, -0.766313, 2.11102e-05)
 bones/23/position = Vector3(0.393381, 0.340464, -0.168698)
-bones/23/rotation = Quaternion(0.5, -0.5, 0.5, -0.5)
 bones/24/position = Vector3(-0.306617, -0.313997, 0.235411)
 bones/24/rotation = Quaternion(2.39392e-05, 0.684977, -0.728565, -2.2507e-05)
 bones/26/position = Vector3(-0.393381, 0.340464, -0.168698)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.974154, 0.0238194, 0.224626, -0.062034, 0.984401, 0.164641, -0.217201, -0.174321, 0.960436, 0.3143, 0.410621, 1.53311)
+transform = Transform3D(0.974154, 0.023819, 0.224626, -0.0620337, 0.984401, 0.164642, -0.2172, -0.174321, 0.960436, 0.314301, 0.410621, 1.53311)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D/Sword" index="0"]
 visible = false
 
 [node name="SwordSocket" type="BoneAttachment3D" parent="Model"]
-transform = Transform3D(0.974154, 0.0238194, 0.224626, -0.062034, 0.984401, 0.164641, -0.217201, -0.174321, 0.960436, 0.3143, 0.937377, 1.53311)
+transform = Transform3D(0.974154, 0.023819, 0.224626, -0.0620337, 0.984401, 0.164642, -0.2172, -0.174321, 0.960436, 0.314301, 0.937377, 1.53311)
 bone_name = "Sword"
 bone_idx = 20
 use_external_skeleton = true
@@ -258,6 +250,7 @@ draw_pass_1 = ExtResource("14_evqkl")
 [connection signal="timeout" from="StateMachine/Sliding/coyote_timer" to="StateMachine/Sliding" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Sliding/slide_end_timer" to="StateMachine/Sliding" method="_on_slide_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Ledge Grab/let_go_timer" to="StateMachine/Ledge Grab" method="_on_let_go_timer_timeout"]
+[connection signal="back_to_player" from="Model/SwordSocket/offset/Sword/StateMachine/Return" to="." method="_on_return_back_to_player"]
 
 [editable path="Model"]
 [editable path="Model/SwordSocket/offset/Sword"]
