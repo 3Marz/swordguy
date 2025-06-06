@@ -118,7 +118,7 @@ var wall_slide_gravity = 5
 var jump_just_pressed = false
 var has_sword = true
 var sword_reflected = false 
-var can_throw_sword = true
+# var can_throw_sword = true
 var sword_just_returned = false
 
 var previous_y_rotation: float = 0.0
@@ -224,7 +224,7 @@ func _reparent(new_parent):
 
 func can_throw_n_return_sword(single_func: Signal):
 	if Input.is_action_just_pressed("throw"):
-		if has_sword and can_throw_sword:
+		if has_sword:
 			single_func.emit("Throwing Sword")
 		elif !has_sword:
 			return_sword()
