@@ -68,9 +68,6 @@ func physics_update(delta: float) -> void:
 		else:
 			finished.emit("Idle")
 	
-	# if player.jump_just_pressed and player.sword_just_returned:
-	# 	finished.emit("Jumping")
-
 	player.can_throw_n_return_sword(finished)
 
 

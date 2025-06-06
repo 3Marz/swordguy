@@ -95,7 +95,6 @@ extends CharacterBody3D
 @onready var skeleton : Skeleton3D = $Model/Armature/Skeleton3D
 @onready var sword_mesh = $Model/Armature/Skeleton3D/Sword/Sword
 @onready var anim_tree: AnimationTree = $AnimationTree
-@onready var spring_arm = $CameraPivot
 
 @onready var ledge_ray : RayCast3D = $Raycasts/LedgeRay
 @onready var ledge_ray_left : RayCast3D = $Raycasts/LedgeRayLeft
@@ -103,11 +102,13 @@ extends CharacterBody3D
 @onready var ledge_ray_horizontal : RayCast3D = $Raycasts/LedgeRayHorizontal
 @onready var wall_check_ray : RayCast3D = $Raycasts/WallCheckRay
 
-@onready var sword_spwan_pos : Marker3D = $Model/SwordSpawnPos
+@onready var sword_spwan_pos : Marker3D = $SwordSpawnPos
+
+@onready var state_machine: StateMachine = $StateMachine
 
 @onready var particle_trail: GPUParticles3D = $ParticleTrail
 
-@onready var sword_body: Sword = $Model/SwordSocket/offset/Sword
+@onready var sword_body: Sword = $SwordSocket/offset/Sword
 
 @export var pcam: PhantomCamera3D
 
@@ -118,8 +119,6 @@ var wall_slide_gravity = 5
 var jump_just_pressed = false
 var has_sword = true
 var sword_reflected = false 
-# var can_throw_sword = true
-var sword_just_returned = false
 
 var previous_y_rotation: float = 0.0
 var delta_rotation: float = 0.0  # Change since last frame
@@ -137,7 +136,8 @@ enum STATES {
 	Throwing_Sword,
 	Sliding,
 	Long_Jump,
-	Ledge_Grab
+	Ledge_Grab,
+	Sword_Return
 }
 
 # ---------- FUNCTIONS ---------- #
@@ -236,9 +236,11 @@ func _on_state_machine_state_changed(prev:String, next:String) -> void:
 	# state = next
 
 func _on_return_back_to_player() -> void:
-	sword_just_returned = true
-	get_tree().create_timer(0.5).timeout.connect(func(): sword_just_returned = false)
-	pass # Replace with function body.
+	if (state == STATES.Falling or 
+			state == STATES.Jumping or 
+			state == STATES.Idle or 
+			state == STATES.Running):
+		state_machine._transition_to_next_state("Sword Return", {})
 
 
 
