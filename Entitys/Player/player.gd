@@ -56,10 +56,15 @@ extends CharacterBody3D
 
 @export_group("Throwing Sword")
 @export var sword_throw_force : float = 800
-@export var sword_throw_torque_force : float = 300
-@export var sword_throw_jump_boost : float = 4
+@export var sword_throw_jump_boost : float = 1
 @export var sword_throw_player_deaccel : float = 5
 @export var sword_throw_jump_speed : float = 3
+
+@export_group("Throwing Sword Down")
+@export var sword_throw_down_force : float = 800
+@export var sword_throw_down_jump_boost : float = 1
+@export var sword_throw_down_player_deaccel : float = 5
+@export var sword_throw_down_jump_speed : float = 3
 
 @export_group("Ledge Grab")
 @export var horizantal_ledge_offset : float = 1
@@ -102,7 +107,8 @@ extends CharacterBody3D
 @onready var ledge_ray_horizontal : RayCast3D = $Raycasts/LedgeRayHorizontal
 @onready var wall_check_ray : RayCast3D = $Raycasts/WallCheckRay
 
-@onready var sword_spwan_pos : Marker3D = $SwordSpawnPos
+@onready var sword_spwan_pos : Marker3D = $SwordSpawnPoints/SwordSpawnNormal
+@onready var sword_down_spwan_pos : Marker3D = $SwordSpawnPoints/SwordSpawnDownward
 
 @onready var state_machine: StateMachine = $StateMachine
 
@@ -137,7 +143,8 @@ enum STATES {
 	Sliding,
 	Long_Jump,
 	Ledge_Grab,
-	Sword_Return
+	Sword_Return,
+	Throwing_Sword_Down
 }
 
 const COLLISION_MASK_WITH_SWORD = 1 | 4
@@ -146,31 +153,27 @@ const COLLISION_MASK_NO_SWORD = 1
 # ---------- FUNCTIONS ---------- #
 #
 func _unhandled_input(event):
-		
+
+	# print(Input.get_vector("look_left", "look_right", "look_up", "look_down"))	
+
 	if event is InputEventMouseMotion and pcam != null:
 		var pcam_rotation_degrees: Vector3
 
-		# Assigns the current 3D rotation of the SpringArm3D node - to start off where it is in the editor.
 		pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
 
-		# Change the X rotation.
 		pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity * (-1 if inverse_horz else 1)
-
-		# Clamp the rotation in the X axis so it can go over or under the target.
 		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
-
-		# Change the Y rotation value.
 		pcam_rotation_degrees.y -= event.relative.x * mouse_sensitivity * (-1 if inverse_vert else 1)
 
-		# Change the SpringArm3D node's rotation and rotate around its target.
 		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 
 func _ready() -> void:
 	anim_tree.active = true
 
-	# Engine.time_scale = 0.05
+	# Engine.time_scale = 0.3
 
 func _physics_process(delta: float) -> void:
+	controller_camera_control(delta)
 
 	rotation.y += deg_to_rad(get_platform_angular_velocity().y)
 	var current_y_rotation = rotation.y
@@ -199,6 +202,17 @@ func _physics_process(delta: float) -> void:
 func cam_follow(delta):
 	if !pcam:
 		return
+
+func controller_camera_control(delta):
+	if Input.get_connected_joypads().size() > 0 and pcam != null:
+		var axis = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+		var pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
+
+		pcam_rotation_degrees.x -= axis.y * 3 * (-1 if inverse_horz else 1)
+		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
+		pcam_rotation_degrees.y -= axis.x * 3 * (-1 if inverse_vert else 1)
+
+		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 
 func apply_gravity(delta):
 	velocity.y -= gravity * delta
@@ -242,7 +256,8 @@ func _on_return_back_to_player() -> void:
 	if (state == STATES.Falling or 
 			state == STATES.Jumping or 
 			state == STATES.Idle or 
-			state == STATES.Running):
+			state == STATES.Running or
+			state == STATES.Long_Jump):
 		state_machine._transition_to_next_state("Sword Return", {})
 
 
