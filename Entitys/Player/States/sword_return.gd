@@ -11,6 +11,8 @@ func physics_update(delta: float) -> void:
 
 	player.move_and_slide()
 
+	player.can_throw_n_return_sword(finished)
+
 	if InputBuffer.is_action_press_buffered("slide"):
 		finished.emit("Throwing Sword Down")
 

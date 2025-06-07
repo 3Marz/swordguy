@@ -16,7 +16,7 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
-	if abs(parent.global_position.distance_to(parent.get_parent().global_position)) < 0.2:
+	if abs(parent.global_position.distance_to(parent.get_parent().global_position)) < parent.min_distance_to_return:
 		parent.global_position = parent.get_parent().global_position
 		parent.global_rotation = parent.get_parent().global_rotation
 		parent.top_level = false

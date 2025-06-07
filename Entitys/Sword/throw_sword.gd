@@ -4,6 +4,7 @@ class_name Sword
 @export var debug := false
 
 @export var return_speed := 10.0
+@export var min_distance_to_return := 0.2
 
 @export var player : Player
 @export var curve_point: Node3D

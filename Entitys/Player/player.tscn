@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cgxgkt8sytllx"]
+[gd_scene load_steps=24 format=3 uid="uid://cgxgkt8sytllx"]
 
 [ext_resource type="Script" uid="uid://mt1c1xfe57tn" path="res://Entitys/Player/player.gd" id="1_uu7px"]
 [ext_resource type="PackedScene" uid="uid://be02x5klrfm6h" path="res://Entitys/Player/player_model.tscn" id="2_citt6"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://blv7qct83d44x" path="res://Entitys/Sword/throw_sword.tscn" id="14_8je53"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://Entitys/Player/cloud.res" id="14_evqkl"]
 [ext_resource type="Script" uid="uid://o6wmtimnf6n" path="res://Entitys/Player/States/throwing_sword_down.gd" id="14_r3ve6"]
+[ext_resource type="Script" uid="uid://c28dja5bnwc45" path="res://Entitys/Player/States/sword_reflect.gd" id="15_1h3lh"]
 
 [sub_resource type="Curve" id="Curve_8je53"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -120,10 +121,6 @@ one_shot = true
 wait_time = 0.333
 one_shot = true
 
-[node name="throw_cooldown" type="Timer" parent="StateMachine/Throwing Sword"]
-wait_time = 0.5
-one_shot = true
-
 [node name="Sliding" type="Node" parent="StateMachine"]
 script = ExtResource("9_s7pro")
 
@@ -156,68 +153,75 @@ one_shot = true
 script = ExtResource("14_r3ve6")
 
 [node name="end_timer" type="Timer" parent="StateMachine/Throwing Sword Down"]
-wait_time = 0.2
+wait_time = 0.25
 one_shot = true
 
 [node name="throw_time" type="Timer" parent="StateMachine/Throwing Sword Down"]
 wait_time = 0.15
 one_shot = true
 
+[node name="Sword Reflect" type="Node" parent="StateMachine"]
+script = ExtResource("15_1h3lh")
+
+[node name="end_timer" type="Timer" parent="StateMachine/Sword Reflect"]
+wait_time = 0.3
+one_shot = true
+
 [node name="Model" parent="." instance=ExtResource("2_citt6")]
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(5.35103e-18, 0.0489592, -0.0960813)
-bones/0/rotation = Quaternion(0.0572716, 1.29459e-26, 5.89616e-18, 0.998359)
-bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.179849, 1.17265e-07, -3.34649e-08, 0.983694)
-bones/2/rotation = Quaternion(-0.042511, 0.0126201, 0.0264454, 0.998666)
-bones/3/rotation = Quaternion(-0.206872, 0.0849788, -0.0115046, 0.974603)
-bones/4/position = Vector3(0.14984, 0.202831, -0.00318747)
-bones/4/rotation = Quaternion(0.543046, -0.282463, -0.548829, 0.5693)
+bones/0/position = Vector3(3.22501e-17, 0.0205779, 0.0322759)
+bones/0/rotation = Quaternion(0.0538171, 0, -1.19498e-17, 0.998551)
+bones/1/rotation = Quaternion(-1.86265e-09, 1.19209e-07, -2.22045e-16, 1)
+bones/2/rotation = Quaternion(-1.86265e-09, 1.42109e-14, -4.50055e-16, 1)
+bones/3/rotation = Quaternion(-0.841923, -0.0156218, -0.104979, 0.529058)
+bones/4/position = Vector3(0.125741, 0.182422, 1.40663e-07)
+bones/4/rotation = Quaternion(0.199133, 0.0791604, -0.902646, 0.373242)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.52385, -2.29638e-08, 2.11414e-07, 0.85181)
+bones/5/rotation = Quaternion(0.10223, -6.47191e-10, 6.37885e-08, 0.994761)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.194138, -0.906595, -0.348933, 0.136537)
+bones/6/rotation = Quaternion(0.142022, -0.497111, -0.113557, 0.848419)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/position = Vector3(-0.146397, 0.196028, -0.002125)
-bones/7/rotation = Quaternion(0.646266, 0.439953, 0.443708, 0.438069)
+bones/7/position = Vector3(-0.125741, 0.182422, 8.7825e-08)
+bones/7/rotation = Quaternion(0.211685, -0.0633765, 0.906873, 0.358822)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.00229408, -1.14176e-08, 9.91512e-09, 0.999997)
+bones/8/rotation = Quaternion(0.160542, 9.17723e-09, -6.06219e-08, 0.987029)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.40447, 0.676653, 0.489673, 0.372512)
+bones/9/rotation = Quaternion(-0.0559541, 0.0802135, 0.17139, 0.980337)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.0723203, 0.0829796, 0.336429)
-bones/10/rotation = Quaternion(-0.0601257, 0.0646871, -0.899766, -0.427343)
-bones/11/position = Vector3(-0.0516644, 0.0767025, 0.495005)
-bones/11/rotation = Quaternion(-0.0412353, -0.0344785, 0.993211, -0.103167)
-bones/12/position = Vector3(0.0982633, -0.0118562, 6.95522e-08)
-bones/12/rotation = Quaternion(-0.0367757, 0.326472, 0.936664, -0.121341)
-bones/12/scale = Vector3(1, 1, 1.00003)
-bones/13/rotation = Quaternion(-0.249246, 0.000129841, -0.00802462, 0.968407)
-bones/13/scale = Vector3(1, 0.999995, 1.00001)
-bones/14/rotation = Quaternion(0.597902, -0.0855047, -0.0834954, 0.79261)
-bones/14/scale = Vector3(1, 0.999999, 1)
-bones/15/rotation = Quaternion(0.0737278, 0.278722, 0.93879, 0.188551)
+bones/10/position = Vector3(0.41438, -0.133786, 0.0424471)
+bones/10/rotation = Quaternion(-0.222753, -0.283216, -0.919128, 0.159291)
+bones/11/position = Vector3(-0.388034, -0.145342, 0.0774869)
+bones/11/rotation = Quaternion(0.160336, 0.00701514, 0.973225, 0.164547)
+bones/12/position = Vector3(0.0982633, -0.0118562, 6.7013e-08)
+bones/12/rotation = Quaternion(0.0366071, 0.356811, 0.933275, -0.0185479)
+bones/12/scale = Vector3(1, 0.999999, 1.00003)
+bones/13/rotation = Quaternion(-0.60725, 0.000106645, -0.0195509, 0.79427)
+bones/13/scale = Vector3(1, 0.999981, 1.00002)
+bones/14/rotation = Quaternion(0.767755, 0.0419391, 0.00283231, 0.639363)
+bones/14/scale = Vector3(1, 1, 0.999996)
+bones/15/rotation = Quaternion(-0.0375292, 0.0602372, 0.997459, 0.00620285)
 bones/15/scale = Vector3(1, 1, 1.00003)
-bones/16/rotation = Quaternion(-0.00229463, -0.000134079, 7.38998e-05, 0.999997)
-bones/16/scale = Vector3(1, 0.999997, 1.00001)
-bones/17/rotation = Quaternion(0.560856, 0.193255, 0.0605202, 0.802765)
-bones/17/scale = Vector3(1, 0.999999, 1)
-bones/18/position = Vector3(0, 0.0918443, -0.178003)
-bones/18/rotation = Quaternion(0, 0, 0, 1)
-bones/18/scale = Vector3(1, 1, 1)
-bones/19/position = Vector3(-0.0536745, 0.0907524, 0.220424)
-bones/19/rotation = Quaternion(0.54795, 0.373998, 0.694218, 0.279173)
+bones/16/rotation = Quaternion(-0.134692, -0.000132844, 0.00433649, 0.990878)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(0.739427, -0.029513, 0.0235617, 0.672177)
+bones/17/scale = Vector3(1, 0.999998, 1)
+bones/18/position = Vector3(3.43724e-17, 0.118585, -0.136169)
+bones/18/rotation = Quaternion(0.0538171, 0, -1.19498e-17, 0.998551)
+bones/18/scale = Vector3(1.1912, 1.1912, 1.1912)
+bones/19/position = Vector3(-0.603272, 0.482883, -3.57704e-05)
+bones/19/rotation = Quaternion(-2.21886e-07, -2.57726e-08, 0.903124, -0.42938)
 bones/19/scale = Vector3(1, 1, 1)
-bones/21/position = Vector3(0.199947, -0.378895, 0.0530031)
-bones/21/rotation = Quaternion(-2.23448e-05, 0.733174, -0.680041, 2.40907e-05)
-bones/23/position = Vector3(0.393381, 0.340464, 0.1335)
-bones/24/position = Vector3(-0.258315, -0.387932, 0.136094)
-bones/24/rotation = Quaternion(2.60334e-05, 0.610132, -0.7923, -2.00478e-05)
-bones/26/position = Vector3(-0.393381, 0.340464, 0.1335)
+bones/21/position = Vector3(0.100229, -0.364202, 0.0546802)
+bones/21/rotation = Quaternion(-1.88647e-05, 0.818766, -0.574128, 2.6903e-05)
+bones/23/position = Vector3(0.341741, 0.340464, -0.21077)
+bones/23/rotation = Quaternion(0.5, -0.5, 0.5, -0.5)
+bones/24/position = Vector3(-0.100229, -0.45296, -0.0179406)
+bones/24/rotation = Quaternion(2.31155e-05, 0.710699, -0.703497, -2.33522e-05)
+bones/26/position = Vector3(-0.341741, 0.340464, -0.21077)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.17105, 0.969614, -0.174903, -0.941132, 0.213327, 0.262227, 0.291569, 0.119753, 0.949024, 0.0301572, -0.0593422, 1.28136)
+transform = Transform3D(1.1912, 1.19456e-07, -5.96047e-07, -1.69739e-07, -0.128028, -1.1843, -2.10625e-07, 1.1843, -0.128028, -4.76837e-07, -0.632302, -0.00407054)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D/Sword" index="0"]
 visible = false
@@ -245,7 +249,7 @@ target_position = Vector3(0, 0, 0.5)
 target_position = Vector3(0, 0, 1.4)
 
 [node name="SwordSocket" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.17105, 0.969614, -0.174903, -0.941132, 0.213327, 0.262227, 0.291569, 0.119753, 0.949024, 0.0301572, 0.467414, 1.28136)
+transform = Transform3D(1.1912, 1.19456e-07, -5.96047e-07, -1.69739e-07, -0.128028, -1.1843, -2.10625e-07, 1.1843, -0.128028, -4.76837e-07, -0.105546, -0.00407054)
 bone_name = "Sword"
 bone_idx = 20
 use_external_skeleton = true
@@ -279,13 +283,13 @@ draw_pass_1 = ExtResource("14_evqkl")
 [connection signal="timeout" from="StateMachine/Falling/coyote_timer" to="StateMachine/Falling" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword/end_timer" to="StateMachine/Throwing Sword" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword/throw_time" to="StateMachine/Throwing Sword" method="_on_throw_time_timeout"]
-[connection signal="timeout" from="StateMachine/Throwing Sword/throw_cooldown" to="StateMachine/Throwing Sword" method="_on_throw_cooldown_timeout"]
 [connection signal="timeout" from="StateMachine/Sliding/coyote_timer" to="StateMachine/Sliding" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Sliding/slide_end_timer" to="StateMachine/Sliding" method="_on_slide_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Ledge Grab/let_go_timer" to="StateMachine/Ledge Grab" method="_on_let_go_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Sword Return/end_timer" to="StateMachine/Sword Return" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword Down/end_timer" to="StateMachine/Throwing Sword Down" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword Down/throw_time" to="StateMachine/Throwing Sword Down" method="_on_throw_time_timeout"]
+[connection signal="timeout" from="StateMachine/Sword Reflect/end_timer" to="StateMachine/Sword Reflect" method="_on_end_timer_timeout"]
 [connection signal="back_to_player" from="SwordSocket/offset/Sword/StateMachine/Return" to="." method="_on_return_back_to_player"]
 
 [editable path="Model"]

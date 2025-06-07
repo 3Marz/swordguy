@@ -4,6 +4,9 @@ var prev_state = ""
 var throw_dirction: Vector3
 var throw_force: Vector3
 
+@onready var end_timer: Timer = $end_timer
+@onready var throw_time: Timer = $throw_time
+
 func handle_input(_event: InputEvent) -> void:
 	pass
 
@@ -30,14 +33,15 @@ func enter(previous_state_path: String, data := {}) -> void:
 	player.sword_body.enable_trails()
 	player.collision_mask = player.COLLISION_MASK_NO_SWORD
 
-	$end_timer.start()
-	$throw_time.start()
+	end_timer.start()
+	throw_time.start()
 	if previous_state_path != "Idle" and previous_state_path != "Running":
 		player.velocity.y = player.sword_throw_jump_boost
 
 	prev_state = previous_state_path
 
 func launch_sword():
+	player.throw_count += 1
 	player.has_sword = false
 	player.sword_body.state_machine._transition_to_next_state("Throw", {})
 
@@ -53,8 +57,6 @@ func launch_sword():
 	# player.sword_body.apply_torque(Vector3(0, player.sword_throw_torque_force, 0))
 
 func _on_end_timer_timeout() -> void:
-	player.sword_reflected = false
-
 	# player.can_throw_sword = false
 	# $throw_cooldown.start()
 
@@ -74,9 +76,10 @@ func _on_throw_time_timeout() -> void:
 	if !player.wall_check_ray.is_colliding():
 		launch_sword()
 	else:
-		player.sword_reflected = true
-		player.sword_body.disable_trails()
+		end_timer.stop()
+		# player.sword_body.disable_trails()
+		finished.emit("Sword Reflect")
 
-func _on_throw_cooldown_timeout() -> void:
-	# player.can_throw_sword = true
-	pass
+
+
+

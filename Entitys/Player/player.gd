@@ -22,6 +22,8 @@ extends CharacterBody3D
 
 @export var air_deaccel_factor: float = 0.05
 
+@export var max_throw_count: int = 2
+
 #------------------------------------------------------------#
 @export_category("States")
 
@@ -65,6 +67,9 @@ extends CharacterBody3D
 @export var sword_throw_down_jump_boost : float = 1
 @export var sword_throw_down_player_deaccel : float = 5
 @export var sword_throw_down_jump_speed : float = 3
+
+@export_group("Sword Reflect")
+@export var reflect_knockback: float = 5
 
 @export_group("Ledge Grab")
 @export var horizantal_ledge_offset : float = 1
@@ -124,13 +129,14 @@ var wall_slide_gravity = 5
 # Booleans
 var jump_just_pressed = false
 var has_sword = true
-var sword_reflected = false 
 
 var previous_y_rotation: float = 0.0
 var delta_rotation: float = 0.0  # Change since last frame
 
 var used_speed: float = max_speed # Used Speed Depending on if moving downword on a slop or not
 var moving_to_fast_speed = false # for debug 
+
+var throw_count = 0
 
 var state = 0
 enum STATES {
@@ -144,7 +150,8 @@ enum STATES {
 	Long_Jump,
 	Ledge_Grab,
 	Sword_Return,
-	Throwing_Sword_Down
+	Throwing_Sword_Down,
+	Sword_Reflect
 }
 
 const COLLISION_MASK_WITH_SWORD = 1 | 4
@@ -174,6 +181,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	controller_camera_control(delta)
+
+	if is_on_floor():
+		throw_count = 0
 
 	rotation.y += deg_to_rad(get_platform_angular_velocity().y)
 	var current_y_rotation = rotation.y
@@ -241,7 +251,7 @@ func _reparent(new_parent):
 
 func can_throw_n_return_sword(single_func: Signal):
 	if Input.is_action_just_pressed("throw"):
-		if has_sword:
+		if has_sword and throw_count < max_throw_count:
 			single_func.emit("Throwing Sword")
 		elif !has_sword:
 			return_sword()
@@ -257,7 +267,7 @@ func _on_return_back_to_player() -> void:
 			state == STATES.Jumping or 
 			state == STATES.Idle or 
 			state == STATES.Running or
-			state == STATES.Long_Jump):
+			state == STATES.Long_Jump) and throw_count < max_throw_count:
 		state_machine._transition_to_next_state("Sword Return", {})
 
 
