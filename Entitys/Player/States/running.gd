@@ -20,15 +20,8 @@ func physics_update(_delta: float) -> void:
 	player.apply_gravity(_delta)
 	player.cam_follow(_delta)
 
-
 	var move_direction : Vector3 = player.get_move_direction();
 
-	if move_direction.dot(prev_move_direction) < 0.2 and player.velocity.length() > 4:
-		# print("Sharp turn!")
-		pass
-
-	prev_move_direction = move_direction
-	
 	if move_direction.x:
 		curve_offset.x += player.curve_sample_rate
 	if move_direction.z:
@@ -68,7 +61,12 @@ func physics_update(_delta: float) -> void:
 	if Input.is_action_pressed("slide") and !player.jump_just_pressed:
 		finished.emit("Sliding") 
 
+	if move_direction.dot(prev_move_direction) < player.sharp_turn_deadzone and player.velocity.length() > player.sharp_turn_min_velo_length:
+		finished.emit("Sharp Turn")
+
 	player.can_throw_n_return_sword(finished)
+	
+	prev_move_direction = move_direction
 
 func enter(previous_state_path: String, data := {}) -> void:
 	if player.velocity.length() > 8:

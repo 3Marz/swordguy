@@ -81,6 +81,11 @@ extends CharacterBody3D
 @export var ledge_letgo_deadzone: float = 0.7
 @export var ledge_stopping_distance: float = 0.08
 @export var ledge_speed: float = 1.5
+
+@export_group("Sharp Turn")
+@export var sharp_turn_deaccel_factor: float = 15
+@export var sharp_turn_min_velo_length: float = 4
+@export var sharp_turn_deadzone: float = 0.1
 #------------------------------------------------------------#
 
 @export_category("Others")
@@ -117,7 +122,8 @@ extends CharacterBody3D
 
 @onready var state_machine: StateMachine = $StateMachine
 
-@onready var particle_trail: GPUParticles3D = $ParticleTrail
+@onready var particle_trail: GPUParticles3D = $Particles/ParticleTrail
+@onready var sharp_turn_particle: GPUParticles3D = $Particles/SharpTurn
 
 @onready var sword_body: Sword = $SwordSocket/offset/Sword
 
@@ -151,7 +157,8 @@ enum STATES {
 	Ledge_Grab,
 	Sword_Return,
 	Throwing_Sword_Down,
-	Sword_Reflect
+	Sword_Reflect,
+	Sharp_Turn
 }
 
 const COLLISION_MASK_WITH_SWORD = 1 | 4
@@ -218,9 +225,9 @@ func controller_camera_control(delta):
 		var axis = Input.get_vector("look_left", "look_right", "look_up", "look_down")
 		var pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
 
-		pcam_rotation_degrees.x -= axis.y * 3 * (-1 if inverse_horz else 1)
+		pcam_rotation_degrees.x -= (axis.y * 3) * (-1 if inverse_vert else 1)
 		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
-		pcam_rotation_degrees.y -= axis.x * 3 * (-1 if inverse_vert else 1)
+		pcam_rotation_degrees.y -= (axis.x * 3) * (-1 if inverse_horz else 1)
 
 		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 
