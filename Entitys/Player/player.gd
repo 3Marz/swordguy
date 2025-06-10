@@ -24,6 +24,8 @@ extends CharacterBody3D
 
 @export var max_throw_count: int = 2
 
+@export var max_fall_y_velocity: float = -25
+
 #------------------------------------------------------------#
 @export_category("States")
 
@@ -61,6 +63,7 @@ extends CharacterBody3D
 @export var sword_throw_jump_boost : float = 1
 @export var sword_throw_player_deaccel : float = 5
 @export var sword_throw_jump_speed : float = 3
+@export var throwing_model_follow_factor : float = 15
 
 @export_group("Throwing Sword Down")
 @export var sword_throw_down_force : float = 800
@@ -175,9 +178,9 @@ func _unhandled_input(event):
 
 		pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
 
-		pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity * (-1 if inverse_horz else 1)
+		pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity * (-1 if inverse_vert else 1)
 		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
-		pcam_rotation_degrees.y -= event.relative.x * mouse_sensitivity * (-1 if inverse_vert else 1)
+		pcam_rotation_degrees.y -= event.relative.x * mouse_sensitivity * (-1 if inverse_horz else 1)
 
 		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 
@@ -231,8 +234,11 @@ func controller_camera_control(delta):
 
 		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 
-func apply_gravity(delta):
-	velocity.y -= gravity * delta
+func apply_gravity(delta, custom_gravity = gravity):
+	var used_gravity = custom_gravity
+	velocity.y -= used_gravity * delta
+	if velocity.y <= max_fall_y_velocity:
+		velocity.y = max_fall_y_velocity
 
 func get_move_direction(only_x = false) -> Vector3:
 	var move_direction := Vector2.ZERO
@@ -249,7 +255,8 @@ func update_sword_visability():
 		sword_mesh.hide()
 
 func return_sword():
-	sword_body.state_machine._transition_to_next_state("Return", {})
+	if sword_body.state_machine.state.name != "Return":
+		sword_body.state_machine._transition_to_next_state("Return", {})
 
 func _reparent(new_parent):
 	pcam.set_follow_target(null)

@@ -13,9 +13,6 @@ func handle_input(_event: InputEvent) -> void:
 	pass
 
 func update(_delta: float) -> void:
-	pass
-
-func physics_update(_delta: float) -> void:
 	if abs(parent.global_position.distance_to(parent.get_parent().global_position)) < parent.min_distance_to_return:
 		parent.global_position = parent.get_parent().global_position
 		parent.global_rotation = parent.get_parent().global_rotation
@@ -24,7 +21,7 @@ func physics_update(_delta: float) -> void:
 		finished.emit("Held")
 	else:
 		return_progress += (parent.return_speed + (speed_multipler/2)) * _delta
-		speed_multipler = parent.global_position.distance_to(parent.get_parent().global_position)
+		# speed_multipler = parent.global_position.distance_to(parent.get_parent().global_position)
 
 		var accel = parent.return_accel_curve.sample_baked(return_progress / return_start_pos.distance_to(parent.get_parent().global_position))
 
@@ -42,6 +39,8 @@ func physics_update(_delta: float) -> void:
 			accel
 		)
 
+func physics_update(_delta: float) -> void:
+	pass
 
 func enter(previous_state_path: String, data := {}) -> void:
 	parent.collision_shape.disabled = true
@@ -58,6 +57,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 	return_progress = 0.0
 
+	$max_fly_time.start()
+
 
 func exit() -> void:
 	back_to_player.emit()
@@ -67,3 +68,7 @@ func get_bezier_quadratic_curve_point(p0: Vector3, p1: Vector3, p2: Vector3, t: 
 	var tt = t * t
 	var uu = u * u
 	return (uu * p0) + (2.0 * u * t * p1) + (tt * p2)
+
+func _on_max_fly_time_timeout() -> void:
+	pass
+

@@ -61,8 +61,11 @@ func physics_update(_delta: float) -> void:
 	if Input.is_action_pressed("slide") and !player.jump_just_pressed:
 		finished.emit("Sliding") 
 
-	if move_direction.dot(prev_move_direction) < player.sharp_turn_deadzone and player.velocity.length() > player.sharp_turn_min_velo_length:
+	var velocity2 = Vector2(player.velocity.x, player.velocity.z).length()
+	print(velocity2)
+	if move_direction.dot(prev_move_direction) < player.sharp_turn_deadzone and velocity2 > player.sharp_turn_min_velo_length:
 		finished.emit("Sharp Turn")
+		print("?")
 
 	player.can_throw_n_return_sword(finished)
 	
@@ -82,7 +85,7 @@ func exit() -> void:
 	player.particle_trail.emitting = false
 	player.particle_trail.speed_scale = 1
 
-	if !player.is_on_wall():
+	if !player.is_on_wall() and player.velocity != Vector3.ZERO:
 		player.rotation.y = Vector2(player.velocity.z, player.velocity.x).angle()
 	var tween = get_tree().create_tween()
 	# tween.tween_property(player, "rotation", Vector3(0, Vector2(player.velocity.z, player.velocity.x).angle(), 0), 0.1)

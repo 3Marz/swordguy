@@ -185,7 +185,7 @@ advance_expression = "state!=STATES.Throwing_Sword and state!=STATES.Sword_Refle
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v82w4"]
 xfade_time = 0.1
 advance_mode = 2
-advance_expression = "state==STATES.Sword_Return"
+advance_expression = "state==STATES.Sword_Return or state==STATES.Throwing_Sword_Down"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5fevk"]
 xfade_time = 0.1
@@ -214,4 +214,4 @@ states/SwordReturn/position = Vector2(432.748, 218.672)
 states/ThrowSword/node = SubResource("AnimationNodeStateMachine_alct8")
 states/ThrowSword/position = Vector2(693.748, 218.672)
 transitions = ["Grounded", "Sliding", SubResource("AnimationNodeStateMachineTransition_x1otb"), "Sliding", "Grounded", SubResource("AnimationNodeStateMachineTransition_rqd3t"), "Start", "Grounded", SubResource("AnimationNodeStateMachineTransition_2tpb7"), "Grounded", "Ledge_Hang", SubResource("AnimationNodeStateMachineTransition_frtq7"), "Ledge_Hang", "Grounded", SubResource("AnimationNodeStateMachineTransition_kmg3u"), "Sliding", "Ledge_Hang", SubResource("AnimationNodeStateMachineTransition_xf3gk"), "Sliding", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_qt7kg"), "Grounded", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_alct8"), "ThrowSword", "Grounded", SubResource("AnimationNodeStateMachineTransition_ow3ia"), "Grounded", "SwordReturn", SubResource("AnimationNodeStateMachineTransition_v82w4"), "SwordReturn", "Grounded", SubResource("AnimationNodeStateMachineTransition_5fevk"), "Sliding", "SwordReturn", SubResource("AnimationNodeStateMachineTransition_www1j"), "SwordReturn", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_rucb3")]
-graph_offset = Vector2(92.748, -38.089)
+graph_offset = Vector2(92.748, 49.8323)

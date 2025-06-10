@@ -11,6 +11,11 @@ func physics_update(delta: float) -> void:
 
 	player.move_and_slide()
 
+	if player.jump_just_pressed:
+		finished.emit("Jumping")
+	
+	player.can_throw_n_return_sword(finished)
+
 
 func enter(previous_state_path: String, data := {}) -> void:
 
@@ -21,6 +26,9 @@ func exit():
 	pass
 
 func _on_end_timer_timeout() -> void:
+	if player.state != player.STATES.Sharp_Turn:
+		return
+
 	if player.is_on_floor():
 		if move_direction != Vector3.ZERO:
 			finished.emit("Running")

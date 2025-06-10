@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=26 format=3 uid="uid://btu4y73y6aly1"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=27 format=3 uid="uid://btu4y73y6aly1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aiamn"]
 animation = &"Fall"
@@ -111,6 +111,11 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "state==STATES.Falling"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p0ghu"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "state==STATES.Jumping"
+
 [resource]
 states/End/position = Vector2(856, 141)
 states/Fall/node = SubResource("AnimationNodeAnimation_aiamn")
@@ -122,7 +127,7 @@ states/Jump/position = Vector2(757, 264)
 states/Run2/node = SubResource("AnimationNodeAnimation_s7pro")
 states/Run2/position = Vector2(523, 264)
 states/SharpTurn/node = SubResource("AnimationNodeAnimation_llrnv")
-states/SharpTurn/position = Vector2(254.748, 264)
+states/SharpTurn/position = Vector2(646.748, 369)
 states/Start/position = Vector2(254.748, 141)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_s7pro"), "Idle", "Run2", SubResource("AnimationNodeStateMachineTransition_aiamn"), "Run2", "Idle", SubResource("AnimationNodeStateMachineTransition_1h3lh"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_o45el"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_qxjvv"), "Run2", "Jump", SubResource("AnimationNodeStateMachineTransition_b2o3g"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_3yqag"), "Fall", "Run2", SubResource("AnimationNodeStateMachineTransition_elnqc"), "Run2", "Fall", SubResource("AnimationNodeStateMachineTransition_dbqqt"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_kgefc"), "Start", "Run2", SubResource("AnimationNodeStateMachineTransition_llrnv"), "Start", "Fall", SubResource("AnimationNodeStateMachineTransition_00ywo"), "Start", "Jump", SubResource("AnimationNodeStateMachineTransition_8i7s8"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_ja6cc"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_rhtv4"), "Jump", "Run2", SubResource("AnimationNodeStateMachineTransition_8pih8"), "Run2", "SharpTurn", SubResource("AnimationNodeStateMachineTransition_5pgtn"), "SharpTurn", "Run2", SubResource("AnimationNodeStateMachineTransition_nqfb5"), "SharpTurn", "Idle", SubResource("AnimationNodeStateMachineTransition_gvhwo"), "SharpTurn", "Fall", SubResource("AnimationNodeStateMachineTransition_xkc5a")]
-graph_offset = Vector2(92.748, -27.2517)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_s7pro"), "Idle", "Run2", SubResource("AnimationNodeStateMachineTransition_aiamn"), "Run2", "Idle", SubResource("AnimationNodeStateMachineTransition_1h3lh"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_o45el"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_qxjvv"), "Run2", "Jump", SubResource("AnimationNodeStateMachineTransition_b2o3g"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_3yqag"), "Fall", "Run2", SubResource("AnimationNodeStateMachineTransition_elnqc"), "Run2", "Fall", SubResource("AnimationNodeStateMachineTransition_dbqqt"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_kgefc"), "Start", "Run2", SubResource("AnimationNodeStateMachineTransition_llrnv"), "Start", "Fall", SubResource("AnimationNodeStateMachineTransition_00ywo"), "Start", "Jump", SubResource("AnimationNodeStateMachineTransition_8i7s8"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_ja6cc"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_rhtv4"), "Jump", "Run2", SubResource("AnimationNodeStateMachineTransition_8pih8"), "Run2", "SharpTurn", SubResource("AnimationNodeStateMachineTransition_5pgtn"), "SharpTurn", "Run2", SubResource("AnimationNodeStateMachineTransition_nqfb5"), "SharpTurn", "Idle", SubResource("AnimationNodeStateMachineTransition_gvhwo"), "SharpTurn", "Fall", SubResource("AnimationNodeStateMachineTransition_xkc5a"), "SharpTurn", "Jump", SubResource("AnimationNodeStateMachineTransition_p0ghu")]
+graph_offset = Vector2(92.748, 37.8934)

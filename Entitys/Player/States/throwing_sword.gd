@@ -19,7 +19,7 @@ func physics_update(delta: float) -> void:
 	var look_direction = Vector2(player.get_move_direction().z, player.get_move_direction().x) 
 	if look_direction != Vector2.ZERO:
 		# player.model.rotation.y = lerp_angle(player.model.rotation.y, look_direction.angle(), _delta * player.model_follow_factor)
-		player.rotation.y = lerp_angle(player.rotation.y, look_direction.angle(), delta * player.model_follow_factor)
+		player.rotation.y = lerp_angle(player.rotation.y, look_direction.angle(), delta * player.throwing_model_follow_factor)
 
 	var move_direction = player.get_move_direction()
 	player.velocity.x = lerpf(player.velocity.x, move_direction.x * player.sword_throw_jump_speed, delta * player.sword_throw_player_deaccel)
@@ -29,6 +29,9 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 
 func enter(previous_state_path: String, data := {}) -> void:
+	var look_direction = Vector2(player.get_move_direction().z, player.get_move_direction().x) 
+	if look_direction != Vector2.ZERO:
+		player.rotation.y = look_direction.angle()
 
 	player.sword_body.enable_trails()
 	player.collision_mask = player.COLLISION_MASK_NO_SWORD

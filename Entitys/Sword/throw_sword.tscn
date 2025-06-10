@@ -280,6 +280,7 @@ contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("1_cmfml")
 return_speed = 30.0
+min_distance_to_return = 0.45
 return_accel_curve = SubResource("Curve_5cyhl")
 metadata/_custom_type_script = "uid://blx17kgcre670"
 
@@ -305,6 +306,9 @@ script = ExtResource("5_yk4r1")
 
 [node name="Return" type="Node" parent="StateMachine"]
 script = ExtResource("6_pxu3q")
+
+[node name="max_fly_time" type="Timer" parent="StateMachine/Return"]
+one_shot = true
 
 [node name="Pivot" type="Marker3D" parent="."]
 
@@ -347,3 +351,4 @@ metadata/_custom_type_script = "uid://bi0yq2uoq2gbf"
 shape = ExtResource("8_jqv85")
 
 [connection signal="body_entered" from="." to="StateMachine/Throw" method="_on_sword_body_entered"]
+[connection signal="timeout" from="StateMachine/Return/max_fly_time" to="StateMachine/Return" method="_on_max_fly_time_timeout"]

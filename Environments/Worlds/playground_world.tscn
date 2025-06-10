@@ -426,9 +426,9 @@ size = Vector3(3, 0.5, 5)
 material = ExtResource("5_cnhxr")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Geom/Props"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 5, 1.69591, -5.03475)
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 5, 6.26785, -9.60669)
 material_override = ExtResource("5_cnhxr")
-size = Vector3(3, 0.5, 6)
+size = Vector3(3, 0.5, 18.9314)
 material = ExtResource("5_cnhxr")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Geom/Props"]

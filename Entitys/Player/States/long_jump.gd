@@ -17,8 +17,8 @@ func physics_update(delta: float) -> void:
 		player.floor_block_on_wall = false
 
 	player.cam_follow(delta)
-	#player.apply_gravity(delta)
-	player.velocity.y -= 22 * delta
+	player.apply_gravity(delta, 22)
+	# player.velocity.y -= 22 * delta
 
 	var move_direction = player.get_move_direction()
 	player.velocity.x = lerpf(player.velocity.x, player.long_jump_turn_speed*move_direction.x, player.long_jump_air_deaccel_factor * delta)
