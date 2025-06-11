@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Sword Guy"
 config/description="A Starter 3D Plaformer Kit For Godot 4."
-run/main_scene="res://Environments/Worlds/playground_world.tscn"
+run/main_scene="uid://csemlgmelrbf8"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Icon.png"
 
@@ -26,7 +26,10 @@ InputBuffer="*res://Globals/InputBuffer.gd"
 
 [display]
 
+window/size/viewport_width=776
+window/size/viewport_height=524
 window/size/always_on_top=true
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
@@ -126,4 +129,5 @@ common/physics_interpolation=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"

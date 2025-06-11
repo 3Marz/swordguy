@@ -66,7 +66,6 @@ floor_constant_speed = true
 floor_max_angle = 0.959931
 floor_snap_length = 0.5
 script = ExtResource("1_uu7px")
-debug = true
 max_fast_speed = 7.0
 model_tilt_speed = 2.0
 max_tilt_angle = 30.0
@@ -195,59 +194,6 @@ one_shot = true
 
 [node name="Model" parent="." instance=ExtResource("2_citt6")]
 
-[node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(3.22501e-17, 0.0205779, 0.0322759)
-bones/0/rotation = Quaternion(0.0538171, 0, -1.19498e-17, 0.998551)
-bones/1/rotation = Quaternion(-1.86265e-09, 1.19209e-07, -2.22045e-16, 1)
-bones/2/rotation = Quaternion(-1.86265e-09, 1.42109e-14, -4.50055e-16, 1)
-bones/3/rotation = Quaternion(-0.841923, -0.0156218, -0.104979, 0.529058)
-bones/4/position = Vector3(0.125741, 0.182422, 1.40663e-07)
-bones/4/rotation = Quaternion(0.199133, 0.0791604, -0.902646, 0.373242)
-bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.10223, -6.47191e-10, 6.37885e-08, 0.994761)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.142022, -0.497111, -0.113557, 0.848419)
-bones/6/scale = Vector3(1, 1, 1)
-bones/7/position = Vector3(-0.125741, 0.182422, 8.7825e-08)
-bones/7/rotation = Quaternion(0.211685, -0.0633765, 0.906873, 0.358822)
-bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.160542, 9.17723e-09, -6.06219e-08, 0.987029)
-bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.0559541, 0.0802135, 0.17139, 0.980337)
-bones/9/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.41438, -0.133786, 0.0424471)
-bones/10/rotation = Quaternion(-0.222753, -0.283216, -0.919128, 0.159291)
-bones/11/position = Vector3(-0.388034, -0.145342, 0.0774869)
-bones/11/rotation = Quaternion(0.160336, 0.00701514, 0.973225, 0.164547)
-bones/12/position = Vector3(0.0982633, -0.0118562, 6.7013e-08)
-bones/12/rotation = Quaternion(0.0366071, 0.356811, 0.933275, -0.0185479)
-bones/12/scale = Vector3(1, 0.999999, 1.00003)
-bones/13/rotation = Quaternion(-0.60725, 0.000106645, -0.0195509, 0.79427)
-bones/13/scale = Vector3(1, 0.999981, 1.00002)
-bones/14/rotation = Quaternion(0.767755, 0.0419391, 0.00283231, 0.639363)
-bones/14/scale = Vector3(1, 1, 0.999996)
-bones/15/rotation = Quaternion(-0.0375292, 0.0602372, 0.997459, 0.00620285)
-bones/15/scale = Vector3(1, 1, 1.00003)
-bones/16/rotation = Quaternion(-0.134692, -0.000132844, 0.00433649, 0.990878)
-bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(0.739427, -0.029513, 0.0235617, 0.672177)
-bones/17/scale = Vector3(1, 0.999998, 1)
-bones/18/position = Vector3(3.43724e-17, 0.118585, -0.136169)
-bones/18/rotation = Quaternion(0.0538171, 0, -1.19498e-17, 0.998551)
-bones/18/scale = Vector3(1.1912, 1.1912, 1.1912)
-bones/19/position = Vector3(-0.603272, 0.482883, -3.57704e-05)
-bones/19/rotation = Quaternion(-2.21886e-07, -2.57726e-08, 0.903124, -0.42938)
-bones/21/position = Vector3(0.100229, -0.364202, 0.0546802)
-bones/21/rotation = Quaternion(-1.88647e-05, 0.818766, -0.574128, 2.6903e-05)
-bones/23/position = Vector3(0.341741, 0.340464, -0.21077)
-bones/23/rotation = Quaternion(0.5, -0.5, 0.5, -0.5)
-bones/24/position = Vector3(-0.100229, -0.45296, -0.0179406)
-bones/24/rotation = Quaternion(2.31155e-05, 0.710699, -0.703497, -2.33522e-05)
-bones/26/position = Vector3(-0.341741, 0.340464, -0.21077)
-
-[node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.1912, -9.24819e-08, -4.17233e-07, -3.71446e-07, -0.128028, -1.1843, -6.30658e-09, 1.1843, -0.128028, -1.19209e-07, -0.632302, -0.00407055)
-
 [node name="Sword" parent="Model/Armature/Skeleton3D/Sword" index="0"]
 visible = false
 
@@ -274,7 +220,7 @@ target_position = Vector3(0, 0, 0.5)
 target_position = Vector3(0, 0, 1.4)
 
 [node name="SwordSocket" type="BoneAttachment3D" parent="."]
-transform = Transform3D(1.1912, -9.24819e-08, -4.17233e-07, -3.71446e-07, -0.128028, -1.1843, -6.30658e-09, 1.1843, -0.128028, -1.19209e-07, -0.105546, -0.00407055)
+transform = Transform3D(1.1912, -9.2482e-08, -1.19209e-07, -7.34228e-08, -0.128028, -1.1843, 1.60456e-08, 1.1843, -0.128028, 0, -0.105545, -0.00407074)
 bone_name = "Sword"
 bone_idx = 20
 use_external_skeleton = true

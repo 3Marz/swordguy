@@ -21,6 +21,7 @@ func physics_update(_delta: float) -> void:
 	player.cam_follow(_delta)
 
 	var move_direction : Vector3 = player.get_move_direction();
+	prev_move_direction = move_direction
 
 	if move_direction.x:
 		curve_offset.x += player.curve_sample_rate
@@ -62,14 +63,11 @@ func physics_update(_delta: float) -> void:
 		finished.emit("Sliding") 
 
 	var velocity2 = Vector2(player.velocity.x, player.velocity.z).length()
-	print(velocity2)
 	if move_direction.dot(prev_move_direction) < player.sharp_turn_deadzone and velocity2 > player.sharp_turn_min_velo_length:
 		finished.emit("Sharp Turn")
-		print("?")
 
 	player.can_throw_n_return_sword(finished)
 	
-	prev_move_direction = move_direction
 
 func enter(previous_state_path: String, data := {}) -> void:
 	if player.velocity.length() > 8:
