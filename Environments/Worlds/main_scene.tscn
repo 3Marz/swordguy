@@ -4,5 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bi5713g6pw6ou" path="res://Environments/Worlds/playground_world.tscn" id="2_wyikh"]
 
 [node name="GameViewport" instance=ExtResource("1_tgoom")]
+stretch_shrink = 3
+
+[node name="SubViewport" parent="." index="0"]
+size = Vector2i(384, 216)
 
 [node name="PlaygroundWorld" parent="SubViewport" index="0" instance=ExtResource("2_wyikh")]

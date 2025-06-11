@@ -26,10 +26,7 @@ InputBuffer="*res://Globals/InputBuffer.gd"
 
 [display]
 
-window/size/viewport_width=776
-window/size/viewport_height=524
 window/size/always_on_top=true
-window/stretch/mode="viewport"
 
 [editor_plugins]
 

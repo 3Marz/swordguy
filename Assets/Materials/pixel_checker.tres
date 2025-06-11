@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dutdkecvlf2ux"]
+
+[ext_resource type="Texture2D" uid="uid://nnibrfx86sef" path="res://Assets/Textures/pixel_checker/white.png" id="1_araam"]
+
+[resource]
+albedo_texture = ExtResource("1_araam")
+uv1_triplanar = true
+texture_filter = 0
