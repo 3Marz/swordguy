@@ -20,6 +20,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	parent.freeze = true
 
 	# parent.disable_trails()
+	parent.sword_mesh.layers = parent.CULL_MASK_WITH_SHADOW
 
 	if data["body"] != null:
 		body = data["body"]
@@ -33,4 +34,5 @@ func enter(previous_state_path: String, data := {}) -> void:
 	parent.anim_player.play("Hit")
 
 func exit() -> void:
+	parent.sword_mesh.layers = parent.CULL_MASK_NO_SHADOW
 	pass

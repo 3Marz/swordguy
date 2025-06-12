@@ -45,6 +45,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 func launch_sword():
 	player.throw_count += 1
 	player.has_sword = false
+	player.can_return_sword = false
+	player.sword_return_cooldown_timer.start(player.sword_throw_down_cooldown_time)
 	player.sword_body.state_machine._transition_to_next_state("Throw", {})
 
 	# throw_dirction = Vector3.BACK.rotated(Vector3.UP, player.model.rotation.y)

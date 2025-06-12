@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://csemlgmelrbf8"]
+[gd_scene load_steps=5 format=3 uid="uid://csemlgmelrbf8"]
 
 [ext_resource type="PackedScene" uid="uid://db82yuma4l671" path="res://Interactables/Interfaces/Viewport/game_viewport.tscn" id="1_tgoom"]
+[ext_resource type="Shader" uid="uid://bt4uqfswn2iyb" path="res://Environments/Shaders/psx_postprocessing.gdshader" id="2_1ved3"]
 [ext_resource type="PackedScene" uid="uid://bi5713g6pw6ou" path="res://Environments/Worlds/playground_world.tscn" id="2_wyikh"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2qqg3"]
+shader = ExtResource("2_1ved3")
+shader_parameter/enabled = false
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
+
 [node name="GameViewport" instance=ExtResource("1_tgoom")]
+material = SubResource("ShaderMaterial_2qqg3")
 stretch_shrink = 3
 
 [node name="SubViewport" parent="." index="0"]

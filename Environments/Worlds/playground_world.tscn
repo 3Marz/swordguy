@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bi5713g6pw6ou"]
+[gd_scene load_steps=50 format=4 uid="uid://bi5713g6pw6ou"]
 
 [ext_resource type="Texture2D" uid="uid://dgnrrr4qfjxkg" path="res://Assets/Textures/PrototypeTextures/addons/godot-prototype-texture/PNG/checker_cyan_512x512.png" id="1_hm7nu"]
 [ext_resource type="PackedScene" uid="uid://cgxgkt8sytllx" path="res://Entitys/Player/player.tscn" id="1_u0x44"]
@@ -27,7 +27,6 @@ texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3jtm"]
 albedo_texture = ExtResource("2_pm1mo")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 texture_filter = 0
 
@@ -313,6 +312,8 @@ duration = 1.0
 transition = 0
 ease = 2
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_3223h"]
+
 [node name="PlaygroundWorld" type="Node3D"]
 
 [node name="Geom" type="Node3D" parent="."]
@@ -556,7 +557,6 @@ shape = SubResource("ConcavePolygonShape3D_m0nn7")
 
 [node name="MovingPlaform2" parent="Geom" instance=ExtResource("5_kyem5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5.22231, 5)
-sync_to_physics = false
 
 [node name="MeshInstance3D" parent="Geom/MovingPlaform2" index="0"]
 material_override = SubResource("StandardMaterial3D_pm1mo")
@@ -573,7 +573,6 @@ shape = SubResource("BoxShape3D_d64q4")
 
 [node name="MovingPlaform" parent="Geom" instance=ExtResource("5_kyem5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8529, 1.5, 0)
-sync_to_physics = false
 
 [node name="MeshInstance3D" parent="Geom/MovingPlaform" index="0"]
 material_override = SubResource("StandardMaterial3D_olctm")
@@ -689,6 +688,7 @@ follow_offset = Vector3(0, 1.2, 0)
 follow_damping = true
 follow_distance = 3.5
 spring_length = 3.5
+shape = SubResource("SphereShape3D_3223h")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [editable path="Geom/MovingPlaform2"]

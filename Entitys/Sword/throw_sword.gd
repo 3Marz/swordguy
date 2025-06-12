@@ -22,6 +22,11 @@ class_name Sword
 @onready var handle_trail: GPUTrail3D = $Pivot/HandleTrail
 @onready var blade_trail: GPUTrail3D = $Pivot/BladeTrail
 
+@onready var sword_mesh: MeshInstance3D = $Pivot/Sword/Sword_001
+
+const CULL_MASK_NO_SHADOW = 2
+const CULL_MASK_WITH_SHADOW = 1
+
 var collision_point : Vector3
 var collision_normal: Vector3
 

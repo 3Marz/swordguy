@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgxgkt8sytllx"]
+[gd_scene load_steps=29 format=3 uid="uid://cgxgkt8sytllx"]
 
 [ext_resource type="Script" uid="uid://mt1c1xfe57tn" path="res://Entitys/Player/player.gd" id="1_uu7px"]
 [ext_resource type="PackedScene" uid="uid://be02x5klrfm6h" path="res://Entitys/Player/player_model.tscn" id="2_citt6"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://o6wmtimnf6n" path="res://Entitys/Player/States/throwing_sword_down.gd" id="14_r3ve6"]
 [ext_resource type="Script" uid="uid://c28dja5bnwc45" path="res://Entitys/Player/States/sword_reflect.gd" id="15_1h3lh"]
 [ext_resource type="Script" uid="uid://cijnpirkfigio" path="res://Entitys/Player/States/sharp_turn.gd" id="16_s7pro"]
+[ext_resource type="Texture2D" uid="uid://w3rgot6q0ebo" path="res://Assets/Textures/Sprites/drop_shadow.png" id="20_aiamn"]
 
 [sub_resource type="Curve" id="Curve_8je53"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -66,6 +67,7 @@ floor_constant_speed = true
 floor_max_angle = 0.959931
 floor_snap_length = 0.5
 script = ExtResource("1_uu7px")
+debug = true
 max_fast_speed = 7.0
 model_tilt_speed = 2.0
 max_tilt_angle = 30.0
@@ -78,6 +80,7 @@ long_jump_height = 9.0
 long_jump_turn_speed = 7.0
 long_jump_air_deaccel_factor = 1.2
 max_long_jump_velo_length = 12.0
+sword_throw_cooldown_time = 0.08
 sword_throw_down_force = 900.0
 sword_throw_down_jump_boost = 4.0
 horizantal_ledge_offset = 0.3
@@ -150,6 +153,10 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
+[node name="let_go_sliding" type="Timer" parent="StateMachine/Sliding"]
+wait_time = 0.3
+one_shot = true
+
 [node name="Long Jump" type="Node" parent="StateMachine"]
 script = ExtResource("10_aiamn")
 
@@ -192,10 +199,73 @@ script = ExtResource("16_s7pro")
 wait_time = 0.15
 one_shot = true
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="return_sword_cooldown" type="Timer" parent="Timers"]
+one_shot = true
+
 [node name="Model" parent="." instance=ExtResource("2_citt6")]
+
+[node name="Skeleton3D" parent="Model/Armature" index="0"]
+bones/0/position = Vector3(3.22501e-17, 0.0205779, 0.0322759)
+bones/0/rotation = Quaternion(0.0538171, 0, -1.19498e-17, 0.998551)
+bones/1/rotation = Quaternion(-1.86265e-09, 1.19209e-07, -2.22045e-16, 1)
+bones/2/rotation = Quaternion(-1.86265e-09, 1.42109e-14, -4.50055e-16, 1)
+bones/3/rotation = Quaternion(-0.841923, -0.0156218, -0.104979, 0.529058)
+bones/4/position = Vector3(0.125741, 0.182422, 1.40663e-07)
+bones/4/rotation = Quaternion(0.199133, 0.0791604, -0.902646, 0.373242)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.10223, -6.47191e-10, 6.37885e-08, 0.994761)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.142022, -0.497111, -0.113557, 0.848419)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(-0.125741, 0.182422, 8.7825e-08)
+bones/7/rotation = Quaternion(0.211685, -0.0633765, 0.906873, 0.358822)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.160542, 9.17723e-09, -6.06219e-08, 0.987029)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-0.0559541, 0.0802135, 0.17139, 0.980337)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.41438, -0.133786, 0.0424471)
+bones/10/rotation = Quaternion(-0.222753, -0.283216, -0.919128, 0.159291)
+bones/11/position = Vector3(-0.388034, -0.145342, 0.0774869)
+bones/11/rotation = Quaternion(0.160336, 0.00701514, 0.973225, 0.164547)
+bones/12/position = Vector3(0.0982633, -0.0118562, 6.7013e-08)
+bones/12/rotation = Quaternion(0.0366071, 0.356811, 0.933275, -0.0185479)
+bones/12/scale = Vector3(1, 0.999999, 1.00003)
+bones/13/rotation = Quaternion(-0.60725, 0.000106645, -0.0195509, 0.79427)
+bones/13/scale = Vector3(1, 0.999981, 1.00002)
+bones/14/rotation = Quaternion(0.767755, 0.0419391, 0.00283231, 0.639363)
+bones/14/scale = Vector3(1, 1, 0.999996)
+bones/15/position = Vector3(-0.0982633, -0.0118562, 6.7013e-08)
+bones/15/rotation = Quaternion(-0.0375292, 0.0602372, 0.997459, 0.00620285)
+bones/15/scale = Vector3(1, 1, 1.00003)
+bones/16/rotation = Quaternion(-0.134692, -0.000132844, 0.00433649, 0.990878)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(0.739427, -0.029513, 0.0235617, 0.672177)
+bones/17/scale = Vector3(1, 0.999998, 1)
+bones/18/position = Vector3(3.43724e-17, 0.118585, -0.136169)
+bones/18/rotation = Quaternion(0.0538171, 0, -1.19498e-17, 0.998551)
+bones/18/scale = Vector3(1.1912, 1.1912, 1.1912)
+bones/19/position = Vector3(-0.603272, 0.482883, -3.57704e-05)
+bones/19/rotation = Quaternion(-2.21886e-07, -2.57726e-08, 0.903124, -0.42938)
+bones/19/scale = Vector3(1, 1, 1)
+bones/21/position = Vector3(0.100229, -0.364202, 0.0546802)
+bones/21/rotation = Quaternion(-1.88647e-05, 0.818766, -0.574128, 2.6903e-05)
+bones/23/position = Vector3(0.341741, 0.340464, -0.21077)
+bones/23/rotation = Quaternion(0.5, -0.5, 0.5, -0.5)
+bones/24/position = Vector3(-0.100229, -0.45296, -0.0179406)
+bones/24/rotation = Quaternion(2.31155e-05, 0.710699, -0.703497, -2.33522e-05)
+bones/26/position = Vector3(-0.341741, 0.340464, -0.21077)
+
+[node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1.1912, 1.19456e-07, -5.96047e-07, -1.69739e-07, -0.128028, -1.1843, -2.10625e-07, 1.1843, -0.128028, -4.76837e-07, -0.632302, -0.00407054)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D/Sword" index="0"]
 visible = false
+
+[node name="Player" parent="Model/Armature/Skeleton3D" index="1"]
+layers = 2
 
 [node name="Raycasts" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.703941, 0)
@@ -220,7 +290,7 @@ target_position = Vector3(0, 0, 0.5)
 target_position = Vector3(0, 0, 1.4)
 
 [node name="SwordSocket" type="BoneAttachment3D" parent="."]
-transform = Transform3D(1, 1.00282e-07, -4.76837e-07, -2.08616e-07, 2.5689e-07, -1, -1.57793e-07, 1, 1.20529e-07, -4.17233e-07, 0.00380969, 1.04308e-07)
+transform = Transform3D(1.1912, 1.19456e-07, -5.96047e-07, -1.69739e-07, -0.128028, -1.1843, -2.10625e-07, 1.1843, -0.128028, -4.76837e-07, -0.105546, -0.00407054)
 bone_name = "Sword"
 bone_idx = 20
 use_external_skeleton = true
@@ -263,19 +333,34 @@ randomness = 0.37
 process_material = SubResource("ParticleProcessMaterial_dbqqt")
 draw_pass_1 = ExtResource("14_evqkl")
 
+[node name="DropShadowArm" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.0698246, 0)
+collision_mask = 5
+spring_length = 60.0
+
+[node name="DropShadow" type="Decal" parent="DropShadowArm"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+size = Vector3(0.6, 0.6, 0.6)
+texture_albedo = ExtResource("20_aiamn")
+distance_fade_begin = 0.0
+cull_mask = 1048573
+
 [connection signal="state_changed" from="StateMachine" to="." method="_on_state_machine_state_changed"]
 [connection signal="timeout" from="StateMachine/Falling/coyote_timer" to="StateMachine/Falling" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword/end_timer" to="StateMachine/Throwing Sword" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword/throw_time" to="StateMachine/Throwing Sword" method="_on_throw_time_timeout"]
 [connection signal="timeout" from="StateMachine/Sliding/coyote_timer" to="StateMachine/Sliding" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Sliding/slide_end_timer" to="StateMachine/Sliding" method="_on_slide_end_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Sliding/let_go_sliding" to="StateMachine/Sliding" method="_on_let_go_sliding_timeout"]
 [connection signal="timeout" from="StateMachine/Ledge Grab/let_go_timer" to="StateMachine/Ledge Grab" method="_on_let_go_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Sword Return/end_timer" to="StateMachine/Sword Return" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword Down/end_timer" to="StateMachine/Throwing Sword Down" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Throwing Sword Down/throw_time" to="StateMachine/Throwing Sword Down" method="_on_throw_time_timeout"]
 [connection signal="timeout" from="StateMachine/Sword Reflect/end_timer" to="StateMachine/Sword Reflect" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Sharp Turn/end_timer" to="StateMachine/Sharp Turn" method="_on_end_timer_timeout"]
+[connection signal="timeout" from="Timers/return_sword_cooldown" to="." method="_on_return_sword_cooldown_timeout"]
 [connection signal="back_to_player" from="SwordSocket/offset/Sword/StateMachine/Return" to="." method="_on_return_back_to_player"]
 
 [editable path="Model"]
 [editable path="SwordSocket/offset/Sword"]
+[editable path="SwordSocket/offset/Sword/Pivot/Sword"]

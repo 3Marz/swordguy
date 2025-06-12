@@ -64,12 +64,14 @@ extends CharacterBody3D
 @export var sword_throw_player_deaccel : float = 5
 @export var sword_throw_jump_speed : float = 3
 @export var throwing_model_follow_factor : float = 15
+@export var sword_throw_cooldown_time : float = 0.01
 
 @export_group("Throwing Sword Down")
 @export var sword_throw_down_force : float = 800
 @export var sword_throw_down_jump_boost : float = 1
 @export var sword_throw_down_player_deaccel : float = 5
 @export var sword_throw_down_jump_speed : float = 3
+@export var sword_throw_down_cooldown_time : float = 0.15
 
 @export_group("Sword Reflect")
 @export var reflect_knockback: float = 5
@@ -130,6 +132,10 @@ extends CharacterBody3D
 
 @onready var sword_body: Sword = $SwordSocket/offset/Sword
 
+@onready var sword_return_cooldown_timer: Timer = $Timers/return_sword_cooldown
+
+#----------------------------------------------
+
 @export var pcam: PhantomCamera3D
 
 var gravity = 25
@@ -138,12 +144,13 @@ var wall_slide_gravity = 5
 # Booleans
 var jump_just_pressed = false
 var has_sword = true
+var can_return_sword = true
 
 var previous_y_rotation: float = 0.0
 var delta_rotation: float = 0.0  # Change since last frame
 
 var used_speed: float = max_speed # Used Speed Depending on if moving downword on a slop or not
-var moving_to_fast_speed = false # for debug 
+var moving_to_fast_speed = false # for debuging
 
 var throw_count = 0
 
@@ -267,7 +274,7 @@ func can_throw_n_return_sword(single_func: Signal):
 	if Input.is_action_just_pressed("throw"):
 		if has_sword and throw_count < max_throw_count:
 			single_func.emit("Throwing Sword")
-		elif !has_sword:
+		elif !has_sword and can_return_sword:
 			return_sword()
 
 func _on_state_machine_state_changed(prev:String, next:String) -> void:
@@ -283,6 +290,10 @@ func _on_return_back_to_player() -> void:
 			state == STATES.Running or
 			state == STATES.Long_Jump) and throw_count < max_throw_count:
 		state_machine._transition_to_next_state("Sword Return", {})
+
+func _on_return_sword_cooldown_timeout() -> void:
+	can_return_sword = true
+
 
 
 

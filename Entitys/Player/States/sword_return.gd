@@ -11,9 +11,12 @@ func physics_update(delta: float) -> void:
 
 	player.move_and_slide()
 
+	if player.jump_just_pressed and player.is_on_floor():
+		finished.emit("Jumping")
+
 	player.can_throw_n_return_sword(finished)
 
-	if InputBuffer.is_action_press_buffered("slide"):
+	if InputBuffer.is_action_press_buffered("slide") and !Input.is_action_just_pressed("throw"):
 		finished.emit("Throwing Sword Down")
 
 

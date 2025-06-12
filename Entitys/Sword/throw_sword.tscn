@@ -315,6 +315,9 @@ one_shot = true
 [node name="Sword" parent="Pivot" instance=ExtResource("2_sk526")]
 transform = Transform3D(-0.3, 7.60555e-07, 3.32449e-14, 0, -1.31134e-08, 0.3, 7.60555e-07, 0.3, 1.31134e-08, 0, 0, -0.335416)
 
+[node name="Sword_001" parent="Pivot/Sword" index="0"]
+layers = 2
+
 [node name="BladeTrail" type="GPUParticles3D" parent="Pivot"]
 transform = Transform3D(0.405, 0, 0, 0, -1.77031e-08, 0.405, 0, -0.405, -1.77031e-08, 0, 0, 0.652089)
 amount = 10
@@ -352,3 +355,5 @@ shape = ExtResource("8_jqv85")
 
 [connection signal="body_entered" from="." to="StateMachine/Throw" method="_on_sword_body_entered"]
 [connection signal="timeout" from="StateMachine/Return/max_fly_time" to="StateMachine/Return" method="_on_max_fly_time_timeout"]
+
+[editable path="Pivot/Sword"]

@@ -49,8 +49,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 	if data:
 		if data["added_velo"]:
 			added_velocity = data["added_velo"]
-	player.velocity += added_velocity
 	player.velocity.y = player.jump_force
+	player.velocity += added_velocity
 	# player.velocity += player.get_platform_velocity()
 
 func exit() -> void:

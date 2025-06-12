@@ -1,13 +1,17 @@
 extends PlayerState
 
 @onready var slide_end_timer: Timer = $slide_end_timer
+@onready var let_go_timer: Timer = $let_go_sliding
 
 var downhill_multiplier : float = 0.4
+var move_direction: Vector3
 
 var can_jump = true
 var off_ground = false
+var is_falling = false 
 
 var sliding_loop_time_scale = "parameters/Sliding/Slide Loop/TimeScale/scale"
+
 
 func handle_input(_event: InputEvent) -> void:
 	pass
@@ -19,7 +23,7 @@ func physics_update(delta: float) -> void:
 	player.cam_follow(delta)
 	player.apply_gravity(delta)
 	
-	var move_direction := player.get_move_direction()
+	move_direction = player.get_move_direction()
 	player.velocity.x = lerpf(player.velocity.x, player.slide_move_speed * move_direction.x, player.slide_deaccel)
 	player.velocity.z = lerpf(player.velocity.z, player.slide_move_speed * move_direction.z, player.slide_deaccel)
 	
@@ -74,6 +78,10 @@ func physics_update(delta: float) -> void:
 			finished.emit("Long Jump")
 		else:
 			finished.emit("Jumping")
+	
+	is_falling = player.get_last_motion().y < 0 and !player.is_on_floor()
+	if is_falling and move_direction.length() != 0 and let_go_timer.is_stopped():
+		let_go_timer.start()
 
 func _on_slide_end_timer_timeout() -> void:
 	if player.velocity.length() < player.min_slide_velocity:
@@ -96,5 +104,15 @@ func exit() -> void:
 
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
+
+func _on_let_go_sliding_timeout() -> void:
+	if player.state != player.STATES.Sliding:
+		return
+
+	if is_falling and move_direction.length() != 0:
+		finished.emit("Falling")
 	
-	
+
+
+
+
