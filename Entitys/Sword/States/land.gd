@@ -32,6 +32,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	parent.global_transform = parent.global_transform.looking_at(parent.collision_point + (parent.collision_normal + random_offset))
 
 	parent.anim_player.play("Hit")
+	# print(parent.collision_normal)
 
 func exit() -> void:
 	parent.sword_mesh.layers = parent.CULL_MASK_NO_SHADOW

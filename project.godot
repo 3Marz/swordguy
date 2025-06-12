@@ -26,7 +26,12 @@ InputBuffer="*res://Globals/InputBuffer.gd"
 
 [display]
 
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/size/always_on_top=true
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
@@ -35,6 +40,10 @@ enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons
 [filesystem]
 
 import/blender/enabled=false
+
+[global_group]
+
+SwordHandleSittingArea=""
 
 [input]
 

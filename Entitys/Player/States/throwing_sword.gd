@@ -82,7 +82,6 @@ func _on_throw_time_timeout() -> void:
 		launch_sword()
 	else:
 		end_timer.stop()
-		# player.sword_body.disable_trails()
 		finished.emit("Sword Reflect")
 
 

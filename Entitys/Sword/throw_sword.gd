@@ -54,6 +54,7 @@ func return_to_pos(pos: Vector3, player: Player) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	print(angular_velocity)
 	if debug:
 		for point in points:
 			DebugDraw3D.draw_sphere(point[0], 0.1, Color.RED)

@@ -89,3 +89,14 @@ func exit() -> void:
 
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
+
+
+func _on_sitting_area_area_entered(area:Area3D) -> void:
+	if (area.is_in_group("SwordHandleSittingArea") and 
+			player.sword_body.state_machine.state.name == "Land" and
+			player.sword_body.collision_normal.y > player.sitting_on_pole_deadzone):
+		finished.emit("Sitting On Pole", {"sitting_point": area.global_position})
+
+
+
+

@@ -91,6 +91,10 @@ extends CharacterBody3D
 @export var sharp_turn_deaccel_factor: float = 15
 @export var sharp_turn_min_velo_length: float = 4
 @export var sharp_turn_deadzone: float = 0.1
+
+@export_group("Sitting On Pole")
+@export var sitting_on_pole_deadzone: float = 0.75
+@export var sitting_on_pole_accel_factor: float = 12
 #------------------------------------------------------------#
 
 @export_category("Others")
@@ -168,7 +172,8 @@ enum STATES {
 	Sword_Return,
 	Throwing_Sword_Down,
 	Sword_Reflect,
-	Sharp_Turn
+	Sharp_Turn,
+	Sitting_On_Pole
 }
 
 const COLLISION_MASK_WITH_SWORD = 1 | 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://blv7qct83d44x"]
+[gd_scene load_steps=35 format=3 uid="uid://blv7qct83d44x"]
 
 [ext_resource type="Script" uid="uid://blx17kgcre670" path="res://Entitys/Sword/throw_sword.gd" id="1_cmfml"]
 [ext_resource type="Script" uid="uid://x2ywbchcq87m" path="res://Classes/StateMachine.gd" id="2_jjohv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shader" uid="uid://fxugodtw8kll" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="10_pxu3q"]
 [ext_resource type="Shader" uid="uid://cvbevonx8muxp" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="11_jqv85"]
 [ext_resource type="Script" uid="uid://bi0yq2uoq2gbf" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="12_aimuk"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://addons/GPUTrail-main/defaults/texture.tres" id="12_jqv85"]
 
 [sub_resource type="Curve" id="Curve_5cyhl"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
@@ -60,7 +61,8 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_yk4r1"]
 resource_name = "Hit"
-length = 0.06667
+length = 0.08
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -108,6 +110,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.08),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"disable_trails"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_pxu3q"]
@@ -211,11 +227,14 @@ _data = {
 &"Spin": SubResource("Animation_ssp0k")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jqv85"]
+size = Vector3(0.65, 0.65, 0.447)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3wx7g"]
 shader = ExtResource("10_pxu3q")
 
 [sub_resource type="Gradient" id="Gradient_ahrdr"]
-colors = PackedColorArray(0.839216, 0.87451, 0.921569, 1, 0.8372, 0.87308, 0.92, 0)
+colors = PackedColorArray(0.839216, 0.87451, 0.921569, 1, 0.839216, 0.87451, 0.921569, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_dxcdo"]
 gradient = SubResource("Gradient_ahrdr")
@@ -232,6 +251,7 @@ curve = SubResource("Curve_sswob")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("11_jqv85")
+shader_parameter/tex = ExtResource("12_jqv85")
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_dxcdo")
 shader_parameter/curve = SubResource("CurveTexture_pf6jc")
@@ -310,6 +330,15 @@ script = ExtResource("6_pxu3q")
 [node name="max_fly_time" type="Timer" parent="StateMachine/Return"]
 one_shot = true
 
+[node name="Areas" type="Node3D" parent="."]
+
+[node name="sitting_area" type="Area3D" parent="Areas" groups=["SwordHandleSittingArea"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.946209)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/sitting_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0734375)
+shape = SubResource("BoxShape3D_jqv85")
+
 [node name="Pivot" type="Marker3D" parent="."]
 
 [node name="Sword" parent="Pivot" instance=ExtResource("2_sk526")]
@@ -351,6 +380,7 @@ _defaults_have_been_set = true
 metadata/_custom_type_script = "uid://bi0yq2uoq2gbf"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0344239)
 shape = ExtResource("8_jqv85")
 
 [connection signal="body_entered" from="." to="StateMachine/Throw" method="_on_sword_body_entered"]

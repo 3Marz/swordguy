@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cgxgkt8sytllx"]
+[gd_scene load_steps=31 format=3 uid="uid://cgxgkt8sytllx"]
 
 [ext_resource type="Script" uid="uid://mt1c1xfe57tn" path="res://Entitys/Player/player.gd" id="1_uu7px"]
 [ext_resource type="PackedScene" uid="uid://be02x5klrfm6h" path="res://Entitys/Player/player_model.tscn" id="2_citt6"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://o6wmtimnf6n" path="res://Entitys/Player/States/throwing_sword_down.gd" id="14_r3ve6"]
 [ext_resource type="Script" uid="uid://c28dja5bnwc45" path="res://Entitys/Player/States/sword_reflect.gd" id="15_1h3lh"]
 [ext_resource type="Script" uid="uid://cijnpirkfigio" path="res://Entitys/Player/States/sharp_turn.gd" id="16_s7pro"]
+[ext_resource type="Script" uid="uid://b820yv2elpxo2" path="res://Entitys/Player/States/sitting_on_handle.gd" id="17_dbqqt"]
 [ext_resource type="Texture2D" uid="uid://w3rgot6q0ebo" path="res://Assets/Textures/Sprites/drop_shadow.png" id="20_aiamn"]
 
 [sub_resource type="Curve" id="Curve_8je53"]
@@ -28,6 +29,9 @@ point_count = 2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s5t43"]
 radius = 0.275963
 height = 1.35503
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aiamn"]
+size = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="Curve" id="Curve_evqkl"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.243902, 1), 0.0, 0.0, 0, 0, Vector2(0.99458, 0), 0.0, 0.0, 0, 0]
@@ -67,7 +71,6 @@ floor_constant_speed = true
 floor_max_angle = 0.959931
 floor_snap_length = 0.5
 script = ExtResource("1_uu7px")
-debug = true
 max_fast_speed = 7.0
 model_tilt_speed = 2.0
 max_tilt_angle = 30.0
@@ -199,10 +202,20 @@ script = ExtResource("16_s7pro")
 wait_time = 0.15
 one_shot = true
 
+[node name="Sitting On Pole" type="Node" parent="StateMachine"]
+script = ExtResource("17_dbqqt")
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="return_sword_cooldown" type="Timer" parent="Timers"]
 one_shot = true
+
+[node name="Areas" type="Node3D" parent="."]
+
+[node name="sitting_area" type="Area3D" parent="Areas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/sitting_area"]
+shape = SubResource("BoxShape3D_aiamn")
 
 [node name="Model" parent="." instance=ExtResource("2_citt6")]
 
@@ -249,7 +262,6 @@ bones/18/rotation = Quaternion(0.0538171, 0, -1.19498e-17, 0.998551)
 bones/18/scale = Vector3(1.1912, 1.1912, 1.1912)
 bones/19/position = Vector3(-0.603272, 0.482883, -3.57704e-05)
 bones/19/rotation = Quaternion(-2.21886e-07, -2.57726e-08, 0.903124, -0.42938)
-bones/19/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(0.100229, -0.364202, 0.0546802)
 bones/21/rotation = Quaternion(-1.88647e-05, 0.818766, -0.574128, 2.6903e-05)
 bones/23/position = Vector3(0.341741, 0.340464, -0.21077)
@@ -259,7 +271,7 @@ bones/24/rotation = Quaternion(2.31155e-05, 0.710699, -0.703497, -2.33522e-05)
 bones/26/position = Vector3(-0.341741, 0.340464, -0.21077)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.1912, 1.19456e-07, -5.96047e-07, -1.69739e-07, -0.128028, -1.1843, -2.10625e-07, 1.1843, -0.128028, -4.76837e-07, -0.632302, -0.00407054)
+transform = Transform3D(1.1912, 2.41753e-07, -4.76837e-07, -1.62108e-07, -0.128028, -1.1843, -2.81215e-07, 1.1843, -0.128028, -4.17233e-07, -0.632302, -0.00407052)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D/Sword" index="0"]
 visible = false
@@ -290,7 +302,7 @@ target_position = Vector3(0, 0, 0.5)
 target_position = Vector3(0, 0, 1.4)
 
 [node name="SwordSocket" type="BoneAttachment3D" parent="."]
-transform = Transform3D(1.1912, 1.19456e-07, -5.96047e-07, -1.69739e-07, -0.128028, -1.1843, -2.10625e-07, 1.1843, -0.128028, -4.76837e-07, -0.105546, -0.00407054)
+transform = Transform3D(1.1912, 2.41753e-07, -4.76837e-07, -1.62108e-07, -0.128028, -1.1843, -2.81215e-07, 1.1843, -0.128028, -4.17233e-07, -0.105546, -0.00407052)
 bone_name = "Sword"
 bone_idx = 20
 use_external_skeleton = true
@@ -359,6 +371,7 @@ cull_mask = 1048573
 [connection signal="timeout" from="StateMachine/Sword Reflect/end_timer" to="StateMachine/Sword Reflect" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Sharp Turn/end_timer" to="StateMachine/Sharp Turn" method="_on_end_timer_timeout"]
 [connection signal="timeout" from="Timers/return_sword_cooldown" to="." method="_on_return_sword_cooldown_timeout"]
+[connection signal="area_entered" from="Areas/sitting_area" to="StateMachine/Falling" method="_on_sitting_area_area_entered"]
 [connection signal="back_to_player" from="SwordSocket/offset/Sword/StateMachine/Return" to="." method="_on_return_back_to_player"]
 
 [editable path="Model"]
