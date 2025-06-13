@@ -95,6 +95,7 @@ extends CharacterBody3D
 @export_group("Sitting On Pole")
 @export var sitting_on_pole_deadzone: float = 0.75
 @export var sitting_on_pole_accel_factor: float = 12
+@export var sitting_on_model_follow_factor: float = 5
 #------------------------------------------------------------#
 
 @export_category("Others")

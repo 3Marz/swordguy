@@ -50,7 +50,6 @@ func launch_sword():
 	player.sword_return_cooldown_timer.start(player.sword_throw_cooldown_time)
 	player.sword_body.state_machine._transition_to_next_state("Throw", {})
 
-	# throw_dirction = Vector3.BACK.rotated(Vector3.UP, player.model.rotation.y)
 	throw_dirction = Vector3.BACK.rotated(Vector3.UP, player.rotation.y)
 
 	player.sword_body.top_level = true
@@ -58,7 +57,7 @@ func launch_sword():
 	player.sword_body.position = player.sword_spwan_pos.global_position 
 	player.sword_body.rotation = player.sword_spwan_pos.global_rotation 
 
-	player.sword_body.apply_force(throw_dirction * player.sword_throw_force)
+	player.sword_body.apply_central_force(throw_dirction * player.sword_throw_force)
 	# player.sword_body.apply_torque(Vector3(0, player.sword_throw_torque_force, 0))
 
 func _on_end_timer_timeout() -> void:

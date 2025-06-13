@@ -92,6 +92,11 @@ func _on_coyote_timer_timeout() -> void:
 
 
 func _on_sitting_area_area_entered(area:Area3D) -> void:
+	if (player.state != player.STATES.Falling and 
+			player.state != player.STATES.Long_Jump and
+			player.state != player.STATES.Jumping):
+		return
+
 	if (area.is_in_group("SwordHandleSittingArea") and 
 			player.sword_body.state_machine.state.name == "Land" and
 			player.sword_body.collision_normal.y > player.sitting_on_pole_deadzone):

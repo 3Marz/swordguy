@@ -57,7 +57,7 @@ func launch_sword():
 	player.sword_body.position = player.sword_down_spwan_pos.global_position 
 	player.sword_body.rotation = player.sword_down_spwan_pos.global_rotation 
 
-	player.sword_body.apply_force(throw_dirction * player.sword_throw_down_force)
+	player.sword_body.apply_central_force(throw_dirction * player.sword_throw_down_force)
 
 func _on_end_timer_timeout() -> void:
 
