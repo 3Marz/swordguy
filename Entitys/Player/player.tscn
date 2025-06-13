@@ -94,7 +94,10 @@ sharp_turn_deaccel_factor = 5.0
 sharp_turn_min_velo_length = 4.5
 mouse_sensitivity = 0.3
 inverse_horz = true
-max_pitch = 45.0
+min_pitch = -80.0
+max_pitch = 35.0
+min_spring_length = 2.0
+max_spring_length = 6.0
 metadata/_custom_type_script = "uid://mt1c1xfe57tn"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -270,9 +273,6 @@ bones/26/position = Vector3(-0.341741, 0.474408, -0.62352)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0.957117, -0.289352, 0.0142118, -0.15176, -0.542571, -0.826188, 0.24677, 0.788602, -0.563216, 0.00760972, -0.648378, -0.595265)
-
-[node name="Sword" parent="Model/Armature/Skeleton3D/Sword" index="0"]
-visible = false
 
 [node name="Player" parent="Model/Armature/Skeleton3D" index="1"]
 layers = 2

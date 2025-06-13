@@ -114,6 +114,8 @@ extends CharacterBody3D
 @export var inverse_vert: bool = false
 @export var min_pitch: float = -90
 @export var max_pitch: float = 90
+@export var min_spring_length: float = 1.5
+@export var max_spring_length: float = 5.5
 
 # Onready Variables
 @onready var model: Node3D = $Model
@@ -193,8 +195,9 @@ func _unhandled_input(event):
 		pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity * (-1 if inverse_vert else 1)
 		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
 		pcam_rotation_degrees.y -= event.relative.x * mouse_sensitivity * (-1 if inverse_horz else 1)
-
-		# pcam.spring_length = 1
+		
+		var tilt_scaler = 1.0 - (pcam_rotation_degrees.x - min_pitch) / (max_pitch - min_pitch)
+		pcam.spring_length = lerp(min_spring_length, max_spring_length, tilt_scaler)
 
 		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 
@@ -245,6 +248,9 @@ func controller_camera_control(delta):
 		pcam_rotation_degrees.x -= (axis.y * 3) * (-1 if inverse_vert else 1)
 		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
 		pcam_rotation_degrees.y -= (axis.x * 3) * (-1 if inverse_horz else 1)
+
+		var tilt_scaler = 1.0 - (pcam_rotation_degrees.x - min_pitch) / (max_pitch - min_pitch)
+		pcam.spring_length = lerp(min_spring_length, max_spring_length, tilt_scaler)
 
 		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 

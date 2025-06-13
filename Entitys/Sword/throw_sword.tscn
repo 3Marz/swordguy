@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://blv7qct83d44x"]
+[gd_scene load_steps=37 format=3 uid="uid://blv7qct83d44x"]
 
 [ext_resource type="Script" uid="uid://blx17kgcre670" path="res://Entitys/Sword/throw_sword.gd" id="1_cmfml"]
 [ext_resource type="Script" uid="uid://x2ywbchcq87m" path="res://Classes/StateMachine.gd" id="2_jjohv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://chjovwo3ogyv5" path="res://Entitys/Sword/States/throw.gd" id="5_yk4r1"]
 [ext_resource type="Script" uid="uid://cf35kf370tw0g" path="res://Entitys/Sword/States/return.gd" id="6_pxu3q"]
 [ext_resource type="Shape3D" uid="uid://bxpyy2ma2s4nj" path="res://Entitys/Sword/throw_sword_cylinder_shape.tres" id="8_jqv85"]
+[ext_resource type="Texture2D" uid="uid://xfte1om0mccl" path="res://Assets/Models/Player_SwordTex.png" id="10_aimuk"]
 [ext_resource type="Shader" uid="uid://fxugodtw8kll" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="10_pxu3q"]
 [ext_resource type="Shader" uid="uid://cvbevonx8muxp" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="11_jqv85"]
 [ext_resource type="Script" uid="uid://bi0yq2uoq2gbf" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="12_aimuk"]
@@ -230,6 +231,11 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_jqv85"]
 size = Vector3(0.65, 0.65, 0.447)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wx7g"]
+transparency = 4
+albedo_texture = ExtResource("10_aimuk")
+texture_filter = 0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3wx7g"]
 shader = ExtResource("10_pxu3q")
 
@@ -346,6 +352,7 @@ transform = Transform3D(-0.3, 7.60555e-07, 3.32449e-14, 0, -1.31134e-08, 0.3, 7.
 
 [node name="Sword_001" parent="Pivot/Sword" index="0"]
 layers = 2
+material_override = SubResource("StandardMaterial3D_3wx7g")
 
 [node name="BladeTrail" type="GPUParticles3D" parent="Pivot"]
 transform = Transform3D(0.405, 0, 0, 0, -1.77031e-08, 0.405, 0, -0.405, -1.77031e-08, 0, 0, 0.652089)

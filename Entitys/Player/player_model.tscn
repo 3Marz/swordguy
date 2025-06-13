@@ -1,20 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://be02x5klrfm6h"]
+[gd_scene load_steps=3 format=3 uid="uid://be02x5klrfm6h"]
 
 [ext_resource type="PackedScene" uid="uid://bbk5n3221ph04" path="res://Assets/Models/Player.glb" id="1_71n1d"]
 [ext_resource type="Material" uid="uid://c60bkqoternpd" path="res://Assets/Models/player_model_material.tres" id="2_rj4h2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m70wb"]
-render_priority = -1
-next_pass = ExtResource("2_rj4h2")
-transparency = 1
-no_depth_test = true
-shading_mode = 0
-albedo_color = Color(0.237539, 0.237539, 0.237539, 1)
 
 [node name="Model" instance=ExtResource("1_71n1d")]
 
 [node name="Sword" parent="Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, 1.00282e-07, -4.76837e-07, -2.08616e-07, 2.5689e-07, -1, -1.57793e-07, 1, 1.20529e-07, -4.17233e-07, -0.522947, 1.04308e-07)
 
+[node name="Sword" parent="Armature/Skeleton3D/Sword" index="0"]
+visible = false
+
 [node name="Player" parent="Armature/Skeleton3D" index="1"]
-material_override = SubResource("StandardMaterial3D_m70wb")
+layers = 4
+material_override = ExtResource("2_rj4h2")
