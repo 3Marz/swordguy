@@ -29,6 +29,9 @@ const CULL_MASK_WITH_SHADOW = 1
 
 var collision_point : Vector3
 var collision_normal: Vector3
+var moving_body_velocity: Vector3 = Vector3.ZERO
+
+var is_on_moving_platform = false
 
 # DEBUG
 var points = []

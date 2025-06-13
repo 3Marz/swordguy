@@ -95,7 +95,8 @@ extends CharacterBody3D
 @export_group("Sitting On Pole")
 @export var sitting_on_pole_deadzone: float = 0.75
 @export var sitting_on_pole_accel_factor: float = 12
-@export var sitting_on_model_follow_factor: float = 5
+@export var sitting_on_pole_model_follow_factor: float = 5
+@export var sitting_on_pole_added_force: float = 2
 #------------------------------------------------------------#
 
 @export_category("Others")
@@ -187,13 +188,13 @@ func _unhandled_input(event):
 	# print(Input.get_vector("look_left", "look_right", "look_up", "look_down"))	
 
 	if event is InputEventMouseMotion and pcam != null:
-		var pcam_rotation_degrees: Vector3
-
-		pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
+		var pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
 
 		pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity * (-1 if inverse_vert else 1)
 		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, min_pitch, max_pitch)
 		pcam_rotation_degrees.y -= event.relative.x * mouse_sensitivity * (-1 if inverse_horz else 1)
+
+		# pcam.spring_length = 1
 
 		pcam.set_third_person_rotation_degrees(pcam_rotation_degrees)
 

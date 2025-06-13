@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c60bkqoternpd"]
+
+[ext_resource type="Texture2D" uid="uid://dbw7al7h35jps" path="res://Assets/Models/Player_playerTex.png" id="1_30rux"]
+
+[resource]
+transparency = 4
+albedo_texture = ExtResource("1_30rux")
+texture_filter = 0

@@ -92,7 +92,6 @@ time_to_ledge = 0.1
 ledge_stopping_distance = 0.5
 sharp_turn_deaccel_factor = 5.0
 sharp_turn_min_velo_length = 4.5
-sitting_on_model_follow_factor = 2.0
 mouse_sensitivity = 0.3
 inverse_horz = true
 max_pitch = 45.0
@@ -232,14 +231,11 @@ bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.00269273, 1.76507e-08, 7.08187e-09, 0.999996)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(-0.0897445, -0.0795995, -0.067334, 0.990493)
-bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(-0.122541, 0.210457, 0.00696353)
 bones/7/rotation = Quaternion(-0.142456, -0.305265, 0.688981, 0.641735)
-bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.290765, -1.8918e-08, -1.29686e-07, 0.956795)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.286958, 0.0930126, 0.0460648, 0.952303)
-bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0.139316, -0.0693017, 0.382086)
 bones/10/rotation = Quaternion(-0.0154358, -0.393766, -0.919076, 0.00313631)
 bones/11/position = Vector3(-0.509031, 0.185778, -0.138828)
@@ -273,7 +269,7 @@ bones/25/position = Vector3(-0.283759, -0.265911, 0.132494)
 bones/26/position = Vector3(-0.341741, 0.474408, -0.62352)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.957117, -0.289352, 0.0142117, -0.15176, -0.542571, -0.826187, 0.24677, 0.788601, -0.563217, 0.00760961, -0.648378, -0.595266)
+transform = Transform3D(0.957117, -0.289352, 0.0142118, -0.15176, -0.542571, -0.826188, 0.24677, 0.788602, -0.563216, 0.00760972, -0.648378, -0.595265)
 
 [node name="Sword" parent="Model/Armature/Skeleton3D/Sword" index="0"]
 visible = false
@@ -304,7 +300,7 @@ target_position = Vector3(0, 0, 0.5)
 target_position = Vector3(0, 0, 1.4)
 
 [node name="SwordSocket" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.957117, -0.289352, 0.0142117, -0.15176, -0.542571, -0.826187, 0.24677, 0.788601, -0.563217, 0.00760961, -0.121621, -0.595266)
+transform = Transform3D(0.957117, -0.289352, 0.0142118, -0.15176, -0.542571, -0.826188, 0.24677, 0.788602, -0.563216, 0.00760972, -0.121621, -0.595265)
 bone_name = "Sword"
 bone_idx = 20
 use_external_skeleton = true

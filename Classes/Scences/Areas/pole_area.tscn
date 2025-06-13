@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cg5ee21qxed64"]
+
+[node name="Pole_Area" type="Area3D" groups=["PoleArea"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
