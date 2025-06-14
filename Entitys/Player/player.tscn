@@ -93,7 +93,6 @@ ledge_stopping_distance = 0.5
 sharp_turn_deaccel_factor = 5.0
 sharp_turn_min_velo_length = 4.5
 mouse_sensitivity = 0.3
-inverse_horz = true
 min_pitch = -80.0
 max_pitch = 35.0
 min_spring_length = 2.0

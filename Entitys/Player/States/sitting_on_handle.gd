@@ -3,6 +3,9 @@ extends PlayerState
 var type: String
 var area: Area3D
 
+var move_direction: Vector3
+var look_direction: Vector2
+
 func update(delta: float) -> void:
 	if area:
 		if type == "SwordHandle" and player.sword_body.is_on_moving_platform:
@@ -12,10 +15,8 @@ func update(delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	
-	var move_direction = player.get_move_direction()
-	var look_direction = Vector2(move_direction.z, move_direction.x)
-	if look_direction != Vector2.ZERO:
-		player.rotation.y = lerp_angle(player.rotation.y, look_direction.angle(), delta * player.sitting_on_pole_model_follow_factor)
+	# if look_direction != Vector2.ZERO:
+	# 	player.rotation.y = lerp_angle(player.rotation.y, look_direction.angle(), delta * player.sitting_on_pole_model_follow_factor)
 	
 	if player.jump_just_pressed:
 		finished.emit("Jumping", {"added_velo": move_direction * player.sitting_on_pole_added_force})
@@ -24,6 +25,9 @@ func physics_update(delta: float) -> void:
 func enter(previous_state_path: String, data := {}) -> void:
 	type = data["type"]
 	area = data["area"]
+
+	move_direction = player.get_move_direction()
+	look_direction = Vector2(move_direction.z, move_direction.x)
 
 	# if type == "SwordHandle" and player.sword_body.is_on_moving_platform:
 	# 	player.global_position = sitting_point
