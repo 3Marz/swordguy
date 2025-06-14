@@ -1,5 +1,8 @@
 extends Node3D
 
+# ---------- VARIABLES ---------- #
+var game_controller: GameController
+
 # ---------- FUNCTIONS ---------- #
 
 func _process(_delta):

@@ -12,14 +12,14 @@ config_version=5
 
 config/name="Sword Guy"
 config/description="A Starter 3D Plaformer Kit For Godot 4."
-run/main_scene="uid://csemlgmelrbf8"
+run/main_scene="uid://cuptdxcj077p2"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Icon.png"
 
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-GameManager="*res://Globals/GameManager.gd"
+Global="*res://Globals/Global.gd"
 Utils="*res://Globals/Utils.gd"
 AudioManager="*res://Globals/AudioManger/AudioManager.tscn"
 InputBuffer="*res://Globals/InputBuffer.gd"
@@ -29,6 +29,7 @@ InputBuffer="*res://Globals/InputBuffer.gd"
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/always_on_top=true
+window/size/sharp_corners=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"

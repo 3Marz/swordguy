@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuptdxcj077p2"]
+
+[ext_resource type="Script" uid="uid://d2quvyrp27w3b" path="res://Environments/Worlds/game_controller.gd" id="1_0evap"]
+[ext_resource type="PackedScene" uid="uid://bi5713g6pw6ou" path="res://Environments/Worlds/playground_world.tscn" id="2_lk5v5"]
+
+[node name="GameController" type="Node" node_paths=PackedStringArray("world", "gui")]
+script = ExtResource("1_0evap")
+world = NodePath("World3D")
+gui = NodePath("GUI")
+start_world_scene = ExtResource("2_lk5v5")
+
+[node name="World3D" type="Node3D" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://po63m4srixl4"]
 
 [ext_resource type="PackedScene" uid="uid://0t0qb3qjq6my" path="res://Environments/Props/Platform/PlatformRed.tscn" id="2_4lh3q"]
-[ext_resource type="PackedScene" uid="uid://dh0vw0ekrkc1e" path="res://Entitys/Player/player.tscn" id="2_21dfl"]
+[ext_resource type="PackedScene" uid="uid://cgxgkt8sytllx" path="res://Entitys/Player/player.tscn" id="2_21dfl"]
 [ext_resource type="PackedScene" uid="uid://dfc0ecsjufu7v" path="res://Environments/Props/Platform/PlatformBlue.tscn" id="3_mj5wy"]
 [ext_resource type="PackedScene" uid="uid://bk5n0tn4k1l0c" path="res://Interactables/Collectables/Coin/Coin.tscn" id="5_4fiv6"]
-[ext_resource type="Script" uid="uid://dkf1y4xc2o0uo" path="res://Globals/GameManager.gd" id="6_8fvkd"]
+[ext_resource type="Script" uid="uid://dkf1y4xc2o0uo" path="res://Globals/Global.gd" id="6_8fvkd"]
 [ext_resource type="Texture2D" uid="uid://cnbbny7qjh2xn" path="res://Assets/Textures/coin.png" id="7_ow7xm"]
 [ext_resource type="Texture2D" uid="uid://hk3gj75327hy" path="res://Assets/Textures/Logo.png" id="9_46gx6"]
 

@@ -305,13 +305,13 @@ ground_bottom_color = Color(0.382938, 0.000206288, 0.423547, 1)
 ground_horizon_color = Color(0.984418, 0.780285, 0.962158, 1)
 ground_curve = 0.15455
 
-[sub_resource type="Sky" id="Sky_dxkob"]
+[sub_resource type="Sky" id="Sky_c6baq"]
 sky_material = SubResource("ProceduralSkyMaterial_tq0w3")
 
 [sub_resource type="Environment" id="Environment_gh3h6"]
 background_mode = 2
 background_color = Color(0.643434, 0.450549, 0.54814, 1)
-sky = SubResource("Sky_dxkob")
+sky = SubResource("Sky_c6baq")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 1.2
@@ -719,17 +719,12 @@ size = Vector3(2, 0.620117, 2)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_gh3h6")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(-0.898603, 0.438763, 2.98254e-08, 0.146657, 0.300359, 0.942484, 0.413527, 0.846919, -0.334251, 9.04457, 6.63937, -28.4749)
-visible = false
-
 [node name="Player" parent="." node_paths=PackedStringArray("pcam") instance=ExtResource("1_u0x44")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.804733, 0)
 pcam = NodePath("../PhantomCamera3D")
 
 [node name="Camera" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00473, 3.5)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera"]
 process_priority = 300

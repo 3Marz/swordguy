@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxc7j0a6g1ytv"]
+
+[ext_resource type="Script" uid="uid://djafeqwfcsf5e" path="res://Environments/Worlds/world_template.gd" id="1_m0vc8"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_5dabx"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_ejral"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_n8i7e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dqdec"]
+sky_top_color = Color(0.546062, 0.407324, 1, 1)
+sky_horizon_color = Color(0.984314, 0.780392, 0.960784, 1)
+ground_bottom_color = Color(0.382938, 0.000206288, 0.423547, 1)
+ground_horizon_color = Color(0.984418, 0.780285, 0.962158, 1)
+ground_curve = 0.15455
+
+[sub_resource type="Sky" id="Sky_dxkob"]
+sky_material = SubResource("ProceduralSkyMaterial_dqdec")
+
+[sub_resource type="Environment" id="Environment_m0vc8"]
+background_mode = 2
+background_color = Color(0.643434, 0.450549, 0.54814, 1)
+sky = SubResource("Sky_dxkob")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.2
+
+[sub_resource type="Resource" id="Resource_imeid"]
+script = ExtResource("4_n8i7e")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uy8em"]
+
+[node name="WorldTemplate" type="Node3D"]
+script = ExtResource("1_m0vc8")
+
+[node name="Geom" type="Node3D" parent="."]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_m0vc8")
+
+[node name="CheckPoints" type="Node3D" parent="."]
+
+[node name="MainCamera" type="Camera3D" parent="."]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3.5)
+
+[node name="PhantomCameraHost" type="Node" parent="MainCamera"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_5dabx")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PlayerFollowPCam" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3.5)
+script = ExtResource("3_ejral")
+follow_mode = 6
+follow_target = NodePath("")
+tween_resource = SubResource("Resource_imeid")
+follow_offset = Vector3(0, 1.2, 0)
+follow_damping = true
+follow_distance = 3.5
+spring_length = 3.5
+shape = SubResource("SphereShape3D_uy8em")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
