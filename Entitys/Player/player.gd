@@ -180,8 +180,8 @@ enum STATES {
 	Sitting_On_Pole
 }
 
-const COLLISION_MASK_WITH_SWORD = 1 | 4
-const COLLISION_MASK_NO_SWORD = 1
+const COLLISION_MASK_WITH_SWORD = 1 | 4 | 16
+const COLLISION_MASK_NO_SWORD = 1 | 16
 
 # ---------- FUNCTIONS ---------- #
 #

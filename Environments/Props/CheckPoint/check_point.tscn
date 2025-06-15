@@ -1,5 +1,93 @@
-[gd_scene format=3 uid="uid://bu3b7q0ollvbu"]
+[gd_scene load_steps=10 format=4 uid="uid://bu3b7q0ollvbu"]
 
-[node name="CheckPoint" type="Area3D"]
+[ext_resource type="Script" uid="uid://1nr5msptmhyi" path="res://Environments/Props/CheckPoint/check_point.gd" id="1_buwus"]
+[ext_resource type="PackedScene" uid="uid://d0m73mlhkoa6v" path="res://Environments/Props/CheckPoint/model/checkpoint_model.tscn" id="2_buwus"]
+[ext_resource type="Texture2D" uid="uid://dfcjuhjtl1jw2" path="res://Environments/Props/CheckPoint/model/checkpoint_model_gem.png" id="3_nu0g5"]
+[ext_resource type="Texture2D" uid="uid://w3rgot6q0ebo" path="res://Assets/Textures/Sprites/drop_shadow.png" id="4_fjq0s"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[sub_resource type="BoxShape3D" id="BoxShape3D_buwus"]
+size = Vector3(2.8623, 1.80896, 2.64038)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_buwus"]
+radius = 0.271272
+height = 1.7336
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjq0s"]
+resource_local_to_scene = true
+resource_name = "m_gem"
+cull_mode = 2
+albedo_texture = ExtResource("3_nu0g5")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bjppt"]
+_surfaces = [{
+"aabb": AABB(-0.2835, 0.5859, -0.2835, 0.567, 0.5481, 0.567),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAABAAAAAwABAAQAAgAFAAAAAwAFAAIAAAAFAAQABAAFAAMA"),
+"name": "m_gem",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("//+Ve/9/AAD/fwAA/38AAP9/lXv//wAAAACVe/9/AAD/f5V7AAAAAP9/////fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rsyic"]
+resource_local_to_scene = true
+resource_name = "checkpoint_model_Cone_001"
+_surfaces = [{
+"aabb": AABB(-0.2835, 0.5859, -0.2835, 0.567, 0.5481, 0.567),
+"attribute_data": PackedByteArray("qfr/P/+//z//v6p6VIX/P/+//z//v1UF/7+qev+//z9Uhf8//79VBf+//z+p+v8/qgr/P1VF/z9VRap6/3//P1VF/z9VRVUFVUWqelVF/z//f/8/VUVVBVVF/z+qCv8/"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcA"),
+"material": SubResource("StandardMaterial3D_fjq0s"),
+"name": "m_gem",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("//+Ve/9/tk7/fwAA/3+2Tv9/lXv//7ZOAACVe/9/oiT/fwAA/3+iJP9/lXsAAKIk/3+Ve///tk7/fwAA/3+2TgAAlXv/f7ZO/3+VewAAoiT/fwAA/3+iJP//lXv/f6IkAACVe/9/lrH/f////3+Wsf9/lXv//5ax//+Ve/9/QNz/f////39A3P9/lXsAAEDc/3+Ve///lrH/f////3+Wsf//lXv/f5ax/3+VewAAQNz/f////39A3AAAlXv/f0DckhfOO5IXzjuSF847HjB7nx4we58eMHufMUSRlzFEkZcxRJGXfB/hT3wf4U98H+FPDegxxg3oMcYN6DHGl85xX5fOcV+XznFfzLkOaMy5DmjMuQ5ocd9nsXHfZ7Fx32ex")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_bjppt")
+
+[node name="CheckPoint" type="Node3D" node_paths=PackedStringArray("respawn_point")]
+script = ExtResource("1_buwus")
+respawn_point = NodePath("RespwanPoint")
+
+[node name="Area" type="Area3D" parent="." groups=["CheckPoints"]]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90672, 0)
+shape = SubResource("BoxShape3D_buwus")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.641281, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.218182, 0)
+shape = SubResource("CapsuleShape3D_buwus")
+
+[node name="Model" parent="." instance=ExtResource("2_buwus")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.39274, 0)
+
+[node name="Gem" parent="Model" index="0"]
+mesh = SubResource("ArrayMesh_rsyic")
+
+[node name="RespwanPoint" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.884904, 0.729185, 0.733684)
+
+[node name="DropShadow" type="Decal" parent="."]
+size = Vector3(0.6, 0.6, 0.6)
+texture_albedo = ExtResource("4_fjq0s")
+distance_fade_begin = 0.0
+cull_mask = 1048573
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
+
+[editable path="Model"]

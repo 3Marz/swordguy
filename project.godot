@@ -46,6 +46,29 @@ import/blender/enabled=false
 
 SwordHandleSittingArea=""
 PoleArea=""
+CheckPoints=""
+
+[importer_defaults]
+
+texture={
+"compress/channel_pack": 0,
+"compress/hdr_compression": 1,
+"compress/high_quality": true,
+"compress/lossy_quality": 0.7,
+"compress/mode": 3,
+"compress/normal_map": 0,
+"detect_3d/compress_to": 0,
+"mipmaps/generate": true,
+"mipmaps/limit": -1,
+"process/fix_alpha_border": true,
+"process/hdr_as_srgb": false,
+"process/hdr_clamp_exposure": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"process/size_limit": 0,
+"roughness/mode": 0,
+"roughness/src_normal": ""
+}
 
 [input]
 
@@ -130,6 +153,7 @@ look_down={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="SwordBody"
+3d_physics/layer_5="SmallObjects"
 
 [physics]
 
@@ -140,4 +164,7 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/default_filters/use_nearest_mipmap_filter=true
 textures/decals/filter=0
+textures/light_projectors/filter=0
+environment/defaults/default_environment="uid://c0fsojd2dfhpi"

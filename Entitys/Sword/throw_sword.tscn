@@ -299,7 +299,7 @@ material = SubResource("ShaderMaterial_dxcdo")
 
 [node name="Sword" type="RigidBody3D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 19
 mass = 0.8
 continuous_cd = true
 contact_monitor = true

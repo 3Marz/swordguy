@@ -7,7 +7,7 @@ class_name GameController
 @export var start_gui_scene: PackedScene
 @export var start_world_scene: PackedScene
 
-var current_world_scene: Node3D
+var current_world_scene: WorldTemplate
 var current_gui_scene: Control
 
 func _ready() -> void:

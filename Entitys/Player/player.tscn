@@ -65,7 +65,7 @@ scale_curve = SubResource("CurveTexture_aiamn")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 21
 wall_min_slide_angle = 0.349066
 floor_constant_speed = true
 floor_max_angle = 0.959931
