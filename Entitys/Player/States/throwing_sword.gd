@@ -61,8 +61,8 @@ func launch_sword():
 	# player.sword_body.apply_torque(Vector3(0, player.sword_throw_torque_force, 0))
 
 func _on_end_timer_timeout() -> void:
-	# player.can_throw_sword = false
-	# $throw_cooldown.start()
+	if player.state != player.STATES.Throwing_Sword:
+		return
 
 	match prev_state:
 		"Idle":
@@ -77,6 +77,9 @@ func exit() -> void:
 	pass
 
 func _on_throw_time_timeout() -> void:
+	if player.state != player.STATES.Throwing_Sword:
+		return
+
 	if !player.wall_check_ray.is_colliding():
 		launch_sword()
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://bi8g6s5pffkb3"]
+[gd_scene load_steps=49 format=4 uid="uid://bi8g6s5pffkb3"]
 
 [ext_resource type="PackedScene" uid="uid://bxc7j0a6g1ytv" path="res://Environments/Worlds/world_template.tscn" id="1_a7n8i"]
 [ext_resource type="Texture2D" uid="uid://nnibrfx86sef" path="res://Assets/Textures/pixel_checker/white.png" id="2_x5hv7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://dutdkecvlf2ux" path="res://Assets/Materials/pixel_checker.tres" id="8_vtdhe"]
 [ext_resource type="Texture2D" uid="uid://dgnrrr4qfjxkg" path="res://Assets/Textures/PrototypeTextures/addons/godot-prototype-texture/PNG/checker_cyan_512x512.png" id="9_mwjcp"]
 [ext_resource type="PackedScene" uid="uid://cg5ee21qxed64" path="res://Classes/Scences/Areas/pole_area.tscn" id="10_chp1u"]
+[ext_resource type="Script" uid="uid://dl46g2gg100af" path="res://addons/health_hitbox_hurtbox/3d/hit_box_3d/basic_hit_box_3d.gd" id="11_kfvn7"]
 [ext_resource type="PackedScene" uid="uid://bu3b7q0ollvbu" path="res://Environments/Props/CheckPoint/check_point.tscn" id="11_x5hv7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ptjr"]
@@ -295,6 +296,15 @@ texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3qrsw"]
 size = Vector3(0.75, 0.358051, 0.75)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5hv7"]
+albedo_color = Color(0.277528, 0.277528, 0.277528, 1)
+metallic = 0.93
+metallic_specular = 0.0
+roughness = 0.18
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kfvn7"]
+size = Vector3(1.30859, 0.687134, 1.2959)
 
 [node name="WorldTemplate" node_paths=PackedStringArray("start_checkpoint") instance=ExtResource("1_a7n8i")]
 start_checkpoint = NodePath("CheckPoints/First")
@@ -685,6 +695,45 @@ size = Vector3(2, 1.20898, 2)
 [node name="CSGBox3D2" type="CSGBox3D" parent="Geom/poles" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659882, 6.04421, 1.53138)
 size = Vector3(2, 0.620117, 2)
+
+[node name="CSGCombiner3D3" type="CSGCombiner3D" parent="Geom" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8887, 0.910343, 9.28059)
+material_override = SubResource("StandardMaterial3D_x5hv7")
+
+[node name="Spike" type="CSGCylinder3D" parent="Geom/CSGCombiner3D3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.152588, 0)
+radius = 0.345215
+height = 0.685059
+cone = true
+
+[node name="Spike2" type="CSGCylinder3D" parent="Geom/CSGCombiner3D3" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.604019, -0.152588, 0)
+radius = 0.345215
+height = 0.685059
+cone = true
+
+[node name="Spike3" type="CSGCylinder3D" parent="Geom/CSGCombiner3D3" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.152588, 0.612502)
+radius = 0.345215
+height = 0.685059
+cone = true
+
+[node name="Spike4" type="CSGCylinder3D" parent="Geom/CSGCombiner3D3" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.604019, -0.152588, 0.612502)
+radius = 0.345215
+height = 0.685059
+cone = true
+
+[node name="BasicHitBox3D" type="Area3D" parent="Geom/CSGCombiner3D3" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.312494, -0.0995083, 0.305984)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("11_kfvn7")
+metadata/_custom_type_script = "uid://dl46g2gg100af"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geom/CSGCombiner3D3/BasicHitBox3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0162957, 0)
+shape = SubResource("BoxShape3D_kfvn7")
 
 [node name="First" parent="CheckPoints" index="0" instance=ExtResource("11_x5hv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.02, 0.469174, 3.62159)

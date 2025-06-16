@@ -118,6 +118,8 @@ extends CharacterBody3D
 @export var max_spring_length: float = 5.5
 
 # Onready Variables
+@onready var health: Health = $Health
+
 @onready var model: Node3D = $Model
 @onready var player_model: Node3D = $Model/Armature
 @onready var skeleton : Skeleton3D = $Model/Armature/Skeleton3D
@@ -177,7 +179,8 @@ enum STATES {
 	Throwing_Sword_Down,
 	Sword_Reflect,
 	Sharp_Turn,
-	Sitting_On_Pole
+	Sitting_On_Pole,
+	Hurt
 }
 
 const COLLISION_MASK_WITH_SWORD = 1 | 4 | 16
@@ -307,6 +310,7 @@ func _on_return_back_to_player() -> void:
 func _on_return_sword_cooldown_timeout() -> void:
 	can_return_sword = true
 
-
+func _on_health_damaged(entity:Node, type:HealthActionType.Enum, amount:int, incrementer:int, multiplier:float, applied:int) -> void:
+	print(amount)
 
 

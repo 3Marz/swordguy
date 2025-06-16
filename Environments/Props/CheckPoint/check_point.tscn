@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bu3b7q0ollvbu"]
+[gd_scene load_steps=11 format=4 uid="uid://bu3b7q0ollvbu"]
 
 [ext_resource type="Script" uid="uid://1nr5msptmhyi" path="res://Environments/Props/CheckPoint/check_point.gd" id="1_buwus"]
 [ext_resource type="PackedScene" uid="uid://d0m73mlhkoa6v" path="res://Environments/Props/CheckPoint/model/checkpoint_model.tscn" id="2_buwus"]
@@ -53,6 +53,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bjppt")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsyic"]
+resource_local_to_scene = true
+
 [node name="CheckPoint" type="Node3D" node_paths=PackedStringArray("respawn_point")]
 script = ExtResource("1_buwus")
 respawn_point = NodePath("RespwanPoint")
@@ -78,6 +81,9 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.39274, 0)
 
 [node name="Gem" parent="Model" index="0"]
 mesh = SubResource("ArrayMesh_rsyic")
+
+[node name="GemOutline" parent="Model/Gem" index="0"]
+material_override = SubResource("StandardMaterial3D_rsyic")
 
 [node name="RespwanPoint" type="Marker3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.884904, 0.729185, 0.733684)

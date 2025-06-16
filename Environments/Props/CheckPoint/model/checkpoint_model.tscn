@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://d0m73mlhkoa6v"]
+[gd_scene load_steps=17 format=4 uid="uid://d0m73mlhkoa6v"]
 
 [ext_resource type="PackedScene" uid="uid://b7gxt2nbxikih" path="res://Environments/Props/CheckPoint/model/checkpoint_model.glb" id="1_6prf2"]
 [ext_resource type="Texture2D" uid="uid://cf7j63i1k18wb" path="res://Environments/Props/CheckPoint/model/checkpoint_model_gradiant_gem.png" id="2_hddo4"]
@@ -44,6 +44,22 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bjppt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqxg7"]
+resource_local_to_scene = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_317gx"]
+_surfaces = [{
+"aabb": AABB(-0.333335, 0.536358, -0.333335, 0.66667, 0.646941, 0.66667),
+"attribute_data": PackedByteArray("+6l6PwD9fz7A/z8/AP1/PsD/Pz/1VPU+hVQFPwD9fz7A/z8/AP1/PsD/Pz+roKo8wP8/P/VU9T7A/z8/AP1/PoVUBT8A/X8+wP8/P6ugqjzA/z8/AP1/Pvupej8A/X8+q6AqPQD9fz6Lqoo+AP1/Pouqij71VPU+AP//PgD9fz6Lqoo+AP1/Pouqij6roKo8i6qKPvVU9T6Lqoo+AP1/PgD//z4A/X8+i6qKPqugqjyLqoo+AP1/PqugKj0A/X8+"),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAACAAEAAwAFAAQABgAIAAcACQALAAoADAAOAA0ADwARABAAEgAUABMAFQAXABYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("5KqqPiymWT+Yv4S7pYJ/u7tOCT/Nv7S7mr+EuyymWT/kqqo+5aqqvh6mWT8/cYQ7pYJ/u7tOCT/Nv7S7P3GEOx6mWT/lqqq+mr+EuyymWT/kqqo+pYJ/u7tOCT/Nv7S75aqqvh6mWT8/cYQ7P3GEOx6mWT/lqqq+pYJ/u7tOCT/Nv7S75KqqPiymWT+Yv4S75aqqvh6mWT8/cYQ767WSO1F2lz/f7ua7mr+EuyymWT/kqqo+5KqqPiymWT+Yv4S767WSO1F2lz/f7ua7P3GEOx6mWT/lqqq+mr+EuyymWT/kqqo+67WSO1F2lz/f7ua75KqqPiymWT+Yv4S7P3GEOx6mWT/lqqq+67WSO1F2lz/f7ua75aqqvh6mWT8/cYQ7rKlYUzLCGiGsqVhTMsIaIaypWFMywhohpiysKTXC5V6mLKwpNcLlXqYsrCk1wuVeU1ZYUzTC5V5TVlhTNMLlXlNWWFM0wuVeWNOsKTPCGiFY06wpM8IaIVjTrCkzwhohVFWqqv+//t9UVaqq/7/+31RVqqr/v/7fU9VU1f+//p9T1VTV/7/+n1PVVNX/v/6fqqqpqv6//p+qqqmq/r/+n6qqqar+v/6fqypU1f+//t+rKlTV/7/+36sqVNX/v/7f")
+}]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ck1l8"]
 resource_name = "m_pole"
@@ -206,9 +222,51 @@ tracks/2/keys = {
 "values": [Vector3(0, 0.5, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_hddo4"]
+resource_name = "disabled"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gem:mesh:surface_0/material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gem:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.257191, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gem:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_45mcf"]
 _data = {
 &"RESET": SubResource("Animation_nqxg7"),
+&"disabled": SubResource("Animation_hddo4"),
 &"enable": SubResource("Animation_6prf2"),
 &"enable_loop": SubResource("Animation_45mcf")
 }
@@ -217,6 +275,11 @@ _data = {
 
 [node name="Gem" parent="." index="0"]
 mesh = SubResource("ArrayMesh_ck1l8")
+
+[node name="GemOutline" type="MeshInstance3D" parent="Gem" index="0"]
+visible = false
+material_override = SubResource("StandardMaterial3D_nqxg7")
+mesh = SubResource("ArrayMesh_317gx")
 
 [node name="Piller_001" parent="." index="1"]
 mesh = SubResource("ArrayMesh_nqxg7")

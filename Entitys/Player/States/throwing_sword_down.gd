@@ -60,6 +60,8 @@ func launch_sword():
 	player.sword_body.apply_central_force(throw_dirction * player.sword_throw_down_force)
 
 func _on_end_timer_timeout() -> void:
+	if player.state != player.STATES.Throwing_Sword_Down:
+		return
 
 	match prev_state:
 		"Idle":
@@ -73,6 +75,9 @@ func exit() -> void:
 	pass
 
 func _on_throw_time_timeout() -> void:
+	if player.state != player.STATES.Throwing_Sword_Down:
+		return
+
 	if !player.wall_check_ray.is_colliding():
 		launch_sword()
 	else:

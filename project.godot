@@ -36,7 +36,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/proto_shape/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/health_hitbox_hurtbox/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/proto_shape/plugin.cfg")
 
 [filesystem]
 
@@ -153,6 +153,7 @@ look_down={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="SwordBody"
+3d_physics/layer_4="Enemies"
 3d_physics/layer_5="SmallObjects"
 
 [physics]
