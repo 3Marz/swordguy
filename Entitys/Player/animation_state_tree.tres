@@ -1,8 +1,37 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=49 format=3 uid="uid://gb7a38j1g1eb"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=57 format=3 uid="uid://gb7a38j1g1eb"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://btu4y73y6aly1" path="res://Entitys/Player/States/grounded_state_tree.tres" id="1_x1otb"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aup8x"]
+animation = &"Hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_alct8"]
+animation = &"Hurt_Sitting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w6io3"]
+advance_mode = 2
+advance_expression = "!is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vcfbx"]
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_07vpn"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oc0p5"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!is_on_floor()"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qt7kg"]
+states/Hurt/node = SubResource("AnimationNodeAnimation_aup8x")
+states/Hurt/position = Vector2(400, 49)
+states/Hurt_Sitting/node = SubResource("AnimationNodeAnimation_alct8")
+states/Hurt_Sitting/position = Vector2(400, 133)
+transitions = ["Start", "Hurt", SubResource("AnimationNodeStateMachineTransition_w6io3"), "Start", "Hurt_Sitting", SubResource("AnimationNodeStateMachineTransition_vcfbx"), "Hurt", "Hurt_Sitting", SubResource("AnimationNodeStateMachineTransition_07vpn"), "Hurt_Sitting", "Hurt", SubResource("AnimationNodeStateMachineTransition_oc0p5")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t5yyl"]
 animation = &"Ledge_Move_Left"
@@ -221,11 +250,21 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "state!=STATES.Sitting_On_Pole"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_un3yv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "state==STATES.Hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1qnwp"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "state!=STATES.Hurt"
+
 [resource]
 states/Grounded/node = ExtResource("1_x1otb")
 states/Grounded/position = Vector2(386.748, 100)
 states/Hurt/node = SubResource("AnimationNodeStateMachine_qt7kg")
-states/Hurt/position = Vector2(783.748, -2.06386)
+states/Hurt/position = Vector2(386.748, -2.06386)
 states/Ledge_Hang/node = SubResource("AnimationNodeBlendSpace1D_hjf4l")
 states/Ledge_Hang/position = Vector2(565.748, 24.2078)
 states/SittingOnPole/node = SubResource("AnimationNodeAnimation_gufyk")
@@ -237,5 +276,5 @@ states/SwordReturn/node = SubResource("AnimationNodeStateMachine_x1otb")
 states/SwordReturn/position = Vector2(565.748, 218.672)
 states/ThrowSword/node = SubResource("AnimationNodeStateMachine_alct8")
 states/ThrowSword/position = Vector2(783.748, 218.672)
-transitions = ["Grounded", "Sliding", SubResource("AnimationNodeStateMachineTransition_x1otb"), "Sliding", "Grounded", SubResource("AnimationNodeStateMachineTransition_rqd3t"), "Start", "Grounded", SubResource("AnimationNodeStateMachineTransition_2tpb7"), "Grounded", "Ledge_Hang", SubResource("AnimationNodeStateMachineTransition_frtq7"), "Ledge_Hang", "Grounded", SubResource("AnimationNodeStateMachineTransition_kmg3u"), "Sliding", "Ledge_Hang", SubResource("AnimationNodeStateMachineTransition_xf3gk"), "Sliding", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_qt7kg"), "Grounded", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_alct8"), "ThrowSword", "Grounded", SubResource("AnimationNodeStateMachineTransition_ow3ia"), "Grounded", "SwordReturn", SubResource("AnimationNodeStateMachineTransition_v82w4"), "SwordReturn", "Grounded", SubResource("AnimationNodeStateMachineTransition_5fevk"), "Sliding", "SwordReturn", SubResource("AnimationNodeStateMachineTransition_www1j"), "SwordReturn", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_rucb3"), "Grounded", "SittingOnPole", SubResource("AnimationNodeStateMachineTransition_dd5oo"), "SittingOnPole", "Grounded", SubResource("AnimationNodeStateMachineTransition_b07s4")]
-graph_offset = Vector2(92.748, -147.064)
+transitions = ["Grounded", "Sliding", SubResource("AnimationNodeStateMachineTransition_x1otb"), "Sliding", "Grounded", SubResource("AnimationNodeStateMachineTransition_rqd3t"), "Start", "Grounded", SubResource("AnimationNodeStateMachineTransition_2tpb7"), "Grounded", "Ledge_Hang", SubResource("AnimationNodeStateMachineTransition_frtq7"), "Ledge_Hang", "Grounded", SubResource("AnimationNodeStateMachineTransition_kmg3u"), "Sliding", "Ledge_Hang", SubResource("AnimationNodeStateMachineTransition_xf3gk"), "Sliding", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_qt7kg"), "Grounded", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_alct8"), "ThrowSword", "Grounded", SubResource("AnimationNodeStateMachineTransition_ow3ia"), "Grounded", "SwordReturn", SubResource("AnimationNodeStateMachineTransition_v82w4"), "SwordReturn", "Grounded", SubResource("AnimationNodeStateMachineTransition_5fevk"), "Sliding", "SwordReturn", SubResource("AnimationNodeStateMachineTransition_www1j"), "SwordReturn", "ThrowSword", SubResource("AnimationNodeStateMachineTransition_rucb3"), "Grounded", "SittingOnPole", SubResource("AnimationNodeStateMachineTransition_dd5oo"), "SittingOnPole", "Grounded", SubResource("AnimationNodeStateMachineTransition_b07s4"), "Grounded", "Hurt", SubResource("AnimationNodeStateMachineTransition_un3yv"), "Hurt", "Grounded", SubResource("AnimationNodeStateMachineTransition_1qnwp")]
+graph_offset = Vector2(41.511, -52.8129)

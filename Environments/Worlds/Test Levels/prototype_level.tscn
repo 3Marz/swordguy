@@ -735,6 +735,45 @@ metadata/_custom_type_script = "uid://dl46g2gg100af"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0162957, 0)
 shape = SubResource("BoxShape3D_kfvn7")
 
+[node name="CSGCombiner3D4" type="CSGCombiner3D" parent="Geom" index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2707, 6.95738, 13.8523)
+material_override = SubResource("StandardMaterial3D_x5hv7")
+
+[node name="Spike" type="CSGCylinder3D" parent="Geom/CSGCombiner3D4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.152588, 0)
+radius = 0.345215
+height = 0.685059
+cone = true
+
+[node name="Spike2" type="CSGCylinder3D" parent="Geom/CSGCombiner3D4" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.604019, -0.152588, 0)
+radius = 0.345215
+height = 0.685059
+cone = true
+
+[node name="Spike3" type="CSGCylinder3D" parent="Geom/CSGCombiner3D4" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.152588, 0.612502)
+radius = 0.345215
+height = 0.685059
+cone = true
+
+[node name="Spike4" type="CSGCylinder3D" parent="Geom/CSGCombiner3D4" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.604019, -0.152588, 0.612502)
+radius = 0.345215
+height = 0.685059
+cone = true
+
+[node name="BasicHitBox3D" type="Area3D" parent="Geom/CSGCombiner3D4" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.312494, -0.0995083, 0.305984)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("11_kfvn7")
+metadata/_custom_type_script = "uid://dl46g2gg100af"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geom/CSGCombiner3D4/BasicHitBox3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0162957, 0)
+shape = SubResource("BoxShape3D_kfvn7")
+
 [node name="First" parent="CheckPoints" index="0" instance=ExtResource("11_x5hv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.02, 0.469174, 3.62159)
 

@@ -97,6 +97,11 @@ extends CharacterBody3D
 @export var sitting_on_pole_accel_factor: float = 12
 @export var sitting_on_pole_model_follow_factor: float = 5
 @export var sitting_on_pole_added_force: float = 2
+
+@export_group("Hurt")
+@export var hurt_knockback_strength : float = 3
+@export var hurt_deaccel_factor : float = 8
+
 #------------------------------------------------------------#
 
 @export_category("Others")
@@ -119,6 +124,8 @@ extends CharacterBody3D
 
 # Onready Variables
 @onready var health: Health = $Health
+@onready var hurt_area: BasicHurtBox3D = $Areas/BasicHurtBox
+@onready var hurt_collision_shape: CollisionShape3D = $Areas/BasicHurtBox/CollisionShape3D
 
 @onready var model: Node3D = $Model
 @onready var player_model: Node3D = $Model/Armature
@@ -311,6 +318,6 @@ func _on_return_sword_cooldown_timeout() -> void:
 	can_return_sword = true
 
 func _on_health_damaged(entity:Node, type:HealthActionType.Enum, amount:int, incrementer:int, multiplier:float, applied:int) -> void:
-	print(amount)
+	state_machine._transition_to_next_state("Hurt", {})
 
 
