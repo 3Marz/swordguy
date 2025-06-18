@@ -16,7 +16,6 @@ func physics_update(delta: float) -> void:
 	if player.is_on_wall():
 		player.floor_block_on_wall = false
 
-	player.cam_follow(delta)
 	player.apply_gravity(delta, 22)
 	# player.velocity.y -= 22 * delta
 

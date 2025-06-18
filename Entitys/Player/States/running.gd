@@ -18,7 +18,6 @@ func update(_delta: float) -> void:
 
 func physics_update(_delta: float) -> void:
 	player.apply_gravity(_delta)
-	player.cam_follow(_delta)
 
 	var move_direction : Vector3 = player.get_move_direction();
 	prev_move_direction = move_direction

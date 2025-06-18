@@ -19,7 +19,6 @@ func physics_update(delta: float) -> void:
 	if player.is_on_wall():
 		player.floor_block_on_wall = false
 
-	player.cam_follow(delta)
 	player.apply_gravity(delta);
 
 	var move_direction = player.get_move_direction()

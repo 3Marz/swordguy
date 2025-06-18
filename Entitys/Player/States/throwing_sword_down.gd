@@ -14,7 +14,6 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	player.cam_follow(delta)
 
 	var look_direction = Vector2(player.get_move_direction().z, player.get_move_direction().x) 
 	if look_direction != Vector2.ZERO:

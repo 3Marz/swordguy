@@ -736,7 +736,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0162957, 0)
 shape = SubResource("BoxShape3D_kfvn7")
 
 [node name="CSGCombiner3D4" type="CSGCombiner3D" parent="Geom" index="18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2707, 6.95738, 13.8523)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2707, 6.95738, 14.1642)
 material_override = SubResource("StandardMaterial3D_x5hv7")
 
 [node name="Spike" type="CSGCylinder3D" parent="Geom/CSGCombiner3D4" index="0"]

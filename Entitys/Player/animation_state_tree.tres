@@ -1,6 +1,17 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=57 format=3 uid="uid://gb7a38j1g1eb"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=61 format=3 uid="uid://gb7a38j1g1eb"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://btu4y73y6aly1" path="res://Entitys/Player/States/grounded_state_tree.tres" id="1_x1otb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ow3ia"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jaaei"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_t5yyl"]
+states/Death/node = SubResource("AnimationNodeAnimation_ow3ia")
+states/Death/position = Vector2(369, 100)
+transitions = ["Start", "Death", SubResource("AnimationNodeStateMachineTransition_jaaei")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aup8x"]
 animation = &"Hurt"
@@ -10,11 +21,11 @@ animation = &"Hurt_Sitting"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w6io3"]
 advance_mode = 2
-advance_expression = "!is_on_floor()"
+advance_expression = "!is_on_floor() and state!=STATES.Death"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vcfbx"]
 advance_mode = 2
-advance_expression = "is_on_floor()"
+advance_expression = "is_on_floor() and state!=STATES.Death"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_07vpn"]
 xfade_time = 0.15
@@ -26,12 +37,19 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "!is_on_floor()"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w3tlc"]
+advance_mode = 2
+advance_expression = "state==STATES.Death"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qt7kg"]
+states/Death/node = SubResource("AnimationNodeStateMachine_t5yyl")
+states/Death/position = Vector2(400, 191.324)
 states/Hurt/node = SubResource("AnimationNodeAnimation_aup8x")
-states/Hurt/position = Vector2(400, 49)
+states/Hurt/position = Vector2(400, 16)
 states/Hurt_Sitting/node = SubResource("AnimationNodeAnimation_alct8")
-states/Hurt_Sitting/position = Vector2(400, 133)
-transitions = ["Start", "Hurt", SubResource("AnimationNodeStateMachineTransition_w6io3"), "Start", "Hurt_Sitting", SubResource("AnimationNodeStateMachineTransition_vcfbx"), "Hurt", "Hurt_Sitting", SubResource("AnimationNodeStateMachineTransition_07vpn"), "Hurt_Sitting", "Hurt", SubResource("AnimationNodeStateMachineTransition_oc0p5")]
+states/Hurt_Sitting/position = Vector2(400, 100)
+transitions = ["Start", "Hurt", SubResource("AnimationNodeStateMachineTransition_w6io3"), "Start", "Hurt_Sitting", SubResource("AnimationNodeStateMachineTransition_vcfbx"), "Hurt", "Hurt_Sitting", SubResource("AnimationNodeStateMachineTransition_07vpn"), "Hurt_Sitting", "Hurt", SubResource("AnimationNodeStateMachineTransition_oc0p5"), "Start", "Death", SubResource("AnimationNodeStateMachineTransition_w3tlc")]
+graph_offset = Vector2(0, -28.6756)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t5yyl"]
 animation = &"Ledge_Move_Left"
@@ -253,12 +271,12 @@ advance_expression = "state!=STATES.Sitting_On_Pole"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_un3yv"]
 xfade_time = 0.1
 advance_mode = 2
-advance_expression = "state==STATES.Hurt"
+advance_expression = "state==STATES.Hurt or state==STATES.Death"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1qnwp"]
 xfade_time = 0.1
 advance_mode = 2
-advance_expression = "state!=STATES.Hurt"
+advance_expression = "state!=STATES.Hurt and state!=STATES.Death"
 
 [resource]
 states/Grounded/node = ExtResource("1_x1otb")

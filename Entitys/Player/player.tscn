@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cgxgkt8sytllx"]
+[gd_scene load_steps=43 format=3 uid="uid://cgxgkt8sytllx"]
 
 [ext_resource type="Script" uid="uid://mt1c1xfe57tn" path="res://Entitys/Player/player.gd" id="1_uu7px"]
 [ext_resource type="PackedScene" uid="uid://be02x5klrfm6h" path="res://Entitys/Player/player_model.tscn" id="2_citt6"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://b820yv2elpxo2" path="res://Entitys/Player/States/sitting_on_handle.gd" id="17_dbqqt"]
 [ext_resource type="Script" uid="uid://wvbsgymd15gi" path="res://Entitys/Player/States/hurt.gd" id="19_b2o3g"]
 [ext_resource type="Script" uid="uid://dyxvt8yarxaff" path="res://addons/health_hitbox_hurtbox/3d/hurt_box_3d/basic_hurt_box_3d.gd" id="19_qxjvv"]
+[ext_resource type="Script" uid="uid://b2sy72gjhows7" path="res://Entitys/Player/States/death.gd" id="20_5fyvi"]
 [ext_resource type="Texture2D" uid="uid://w3rgot6q0ebo" path="res://Assets/Textures/Sprites/drop_shadow.png" id="20_aiamn"]
 [ext_resource type="Script" uid="uid://cobp4qehnuq77" path="res://addons/health_hitbox_hurtbox/resources/modifier.gd" id="20_b2o3g"]
 
@@ -92,14 +93,14 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_aiamn"]
 size = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_b2o3g"]
+[sub_resource type="Resource" id="Resource_5fyvi"]
 script = ExtResource("20_b2o3g")
 incrementer = 0
 multiplier = 1.0
 convert_affect = 0
 convert_type = 0
 
-[sub_resource type="Resource" id="Resource_5fyvi"]
+[sub_resource type="Resource" id="Resource_3yqag"]
 script = ExtResource("20_b2o3g")
 incrementer = 0
 multiplier = 1.0
@@ -308,6 +309,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_3yqag")
 }
 
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("20_5fyvi")
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="return_sword_cooldown" type="Timer" parent="Timers"]
@@ -326,8 +330,8 @@ collision_mask = 8
 script = ExtResource("19_qxjvv")
 health = NodePath("../../Health")
 modifiers = Dictionary[int, ExtResource("20_b2o3g")]({
-1: SubResource("Resource_b2o3g"),
-2: SubResource("Resource_5fyvi")
+1: SubResource("Resource_5fyvi"),
+2: SubResource("Resource_3yqag")
 })
 metadata/_custom_type_script = "uid://dyxvt8yarxaff"
 
@@ -339,7 +343,7 @@ debug_color = Color(0.976013, 0, 0.415076, 0.42)
 [node name="Model" parent="." instance=ExtResource("2_citt6")]
 
 [node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, -7.76375e-08, -4.47035e-07, -1.78814e-07, 1.32721e-07, -1, 2.10208e-08, 1, 6.09246e-08, -5.36442e-07, -0.522947, 1.04308e-07)
+transform = Transform3D(1, 1.00282e-07, -4.76837e-07, -2.08616e-07, 2.5689e-07, -1, -1.57793e-07, 1, 1.20529e-07, -4.17233e-07, -0.522947, 1.04308e-07)
 
 [node name="Player" parent="Model/Armature/Skeleton3D" index="1"]
 layers = 2
@@ -367,7 +371,7 @@ target_position = Vector3(0, 0, 0.5)
 target_position = Vector3(0, 0, 1.4)
 
 [node name="SwordSocket" type="BoneAttachment3D" parent="."]
-transform = Transform3D(1, -7.76375e-08, -4.47035e-07, -1.78814e-07, 1.32721e-07, -1, 2.10208e-08, 1, 6.09246e-08, -5.36442e-07, 0.00380969, 1.04308e-07)
+transform = Transform3D(1, 1.00282e-07, -4.76837e-07, -2.08616e-07, 2.5689e-07, -1, -1.57793e-07, 1, 1.20529e-07, -4.17233e-07, 0.00380969, 1.04308e-07)
 bone_name = "Sword"
 bone_idx = 20
 use_external_skeleton = true

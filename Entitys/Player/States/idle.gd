@@ -8,7 +8,6 @@ func update(_delta: float) -> void:
 
 func physics_update(_delta: float) -> void:
 	player.apply_gravity(_delta)
-	player.cam_follow(_delta)
 	
 	player.velocity.x = lerpf(player.velocity.x, 0, player.deaccel_factor * _delta)
 	player.velocity.z = lerpf(player.velocity.z, 0, player.deaccel_factor * _delta)

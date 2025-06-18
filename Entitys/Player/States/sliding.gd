@@ -20,7 +20,6 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	player.cam_follow(delta)
 	player.apply_gravity(delta)
 	
 	move_direction = player.get_move_direction()

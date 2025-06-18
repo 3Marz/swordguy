@@ -2,6 +2,7 @@ extends Node3D
 class_name WorldTemplate
 
 @export var start_checkpoint: CheckPoint
+@export var end_respawn_time: float = 3.5
 
 @onready var player_follow_pcam: PhantomCamera3D = $PlayerFollowPCam
 @onready var player_scene: PackedScene = preload("res://Entitys/Player/player.tscn")
@@ -15,7 +16,7 @@ func _ready() -> void:
 		spawn_player()
 
 func spawn_player():
-	var player = player_scene.instantiate()
+	var player: Player = player_scene.instantiate()
 	player_follow_pcam.follow_mode = PhantomCamera3D.FollowMode.THIRD_PERSON
 	player_follow_pcam.follow_target = player
 	player.pcam = player_follow_pcam
@@ -25,5 +26,10 @@ func spawn_player():
 	player_follow_pcam.rotation.y = -current_checkpoint.respawn_point.rotation.y
 
 	add_child(player)
+
+	player.player_died.connect(_respawn_player)
+
+func _respawn_player():
+	pass
 
 

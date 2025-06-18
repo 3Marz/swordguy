@@ -83,7 +83,6 @@ func test_ledge_ray(ray: RayCast3D):
 			move_to_ledge_point()
 
 func physics_update(delta: float) -> void:
-	player.cam_follow(delta)
 
 	var move_direction = -player.get_move_direction() # Get move input direction rotated by camera angle
 

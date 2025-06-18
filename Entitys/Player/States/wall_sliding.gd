@@ -7,7 +7,6 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
-	player.cam_follow(_delta)
 	player.velocity.y -= player.wall_slide_gravity * _delta;
 
 	var move_direction = player.get_move_direction()

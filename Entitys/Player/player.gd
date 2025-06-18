@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
+# ---------- Signals ---------- #
+signal player_died()
+
 # ---------- VARIABLES ---------- #
 
 @export var debug := false
@@ -162,6 +165,7 @@ var wall_slide_gravity = 5
 var jump_just_pressed = false
 var has_sword = true
 var can_return_sword = true
+var can_move_camera = true
 
 var previous_y_rotation: float = 0.0
 var delta_rotation: float = 0.0  # Change since last frame
@@ -187,7 +191,8 @@ enum STATES {
 	Sword_Reflect,
 	Sharp_Turn,
 	Sitting_On_Pole,
-	Hurt
+	Hurt,
+	Death
 }
 
 const COLLISION_MASK_WITH_SWORD = 1 | 4 | 16
@@ -199,7 +204,7 @@ func _unhandled_input(event):
 
 	# print(Input.get_vector("look_left", "look_right", "look_up", "look_down"))	
 
-	if event is InputEventMouseMotion and pcam != null:
+	if event is InputEventMouseMotion and pcam != null and can_move_camera:
 		var pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
 
 		pcam_rotation_degrees.x -= event.relative.y * mouse_sensitivity * (-1 if inverse_vert else 1)
@@ -213,6 +218,7 @@ func _unhandled_input(event):
 
 func _ready() -> void:
 	anim_tree.active = true
+	can_move_camera = true
 
 	# Engine.time_scale = 0.3
 
@@ -246,12 +252,8 @@ func _physics_process(delta: float) -> void:
 		DebugDraw2D.set_text("player_velocity_length", velocity.length())
 		DebugDraw2D.set_text("rotation_change", str(delta_rotation))
 
-func cam_follow(delta):
-	if !pcam:
-		return
-
 func controller_camera_control(delta):
-	if Input.get_connected_joypads().size() > 0 and pcam != null:
+	if Input.get_connected_joypads().size() > 0 and pcam != null and can_move_camera:
 		var axis = Input.get_vector("look_left", "look_right", "look_up", "look_down")
 		var pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
 
@@ -318,6 +320,10 @@ func _on_return_sword_cooldown_timeout() -> void:
 	can_return_sword = true
 
 func _on_health_damaged(entity:Node, type:HealthActionType.Enum, amount:int, incrementer:int, multiplier:float, applied:int) -> void:
-	state_machine._transition_to_next_state("Hurt", {})
+	if health.current <= 0:
+		state_machine._transition_to_next_state("Death", {})
+		player_died.emit()
+	else:
+		state_machine._transition_to_next_state("Hurt", {})
 
 
