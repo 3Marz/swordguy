@@ -23,6 +23,7 @@ Global="*res://Globals/Global.gd"
 Utils="*res://Globals/Utils.gd"
 AudioManager="*res://Globals/AudioManger/AudioManager.tscn"
 InputBuffer="*res://Globals/InputBuffer.gd"
+TransitionEffect="*res://Globals/TransitionEffect/TransitionEffect.tscn"
 
 [display]
 

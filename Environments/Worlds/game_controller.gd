@@ -32,6 +32,8 @@ func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool
 	current_gui_scene = new
 	
 func change_world_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
+	# await TransitionEffect.start_diamond_transition()
+
 	if current_world_scene != null:
 		if delete:
 			current_world_scene.queue_free()
@@ -43,4 +45,6 @@ func change_world_scene(new_scene: String, delete: bool = true, keep_running: bo
 	var new = load(new_scene).instantiate()
 	world.add_child(new)
 	current_world_scene = new
+
+	# TransitionEffect.end_diamond_transition()
 

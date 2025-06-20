@@ -202,8 +202,6 @@ const COLLISION_MASK_NO_SWORD = 1 | 16
 #
 func _unhandled_input(event):
 
-	# print(Input.get_vector("look_left", "look_right", "look_up", "look_down"))	
-
 	if event is InputEventMouseMotion and pcam != null and can_move_camera:
 		var pcam_rotation_degrees = pcam.get_third_person_rotation_degrees()
 
@@ -322,6 +320,7 @@ func _on_return_sword_cooldown_timeout() -> void:
 func _on_health_damaged(entity:Node, type:HealthActionType.Enum, amount:int, incrementer:int, multiplier:float, applied:int) -> void:
 	if health.current <= 0:
 		state_machine._transition_to_next_state("Death", {})
+		if !has_sword: return_sword()
 		player_died.emit()
 	else:
 		state_machine._transition_to_next_state("Hurt", {})

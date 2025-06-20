@@ -1,19 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci7qltf7aaykp"]
+[gd_scene load_steps=6 format=3 uid="uid://ci7qltf7aaykp"]
 
 [ext_resource type="Shader" uid="uid://c6lro2xb3v0vp" path="res://Globals/TransitionEffect/diamond_transition.gdshader" id="1_55ak8"]
+[ext_resource type="Script" uid="uid://cys0kwfo8140f" path="res://Globals/TransitionEffect/transition_effect.gd" id="1_esr6k"]
+[ext_resource type="Shader" uid="uid://bk13fsgl57tox" path="res://Globals/TransitionEffect/circle_transition.gdshader" id="2_s0q68"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s0q68"]
 shader = ExtResource("1_55ak8")
 shader_parameter/progress = 0.0
 shader_parameter/diamondPixelSize = 20.0
 
-[node name="TransitionEffect" type="CanvasLayer"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esr6k"]
+shader = ExtResource("2_s0q68")
+shader_parameter/circle_size = 0.5
+shader_parameter/feather = 0.0
+shader_parameter/circle_position = Vector2(0.5, 0.5)
+shader_parameter/screen_width = 1920.0
+shader_parameter/screen_height = 1080.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TransitionEffect" type="CanvasLayer"]
+script = ExtResource("1_esr6k")
+
+[node name="DiamondTransition" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_s0q68")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CircleTransition" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_esr6k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
