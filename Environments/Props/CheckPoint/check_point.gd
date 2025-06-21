@@ -33,10 +33,12 @@ func _ready() -> void:
 
 func _on_area_body_entered(body: Node3D) -> void:
 	if body is Player:
+		body.health.heal(3)
 		if !enabled:
 			enabled = true
 			Global.game_controller.current_world_scene.current_checkpoint.enabled = false
 			Global.game_controller.current_world_scene.current_checkpoint = self
+
 			# TODO: reset player health
 
 
