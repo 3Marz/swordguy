@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://chjovwo3ogyv5" path="res://Entitys/Sword/States/throw.gd" id="5_yk4r1"]
 [ext_resource type="Script" uid="uid://cf35kf370tw0g" path="res://Entitys/Sword/States/return.gd" id="6_pxu3q"]
 [ext_resource type="Shape3D" uid="uid://bxpyy2ma2s4nj" path="res://Entitys/Sword/throw_sword_cylinder_shape.tres" id="8_jqv85"]
-[ext_resource type="Texture2D" uid="uid://xfte1om0mccl" path="res://Assets/Models/Player_SwordTex.png" id="10_aimuk"]
+[ext_resource type="Texture2D" uid="uid://xfte1om0mccl" path="res://Assets/Models/Player/Player_SwordTex.png" id="10_aimuk"]
 [ext_resource type="Shader" uid="uid://fxugodtw8kll" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="10_pxu3q"]
 [ext_resource type="Shader" uid="uid://cvbevonx8muxp" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="11_jqv85"]
 [ext_resource type="Script" uid="uid://bi0yq2uoq2gbf" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="12_aimuk"]

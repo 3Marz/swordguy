@@ -2,25 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xfte1om0mccl"
-path.s3tc="res://.godot/imported/Player_SwordTex.png-922b1ca1d30079d23b08372950fa10f6.s3tc.ctex"
+uid="uid://onqmglhsek0m"
+path="res://.godot/imported/Player_player_face_256.png-e5621c8754681d84174b0fb66996e0a3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
-"md5": "fd40f60d64d497372fef51191c1d5504"
+"md5": "590c8791bc796fcfe19f8671f614ed74"
 }
 
 [deps]
 
-source_file="res://Assets/Models/Player_SwordTex.png"
-dest_files=["res://.godot/imported/Player_SwordTex.png-922b1ca1d30079d23b08372950fa10f6.s3tc.ctex"]
+source_file="res://Assets/Models/Player/Player_player_face_256.png"
+dest_files=["res://.godot/imported/Player_player_face_256.png-e5621c8754681d84174b0fb66996e0a3.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=false
+compress/mode=3
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
