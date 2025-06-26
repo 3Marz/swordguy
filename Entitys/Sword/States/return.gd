@@ -18,6 +18,7 @@ func update(_delta: float) -> void:
 		parent.global_rotation = parent.get_parent().global_rotation
 		parent.top_level = false
 		parent.player.has_sword = true
+		parent.scale = Vector3.ONE # Fix for sword returning mid player tween
 		finished.emit("Held")
 	else:
 		return_progress += (parent.return_speed + (speed_multipler/2)) * _delta

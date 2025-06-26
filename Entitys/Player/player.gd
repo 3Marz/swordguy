@@ -106,6 +106,9 @@ signal player_died()
 @export var hurt_knockback_strength : float = 3
 @export var hurt_deaccel_factor : float = 8
 
+@export_group("Sword Return")
+@export var sword_return_jump_boost : float = 2
+
 #------------------------------------------------------------#
 
 @export_category("Others")
