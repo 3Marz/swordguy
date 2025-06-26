@@ -4,8 +4,8 @@ var reach_max: bool = false
 
 func jumpTween():
 	var tween = get_tree().create_tween()
-	tween.tween_property(player.player_model, "scale", player.jumpStretchSize, 0.1)
-	tween.tween_property(player.player_model, "scale", Vector3(1,1,1), 0.1)
+	tween.tween_property(player.player_model, "scale", player.jumpStretchSize, 0.05)
+	# tween.tween_property(player.player_model, "scale", Vector3(1,1,1), 0.1)
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("jump"):
@@ -53,5 +53,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 	# player.velocity += player.get_platform_velocity()
 
 func exit() -> void:
+	get_tree().create_tween().tween_property(player.player_model, "scale", Vector3(1,1,1), 0.1)
 	reach_max = false
 	player.floor_block_on_wall = true

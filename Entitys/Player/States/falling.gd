@@ -5,8 +5,8 @@ var can_ledge_grab = true
 
 func play_land_tween():
 	var tween = get_tree().create_tween()
-	tween.tween_property(player.player_model, "scale", player.landStretchSize, 0.1)
-	tween.tween_property(player.player_model, "scale", Vector3(1,1,1), 0.1)
+	tween.tween_property(player.player_model, "scale", player.landStretchSize, 0.07)
+	tween.tween_property(player.player_model, "scale", Vector3(1,1,1), 0.07)
 
 func handle_input(_event: InputEvent) -> void:
 	pass

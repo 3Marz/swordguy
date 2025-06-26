@@ -44,6 +44,7 @@ signal player_died()
 @export_group("Jumping")
 @export var jump_force : float = 10.5
 @export var jump_height_cut : float = 0.65
+@export var trigger_fall_anim_y_velocity: float = 3
 
 @export_group("Sliding")
 @export var inital_slide_force : float = 5.0

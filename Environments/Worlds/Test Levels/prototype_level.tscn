@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bi8g6s5pffkb3"]
+[gd_scene load_steps=50 format=4 uid="uid://bi8g6s5pffkb3"]
 
 [ext_resource type="PackedScene" uid="uid://bxc7j0a6g1ytv" path="res://Environments/Worlds/world_template.tscn" id="1_a7n8i"]
 [ext_resource type="Texture2D" uid="uid://nnibrfx86sef" path="res://Assets/Textures/pixel_checker/white.png" id="2_x5hv7"]
@@ -305,6 +305,9 @@ roughness = 0.18
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfvn7"]
 size = Vector3(1.30859, 0.687134, 1.2959)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xsbq2"]
+size = Vector3(196.283, 4.94708, 171.274)
 
 [node name="WorldTemplate" node_paths=PackedStringArray("start_checkpoint") instance=ExtResource("1_a7n8i")]
 start_checkpoint = NodePath("CheckPoints/First")
@@ -773,6 +776,18 @@ metadata/_custom_type_script = "uid://dl46g2gg100af"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Geom/CSGCombiner3D4/BasicHitBox3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0162957, 0)
 shape = SubResource("BoxShape3D_kfvn7")
+
+[node name="BasicHitBox3D" type="Area3D" parent="Geom" index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.312494, -27.6031, 0.305984)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("11_kfvn7")
+amount = 3
+metadata/_custom_type_script = "uid://dl46g2gg100af"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geom/BasicHitBox3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12997, 0)
+shape = SubResource("BoxShape3D_xsbq2")
 
 [node name="First" parent="CheckPoints" index="0" instance=ExtResource("11_x5hv7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.02, 0.469174, 3.62159)
