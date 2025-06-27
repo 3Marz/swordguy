@@ -1,6 +1,7 @@
 extends PlayerState
 
 var reach_max: bool = false
+var use_variable_jump: bool = true
 
 func jumpTween():
 	var tween = get_tree().create_tween()
@@ -8,6 +9,9 @@ func jumpTween():
 	# tween.tween_property(player.player_model, "scale", Vector3(1,1,1), 0.1)
 
 func handle_input(event: InputEvent) -> void:
+	if !use_variable_jump:
+		return
+
 	if event.is_action_released("jump"):
 		player.velocity.y *= player.jump_height_cut
 	pass
@@ -44,10 +48,16 @@ func physics_update(delta: float) -> void:
 
 func enter(previous_state_path: String, data := {}) -> void:
 	jumpTween()
+
 	var added_velocity = Vector3.ZERO
+	use_variable_jump = true
+
 	if data:
-		if data["added_velo"]:
+		if data.has("added_velo"):
 			added_velocity = data["added_velo"]
+		if data.has("no_variable_jump"):
+			use_variable_jump = !data["no_variable_jump"]
+	
 	player.velocity.y = player.jump_force
 	player.velocity += added_velocity
 	# player.velocity += player.get_platform_velocity()

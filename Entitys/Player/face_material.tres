@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b68mh8n5wf61n"]
+
+[ext_resource type="Texture2D" uid="uid://onqmglhsek0m" path="res://Assets/Models/Player/Player_player_face_256.png" id="1_luoaf"]
+
+[resource]
+resource_name = "player_face_m"
+cull_mode = 2
+albedo_texture = ExtResource("1_luoaf")
+texture_filter = 0

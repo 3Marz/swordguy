@@ -36,7 +36,7 @@ func spawn_player():
 
 func _respawn_player():
 	var uv_player_pos = main_camera.unproject_position(player.global_position + Vector3(0, 0.6, 0)) / get_viewport().get_visible_rect().size
-	await TransitionEffect.start_circle_transition(uv_player_pos, 1.6)
+	await TransitionEffect.start_circle_transition(uv_player_pos, 1.85)
 
 	player.queue_free()
 	await player.tree_exited

@@ -2,8 +2,8 @@ extends PlayerState
 
 func jumpTween():
 	var tween = get_tree().create_tween()
-	tween.tween_property(player.model, "scale", player.jumpStretchSize, 0.1)
-	tween.tween_property(player.model, "scale", Vector3(1,1,1), 0.1)
+	tween.tween_property(player.player_model, "scale", player.jumpStretchSize, 0.05)
+	tween.tween_property(player.player_model, "scale", Vector3(1,1,1), 0.1)
 
 func handle_input(_event: InputEvent) -> void:
 	pass
@@ -35,6 +35,7 @@ func physics_update(delta: float) -> void:
 
 	# TODO better ledge stuff
 	if player.velocity.y <= 0:
+		#--ledge grab--#
 		player.ledge_ray.force_raycast_update()
 		if player.ledge_ray.is_colliding() and player.ledge_ray.get_collision_normal().y > player.min_ledge_angle:
 
@@ -66,7 +67,7 @@ func physics_update(delta: float) -> void:
 	player.can_throw_n_return_sword(finished)
 
 func enter(previous_state_path: String, data := {}) -> void:
-	# jumpTween()
+	jumpTween()
 	
 	var added_velocity : Vector3
 	if data:

@@ -117,7 +117,7 @@ func physics_update(delta: float) -> void:
 		let_go_timer.start()
 
 	if player.jump_just_pressed:
-		finished.emit("Jumping")
+		finished.emit("Jumping", {"no_variable_jump": true, "added_velo": Vector3(0, -0.5, 0)})
 	if player.is_on_floor():
 		finished.emit("Idle")
 	if !player.ledge_ray.is_colliding():

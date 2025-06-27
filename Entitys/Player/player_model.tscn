@@ -1,20 +1,14 @@
-[gd_scene load_steps=7 format=4 uid="uid://be02x5klrfm6h"]
+[gd_scene load_steps=6 format=4 uid="uid://be02x5klrfm6h"]
 
 [ext_resource type="PackedScene" uid="uid://bbk5n3221ph04" path="res://Assets/Models/Player/Player.glb" id="1_71n1d"]
 [ext_resource type="Texture2D" uid="uid://c5vlacndm1von" path="res://Assets/Models/Player/Player_new_player_tex.png" id="2_m70wb"]
-[ext_resource type="Texture2D" uid="uid://onqmglhsek0m" path="res://Assets/Models/Player/Player_player_face_256.png" id="3_ip72i"]
+[ext_resource type="Material" uid="uid://b68mh8n5wf61n" path="res://Entitys/Player/face_material.tres" id="3_m70wb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m70wb"]
 resource_name = "player_body_m"
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("2_m70wb")
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip72i"]
-resource_name = "player_face_m"
-cull_mode = 2
-albedo_texture = ExtResource("3_ip72i")
 texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_s3k38"]
@@ -40,7 +34,7 @@ _surfaces = [{
 "format": 34359745559,
 "index_count": 42,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwAQABEADwASABAAEwAUABUAEwAWABQAFwAYABkAFwAaABgAGwAcAB0A"),
-"material": SubResource("StandardMaterial3D_ip72i"),
+"material": ExtResource("3_m70wb"),
 "name": "player_face_m",
 "primitive": 3,
 "skin_data": PackedByteArray("AgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAA"),
@@ -53,7 +47,7 @@ blend_shape_mode = 0
 [node name="Model" instance=ExtResource("1_71n1d")]
 
 [node name="Sword" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.00282e-07, -4.76837e-07, -2.08616e-07, 2.5689e-07, -1, -1.57793e-07, 1, 1.20529e-07, -4.17233e-07, -0.522947, 1.04308e-07)
+transform = Transform3D(1, -7.76376e-08, -4.47035e-07, -2.08616e-07, 1.32721e-07, -1, 2.10208e-08, 1, 6.09246e-08, -3.57628e-07, -0.522947, 8.9407e-08)
 
 [node name="Sword" parent="Armature/Skeleton3D/Sword" index="0"]
 visible = false

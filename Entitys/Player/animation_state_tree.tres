@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=61 format=3 uid="uid://gb7a38j1g1eb"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=59 format=3 uid="uid://gb7a38j1g1eb"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://btu4y73y6aly1" path="res://Entitys/Player/States/grounded_state_tree.tres" id="1_x1otb"]
 
@@ -72,7 +72,7 @@ blend_point_2/pos = 0.0
 animation = &"SittingOnPole"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qt7kg"]
-animation = &"Long Jump"
+animation = &"Long Jump2"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_x1otb"]
 
@@ -80,7 +80,7 @@ animation = &"Long Jump"
 animation = &"SlideLoop"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_kmg3u"]
-graph_offset = Vector2(-232.911, 0)
+graph_offset = Vector2(-413.7, -8.45454)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_x1otb")
 nodes/TimeScale/position = Vector2(140, 120)
 nodes/anim_SlideLoop/node = SubResource("AnimationNodeAnimation_frtq7")
@@ -89,9 +89,6 @@ node_connections = [&"TimeScale", 0, &"anim_SlideLoop", &"output", 0, &"TimeScal
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x1otb"]
 animation = &"Slide"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2tpb7"]
-animation = &"SlideLoop"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t5yyl"]
 advance_mode = 2
@@ -109,11 +106,6 @@ advance_mode = 2
 advance_expression = "state==STATES.Sliding"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7iciu"]
-advance_mode = 2
-advance_expression = "state==STATES.Long_Jump"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y4oke"]
-xfade_time = 0.1
 advance_mode = 2
 advance_expression = "state==STATES.Long_Jump"
 
@@ -135,12 +127,10 @@ states/End/position = Vector2(841, 188)
 states/Slide/node = SubResource("AnimationNodeAnimation_x1otb")
 states/Slide/position = Vector2(329, 167)
 "states/Slide Loop/node" = SubResource("AnimationNodeBlendTree_kmg3u")
-"states/Slide Loop/position" = Vector2(662, 124.708)
-states/SlideLoop/node = SubResource("AnimationNodeAnimation_2tpb7")
-states/SlideLoop/position = Vector2(536, 180)
+"states/Slide Loop/position" = Vector2(549, 167)
 states/Start/position = Vector2(133, 188)
-transitions = ["Start", "Slide", SubResource("AnimationNodeStateMachineTransition_t5yyl"), "Slide", "Long Jump", SubResource("AnimationNodeStateMachineTransition_fx68d"), "Long Jump", "Slide", SubResource("AnimationNodeStateMachineTransition_hjf4l"), "Start", "Long Jump", SubResource("AnimationNodeStateMachineTransition_7iciu"), "SlideLoop", "Long Jump", SubResource("AnimationNodeStateMachineTransition_y4oke"), "Slide", "Slide Loop", SubResource("AnimationNodeStateMachineTransition_81rha"), "Slide Loop", "Long Jump", SubResource("AnimationNodeStateMachineTransition_aym2d")]
-graph_offset = Vector2(0, 44.7078)
+transitions = ["Start", "Slide", SubResource("AnimationNodeStateMachineTransition_t5yyl"), "Slide", "Long Jump", SubResource("AnimationNodeStateMachineTransition_fx68d"), "Long Jump", "Slide", SubResource("AnimationNodeStateMachineTransition_hjf4l"), "Start", "Long Jump", SubResource("AnimationNodeStateMachineTransition_7iciu"), "Slide", "Slide Loop", SubResource("AnimationNodeStateMachineTransition_81rha"), "Slide Loop", "Long Jump", SubResource("AnimationNodeStateMachineTransition_aym2d")]
+graph_offset = Vector2(0, 94.2246)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kmg3u"]
 animation = &"Sword Return"

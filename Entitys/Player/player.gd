@@ -179,7 +179,6 @@ var moving_to_fast_speed = false # for debuging
 
 var throw_count = 0
 
-var state = 0
 enum STATES {
 	Idle,
 	Running,
@@ -198,6 +197,8 @@ enum STATES {
 	Hurt,
 	Death
 }
+var state = STATES.Idle
+var prev_state = STATES.Idle 
 
 const COLLISION_MASK_WITH_SWORD = 1 | 4 | 16
 const COLLISION_MASK_NO_SWORD = 1 | 16
@@ -307,7 +308,8 @@ func can_throw_n_return_sword(single_func: Signal):
 func _on_state_machine_state_changed(prev:String, next:String) -> void:
 	for i in $StateMachine.get_child_count():
 		if $StateMachine.get_child(i).name == next:
-			state = i
+			prev_state = state
+			state = i as STATES
 	# state = next
 
 func _on_return_back_to_player() -> void:

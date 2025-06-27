@@ -345,7 +345,7 @@ debug_color = Color(0.976013, 0, 0.415076, 0.42)
 [node name="Model" parent="." instance=ExtResource("2_citt6")]
 
 [node name="Sword" parent="Model/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, -7.76376e-08, -4.47035e-07, -2.08616e-07, 1.32721e-07, -1, 2.10208e-08, 1, 6.09246e-08, -3.57628e-07, -0.522947, 8.9407e-08)
+transform = Transform3D(1, 6.21625e-09, -4.76837e-07, -1.78814e-07, 1.41322e-07, -1, -8.78157e-09, 1, 1.20529e-07, -2.98023e-07, -0.522946, 8.9407e-08)
 
 [node name="Player" parent="Model/Armature/Skeleton3D" index="1"]
 layers = 2
@@ -373,7 +373,7 @@ target_position = Vector3(0, 0, 0.5)
 target_position = Vector3(0, 0, 1.4)
 
 [node name="SwordSocket" type="BoneAttachment3D" parent="."]
-transform = Transform3D(1, -7.76376e-08, -4.47035e-07, -2.08616e-07, 1.32721e-07, -1, 2.10208e-08, 1, 6.09246e-08, -3.57628e-07, 0.00380969, 8.9407e-08)
+transform = Transform3D(1, 6.21625e-09, -4.76837e-07, -1.78814e-07, 1.41322e-07, -1, -8.78157e-09, 1, 1.20529e-07, -2.98023e-07, 0.00380981, 8.9407e-08)
 bone_name = "Sword"
 bone_idx = 20
 use_external_skeleton = true
