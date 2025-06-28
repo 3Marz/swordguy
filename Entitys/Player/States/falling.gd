@@ -60,8 +60,12 @@ func physics_update(delta: float) -> void:
 	if can_jump and player.jump_just_pressed:
 		finished.emit("Jumping")
 
+		
 	if player.is_on_floor():
+
+		# if player.velocity.y > player.min_y_velocity_for_squesh:
 		play_land_tween()
+
 		if move_direction != Vector3.ZERO:
 			finished.emit("Running")
 		else:

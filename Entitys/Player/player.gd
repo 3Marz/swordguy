@@ -46,6 +46,9 @@ signal player_died()
 @export var jump_height_cut : float = 0.65
 @export var trigger_fall_anim_y_velocity: float = 3
 
+@export_group("Falling")
+@export var min_y_velocity_for_squesh : float = 4
+
 @export_group("Sliding")
 @export var inital_slide_force : float = 5.0
 @export var slide_move_speed : float = 5.0
@@ -330,5 +333,3 @@ func _on_health_damaged(entity:Node, type:HealthActionType.Enum, amount:int, inc
 		player_died.emit()
 	else:
 		state_machine._transition_to_next_state("Hurt", {})
-
-

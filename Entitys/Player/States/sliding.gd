@@ -29,8 +29,7 @@ func physics_update(delta: float) -> void:
 	# deaccel
 	player.velocity = lerp(player.velocity, Vector3.ZERO, player.slide_deaccel)
 	
-	var collided := player.move_and_slide()
-	if collided:
+	if player.is_on_floor():
 		var slide_normal = player.get_floor_normal()
 		var last_y_motion = player.get_last_motion().y
 		
@@ -50,6 +49,8 @@ func physics_update(delta: float) -> void:
 		player.model.rotation.x = lerpf(player.model.rotation.x, -player.get_floor_angle() if last_y_motion > 0 else player.get_floor_angle(), delta * 10)
 		#player.model.rotation.x = lerpf(player.model.rotation.x, player.velocity.angle_to(player.velocity*2), _delta * 10)
 	
+	player.move_and_slide()
+
 	var look_direction = Vector2(player.velocity.z, player.velocity.x)
 	if look_direction.length() != 0:
 		# player.model.rotation.y = lerp_angle(player.model.rotation.y, look_direction.angle(), _delta * 10)
@@ -84,9 +85,11 @@ func physics_update(delta: float) -> void:
 
 func _on_slide_end_timer_timeout() -> void:
 	if player.velocity.length() < player.min_slide_velocity:
+		# print("?ASd")
 		finished.emit("Idle")
 
 func enter(previous_state_path: String, data := {}) -> void:
+	downhill_multiplier = 0.4
 	
 	var inital_boost = player.get_move_direction() * player.inital_slide_force
 	
@@ -111,7 +114,3 @@ func _on_let_go_sliding_timeout() -> void:
 	if is_falling and move_direction.length() != 0:
 		finished.emit("Falling")
 	
-
-
-
-

@@ -243,7 +243,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="slide_end_timer" type="Timer" parent="StateMachine/Sliding"]
-wait_time = 0.4
+wait_time = 0.5
 one_shot = true
 
 [node name="let_go_sliding" type="Timer" parent="StateMachine/Sliding"]

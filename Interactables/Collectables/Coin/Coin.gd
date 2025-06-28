@@ -45,7 +45,7 @@ func follow_player(delta):
 func _on_body_entered(body):
 	# Delete The Coin and Add Score
 	if body.is_in_group("Player"):
-		GameManager.add_score()
+		#GameManager.add_score()
 		AudioManager.coin_sfx.play()
 		queue_free()
 

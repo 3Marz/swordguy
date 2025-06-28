@@ -95,17 +95,17 @@ func physics_update(delta: float) -> void:
 		DebugDraw2D.set_text("along_ledge_move_strength", str(right_strength))
 		DebugDraw2D.set_text("ledge_right", str(ledge_right))
 
-	player.anim_tree["parameters/Ledge_Hang/blend_position"] = right_strength
+	# player.anim_tree["parameters/Ledge_Hang/blend_position"] = right_strength
 	# player.model.rotation.y = lerp_angle(player.model.rotation.y, y_model_rotaion, 10 * delta)
 	player.rotation.y = lerp_angle(player.rotation.y, y_model_rotaion, 10 * delta)
 
 	check_ledge_arrival(ledge_point, player.ledge_stopping_distance)
 
-	if !moving:
-		if right_strength > player.ledge_move_deadzone: 
-			test_ledge_ray(player.ledge_ray_right)
-		elif right_strength < -player.ledge_move_deadzone:
-			test_ledge_ray(player.ledge_ray_left)
+	# if !moving:
+	# 	if right_strength > player.ledge_move_deadzone: 
+	# 		test_ledge_ray(player.ledge_ray_right)
+	# 	elif right_strength < -player.ledge_move_deadzone:
+	# 		test_ledge_ray(player.ledge_ray_left)
 
 	if moving_platform != null:
 		# player.position += moving_platform.velocity
