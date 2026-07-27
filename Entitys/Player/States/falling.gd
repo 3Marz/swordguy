@@ -107,8 +107,3 @@ func _on_sitting_area_area_entered(area:Area3D) -> void:
 			player.sword_body.state_machine.state.name == "Land" and
 			player.sword_body.collision_normal.y > player.sitting_on_pole_deadzone):
 		finished.emit("Sitting On Pole", {"type": "SwordHandle", "area": area})
-
-
-
-
-

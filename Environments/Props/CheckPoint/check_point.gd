@@ -40,8 +40,3 @@ func _on_area_body_entered(body: Node3D) -> void:
 			Global.game_controller.current_world_scene.current_checkpoint = self
 
 			# TODO: reset player health
-
-
-
-
-

@@ -91,9 +91,10 @@ func physics_update(delta: float) -> void:
 	var right_strength = move_direction.dot(ledge_right)
 
 	if player.debug:
-		DebugDraw2D.set_text("forward_strength", str(forward_strength))
-		DebugDraw2D.set_text("along_ledge_move_strength", str(right_strength))
-		DebugDraw2D.set_text("ledge_right", str(ledge_right))
+		pass
+		#DebugDraw2D.set_text("forward_strength", str(forward_strength))
+		#DebugDraw2D.set_text("along_ledge_move_strength", str(right_strength))
+		#DebugDraw2D.set_text("ledge_right", str(ledge_right))
 
 	# player.anim_tree["parameters/Ledge_Hang/blend_position"] = right_strength
 	# player.model.rotation.y = lerp_angle(player.model.rotation.y, y_model_rotaion, 10 * delta)

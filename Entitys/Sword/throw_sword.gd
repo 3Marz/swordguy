@@ -59,8 +59,9 @@ func return_to_pos(pos: Vector3, player: Player) -> void:
 func _physics_process(delta: float) -> void:
 	if debug:
 		for point in points:
-			DebugDraw3D.draw_sphere(point[0], 0.1, Color.RED)
-			DebugDraw3D.draw_line(point[0], point[0] + point[1] * 2, Color.BISQUE)
+			pass
+			#DebugDraw3D.draw_sphere(point[0], 0.1, Color.RED)
+			#DebugDraw3D.draw_line(point[0], point[0] + point[1] * 2, Color.BISQUE)
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if state.get_contact_count() > 0:

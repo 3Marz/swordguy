@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bu3b7q0ollvbu" path="res://Environments/Props/CheckPoint/check_point.tscn" id="3_v713r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10fqd"]
+albedo_color = Color(0.787759, 0.787759, 0.787759, 1)
 albedo_texture = ExtResource("2_o00nd")
 uv1_triplanar = true
 texture_filter = 0
@@ -29,9 +30,9 @@ material_override = SubResource("StandardMaterial3D_prra5")
 size = Vector3(80.3818, 46.0137, 74.0564)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Geom/CSGCombiner3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9516, 5.0369, 28.0652)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0479, 13.7794, 29.0411)
 material_override = SubResource("StandardMaterial3D_prra5")
-size = Vector3(39.6367, 51.5792, 43.1425)
+size = Vector3(67.6357, 69.0641, 62.5777)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.6983, -9.45917)
@@ -53,41 +54,38 @@ radius = 5.95752
 height = 11.4305
 
 [node name="CSGCylinder3D7" type="CSGBox3D" parent="Geom/CSGCombiner3D" index="5"]
-transform = Transform3D(-0.293173, 0.956059, 0, -0.956059, -0.293173, 0, 0, 0, 1, 10.5319, 4.42951, -0.0983768)
+transform = Transform3D(0.293173, -0.956059, 2.7367e-07, -0.956059, -0.293173, 2.56107e-09, 7.77841e-08, -2.62395e-07, -1, -9.94337, 18.5854, 35.8189)
 operation = 2
 size = Vector3(12.3028, 11.5742, 6.64551)
 
 [node name="CSGCylinder3D8" type="CSGBox3D" parent="Geom/CSGCombiner3D" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7366, 5.03542, -0.275623)
+transform = Transform3D(-1, 0, 2.66237e-07, 0, 1, 0, -2.66237e-07, 0, -1, -18.1481, 19.1913, 35.8199)
 operation = 2
-size = Vector3(7, 7.873, 7)
+size = Vector3(7, 7.873, 6.64746)
 
 [node name="CSGCylinder3D9" type="CSGBox3D" parent="Geom/CSGCombiner3D" index="7"]
 transform = Transform3D(1, 0, 0, 0, -0.45626, 0.889847, 0, -0.889847, -0.456259, 0.210957, 14.7767, 16.5116)
 operation = 2
 size = Vector3(6.43848, 31.6125, 7)
 
-[node name="CSGCylinder3D11" type="CSGBox3D" parent="Geom/CSGCombiner3D" index="8"]
-transform = Transform3D(1, 0, 0, 0, -0.45626, 0.889847, 0, -0.889847, -0.456259, 0.210957, 20.2842, -5.58825)
-size = Vector3(6.43848, 31.6125, 7)
-
-[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8978, 13.4309, 33.2679)
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.1112, 35.6999)
 operation = 2
-radius = 9.14258
+radius = 5.50439
 height = 7.05957
+sides = 10
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="10"]
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12779, 4.56626, -4.33081)
 radius = 1.26074
 height = 7.90475
 
-[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="11"]
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275181, 3.10226, -5.02897)
 radius = 1.26074
 height = 7.90475
 
-[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="12"]
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Geom/CSGCombiner3D" index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89454, 1.17181, -4.47465)
 radius = 1.26074
 height = 8.56322

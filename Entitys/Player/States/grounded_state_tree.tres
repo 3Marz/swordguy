@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=32 format=3 uid="uid://btu4y73y6aly1"]
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://btu4y73y6aly1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aiamn"]
 animation = &"Fall"

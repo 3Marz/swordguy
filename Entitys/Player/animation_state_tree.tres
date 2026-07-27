@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=59 format=3 uid="uid://gb7a38j1g1eb"]
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://gb7a38j1g1eb"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://btu4y73y6aly1" path="res://Entitys/Player/States/grounded_state_tree.tres" id="1_x1otb"]
 
@@ -63,10 +63,13 @@ animation = &"Ledge_Grab_Idle"
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_hjf4l"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_t5yyl")
 blend_point_0/pos = -1.0
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_fx68d")
 blend_point_1/pos = 1.0
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_rqd3t")
 blend_point_2/pos = 0.0
+blend_point_2/name = &"2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gufyk"]
 animation = &"SittingOnPole"
@@ -85,7 +88,7 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_x1otb")
 nodes/TimeScale/position = Vector2(140, 120)
 nodes/anim_SlideLoop/node = SubResource("AnimationNodeAnimation_frtq7")
 nodes/anim_SlideLoop/position = Vector2(-40, 120)
-node_connections = [&"TimeScale", 0, &"anim_SlideLoop", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"anim_SlideLoop"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x1otb"]
 animation = &"Slide"

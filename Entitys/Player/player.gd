@@ -249,14 +249,14 @@ func _physics_process(delta: float) -> void:
 			used_speed = lerpf(used_speed, max_speed, deaccel_to_normalspeed_factor * delta)
 			moving_to_fast_speed = false
 
-	if debug:
-		DebugDraw3D.draw_arrow(global_position+Vector3(0,1,0), (global_position+Vector3(0,1,0)) + velocity, Color.BLUE if !moving_to_fast_speed else Color.RED, 0.1)
-
-		DebugDraw2D.set_text("FPS", str(Engine.get_frames_per_second()))
-		DebugDraw2D.set_text("player_state", $StateMachine.get_child(state).name)
-		DebugDraw2D.set_text("player_velocity", velocity)
-		DebugDraw2D.set_text("player_velocity_length", velocity.length())
-		DebugDraw2D.set_text("rotation_change", str(delta_rotation))
+	#if debug:
+		#DebugDraw3D.draw_arrow(global_position+Vector3(0,1,0), (global_position+Vector3(0,1,0)) + velocity, Color.BLUE if !moving_to_fast_speed else Color.RED, 0.1)
+#
+		#DebugDraw2D.set_text("FPS", str(Engine.get_frames_per_second()))
+		#DebugDraw2D.set_text("player_state", $StateMachine.get_child(state).name)
+		#DebugDraw2D.set_text("player_velocity", velocity)
+		#DebugDraw2D.set_text("player_velocity_length", velocity.length())
+		#DebugDraw2D.set_text("rotation_change", str(delta_rotation))
 
 func controller_camera_control(delta):
 	if Input.get_connected_joypads().size() > 0 and pcam != null and can_move_camera:
